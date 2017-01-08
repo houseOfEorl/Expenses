@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/app-expenses.js"></script>
+    <script src="~/js/expensesController.js"></script>
+    <script src="~/js/expensesCommonController.js"></script>
+}
+<div class="row" ng-app="app-expenses">
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="text-danger" ng-show="vm.errorMessage"> {{ vm.errorMessage }} </div>
+            <div ng-controller="expensesCommonController as vm"><label>Avg Amout:</label> {{ vm.avgAmount }}</div>
+        </div>
+
+        <div class="panel-body" ng-controller="expensesController as vm">
+            <table class="table table-responsive table-striped">
+                <tr ng-repeat="expenses in vm.expenses">
+                    <td>{{ expenses.Name }}</td>
+                    <td>{{ expenses.CreatedDate | date: 'MM-dd-yyyy' }}</td>
+                    <td><a href="#" class="btn btn-sm btn-primary">Manage</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

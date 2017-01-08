@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Expenses.DAL;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace Expenses.API
 {
@@ -19,9 +22,17 @@ namespace Expenses.API
         const string TokenIssuer = "ExampleIssuer";
         private RsaSecurityKey key;
         private TokenAuthOptions tokenOptions;
+        public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -47,9 +58,15 @@ namespace Expenses.API
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature)
             };
 
+            //Add dbContext
+            var connection = Configuration.GetSection("ConnectionStrings:ExpensesDB").Value;
+            services.AddDbContext<ExpensesContext>(options => options.UseSqlServer(connection));
+
             // Save the token options into an instance so they're accessible to the 
             // controller.
-            services.AddTransient<TokenAuthOptions>(x => tokenOptions);
+            services.AddTransient(x => tokenOptions);
+
+            services.AddTransient<IExpensesRepository, ExpensesRepository>();
 
             // Enable the use of an [Authorize("Bearer")] attribute on methods and classes to protect.
             services.AddAuthorization(auth =>
@@ -136,7 +153,13 @@ namespace Expenses.API
             // Configure the HTTP request pipeline.
             app.UseStaticFiles();
 
-            
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:51268")
+                    .AllowAnyHeader()
+                );
+
+
             // Add MVC to the request pipeline.
             app.UseMvc();
         }

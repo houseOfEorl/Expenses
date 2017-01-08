@@ -1,0 +1,24 @@
+{
+  "name": "angry-ui",
+  "homepage": "https://github.com/angry-js/angry-ui",
+  "authors": [
+    "Lsong <song940@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "301d15de4d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "301d15de4d639bf05c220c653fe8f77f74191834"
+  },
+  "_source": "https://github.com/angry-js/angry-ui.git",
+  "_target": "*",
+  "_originalSource": "angry-ui"
+}

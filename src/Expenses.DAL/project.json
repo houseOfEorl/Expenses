@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Relational": "1.1.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "NETStandard.Library": "1.6.1",
+    "System.Reflection.TypeExtensions": "4.3.0"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  }
+}
