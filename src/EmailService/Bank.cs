@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using Expenses.EmailService;
 using Expenses.DAL;
 using Expenses.DAL.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace EmailService
 {
@@ -63,7 +64,7 @@ namespace EmailService
                     ApplicationName = this.GetType().ToString()
                 });
 
-                var emailListRequest = gmailService.Users.Messages.List("patibetobank@gmail.com");
+                var emailListRequest = gmailService.Users.Messages.List(GetEmail());
                 emailListRequest.LabelIds = "INBOX";
                 emailListRequest.IncludeSpamTrash = false;
 
@@ -88,7 +89,7 @@ namespace EmailService
                     foreach (var email in emailListResponse.Messages)
                     {
 
-                        var emailInfoRequest = gmailService.Users.Messages.Get("patibetobank@gmail.com", email.Id);
+                        var emailInfoRequest = gmailService.Users.Messages.Get(GetEmail(), email.Id);
                         //make another request for that email id...
                         var emailInfoResponse = emailInfoRequest.Execute();
 
@@ -244,6 +245,28 @@ namespace EmailService
             var value = body.Substring(startPosition, endPosition - startPosition);
 
             return value;
+        }
+
+        public static IConfigurationRoot Configuration { get; set; }
+
+        /// <summary>
+        /// get email dsa
+        /// </summary>
+        /// <returns></returns>
+        public static string GetEmail()
+        {
+            string _email;
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+
+            //_connectionString = Configuration.Get<string>("Data:MyDb:ConnectionString");
+            _email = Configuration.GetSection("Email").Value;
+
+            return _email;
         }
 
     }
