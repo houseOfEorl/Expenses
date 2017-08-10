@@ -213,3 +213,4 @@ ModelManifest.xml
 
 #config files
 appsettings.json
+client_secrets.json

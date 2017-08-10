@@ -21,6 +21,8 @@ namespace Expenses.DAL
 
         public virtual DbSet<Country> Country { get; set; }
 
+        public virtual DbSet<EmailConfigEntity> EmailConfig { get; set; }
+
     }
 }
 

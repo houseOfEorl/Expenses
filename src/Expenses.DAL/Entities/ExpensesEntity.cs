@@ -19,9 +19,6 @@ namespace Expenses.DAL.Entities
 
         public bool? isPaid { get; set; }
 
-
-        public DateTime? ExpenseDate { get; set; }
-
         public Decimal Amount { get; set; }
 
         public int CountryID { get; set; }
@@ -32,5 +29,18 @@ namespace Expenses.DAL.Entities
 
         public ExpensesType Type { get; set; }
         public int ExpensesTypeID { get; set; }
+
+        private DateTime _expenseDate;
+
+        public DateTime ExpenseDate
+        {
+            get
+            {
+                var dt = _expenseDate;
+                return dt;
+            }
+            set { _expenseDate = value; }
+        }
+
     }
 }

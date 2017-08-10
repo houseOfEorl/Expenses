@@ -23,6 +23,7 @@ namespace Expenses.DAL
         public void AddExpense(ExpensesEntity expense)
         {
             _context.Add(expense);
+            _context.SaveChanges();
         }
 
         public IEnumerable<ExpensesEntity> GetAllExpenses()
@@ -38,7 +39,8 @@ namespace Expenses.DAL
                 var year = dtPeriod.Year;
 
                 return _context.ExpensesEntity
-                    .Where(x => x.ExpenseDate.Value.Month == month && x.ExpenseDate.Value.Year == year)
+                    .Include(x => x.Type)
+                    .Where(x => x.ExpenseDate.Month == month && x.ExpenseDate.Year == year)
                     .ToList();
             }
             catch (Exception ex)
@@ -60,9 +62,9 @@ namespace Expenses.DAL
 
                 var result = _context.ExpensesEntity
                     .Where(x => x.CountryID == idPais)
-                    .GroupBy(x => Convert.ToString(x.ExpenseDate.Value.Month) + Convert.ToString(x.ExpenseDate.Value.Year))
+                    .GroupBy(x => Convert.ToString(x.ExpenseDate.Month) + Convert.ToString(x.ExpenseDate.Year))
                     .Select(cl => new {
-                        Period = Convert.ToString(cl.First().ExpenseDate.Value.Month) + Convert.ToString(cl.First().ExpenseDate.Value.Year),
+                        Period = Convert.ToString(cl.First().ExpenseDate.Month) + Convert.ToString(cl.First().ExpenseDate.Year),
                         AvgAmount = cl.Sum(c => c.Amount).ToString(),
                         Times = cl.Count()
                     })

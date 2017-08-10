@@ -155,8 +155,9 @@ namespace Expenses.API
 
             // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
-                builder.WithOrigins("http://localhost:51268")
+                builder.WithOrigins("http://localhost:3000")
                     .AllowAnyHeader()
+                    .AllowAnyMethod()
                 );
 
 
@@ -171,6 +172,7 @@ namespace Expenses.API
             .UseContentRoot(System.IO.Directory.GetCurrentDirectory())
             .UseIISIntegration()
             .UseStartup<Startup>()
+            .UseUrls("http://localhost:5050")
             .Build();
 
             host.Run();

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Expenses.DAL;
 using Newtonsoft.Json;
+using Expenses.DAL.Entities;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,12 +24,17 @@ namespace Expenses.API.Controllers
         #endregion
 
         // GET: api/values
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{date}")]
+        public IActionResult Get(string date)
         {
             try
             {
-                var expenses = _repository.GetExpensesByPeriod(Convert.ToDateTime("2016-11-01"));
+                DateTime today = DateTime.Today;
+
+                DateTime.TryParse(date, out today);
+                //DateTime dt = Convert.ToDateTime(date);
+
+                var expenses = _repository.GetExpensesByPeriod(today);
 
                 //string json = JsonConvert.SerializeObject(expenses);
 
@@ -37,7 +43,7 @@ namespace Expenses.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Erorr occurrred");
+                return BadRequest("Erorr occurrred" + ex.Message);
             }
         }
 
@@ -50,8 +56,9 @@ namespace Expenses.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ExpensesEntity value)
         {
+            _repository.AddExpense(value);
         }
 
         // PUT api/values/5
