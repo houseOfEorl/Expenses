@@ -18,11 +18,13 @@ class ExpensesPage extends React.Component{
 		this.state = { 
             expensesCredit: [],
             expensesDebit: [],
-            period: new Date(Date.now()).toLocaleString()
+            //period: new Date(Date.now()).toLocaleString()
+            period: "2017-08"
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
+        this.handleAddRecord = this.handleAddRecord.bind(this);
     }
 
     filter(arr, criteria) {
@@ -74,6 +76,19 @@ class ExpensesPage extends React.Component{
         });
     };
 
+    handleAddRecord(expense) {
+        
+        var expenses = this.state.expensesCredit;
+
+        expenses.push(expense);
+
+        this.setState({
+            expensesCredit: expenses
+        });
+
+        // console.log(foo);
+    };
+
 	render() {
 		return (
 			<div>
@@ -92,7 +107,7 @@ class ExpensesPage extends React.Component{
                     </Semantic.Menu.Item>    
                 </Semantic.Menu>
                 <Semantic.Segment attached='bottom'>
-                    <ExpensesModal />
+                    <ExpensesModal action={this.handleAddRecord} />
                     <ExpensesList expenses={this.state.expensesCredit} />
                     <ExpensesList expenses={this.state.expensesDebit} />
                 </Semantic.Segment>

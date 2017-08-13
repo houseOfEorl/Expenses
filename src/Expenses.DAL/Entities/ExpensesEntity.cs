@@ -25,12 +25,27 @@ namespace Expenses.DAL.Entities
 
         public bool? isCreditCard { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        private DateTime _createdDate;
 
         public ExpensesType Type { get; set; }
+
         public int ExpensesTypeID { get; set; }
 
         private DateTime _expenseDate;
+
+        public DateTime CreatedDate
+        {
+            get
+            {
+                if (_createdDate == DateTime.MinValue)
+                {
+                    return DateTime.Now;
+                }
+                return _createdDate;
+            }
+            set { _createdDate = value; }
+        }
+
 
         public DateTime ExpenseDate
         {

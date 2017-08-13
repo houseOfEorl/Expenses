@@ -56,9 +56,10 @@ namespace Expenses.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]ExpensesEntity value)
+        public int Post([FromBody]ExpensesEntity value)
         {
-            _repository.AddExpense(value);
+            var id = _repository.AddExpense(value);
+            return id;
         }
 
         // PUT api/values/5
@@ -69,8 +70,10 @@ namespace Expenses.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(int id, [FromBody]ExpensesEntity value)
         {
+            //var exp = _repository.GetExpenseById(value.ExpensesID);
+            _repository.RemoveExpense(value);
         }
     }
 }

@@ -20,15 +20,44 @@ namespace Expenses.DAL
             _context = context;
             _logger = logger;
         }
-        public void AddExpense(ExpensesEntity expense)
+
+        public int AddExpense(ExpensesEntity expense)
         {
-            _context.Add(expense);
-            _context.SaveChanges();
+            try
+            {
+                _context.Add(expense);
+                var result = _context.SaveChanges();
+
+                return expense.ExpensesID;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return 0;
+            }
+        }
+
+        public void RemoveExpense(ExpensesEntity expense)
+        {
+            try
+            {
+                _context.Remove(expense);
+                var result = SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
         }
 
         public IEnumerable<ExpensesEntity> GetAllExpenses()
         {
             return _context.ExpensesEntity.ToList();
+        }
+
+        public ExpensesEntity GetExpenseById(int id)
+        {
+            return _context.ExpensesEntity.Where(x => x.ExpensesID == id).FirstOrDefault();
         }
 
         public IEnumerable<ExpensesEntity> GetExpensesByPeriod(DateTime dtPeriod)

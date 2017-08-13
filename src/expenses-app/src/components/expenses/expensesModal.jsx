@@ -3,20 +3,21 @@ var ExpensesApi = require('../../api/expensesApi');
 var Semantic = require('semantic-ui-react');
 
 
+
 class expensesModal extends React.Component {
 
   constructor(props) {
       super(props);
       this.state = {
-        expId: 1,
-        expName: '',
-        expCountryID: '1',
-        expCreditOrDebit: '',
-        expType: '',
-        expIsCreditCard: false,
-        expExpenseDate: '',
-        expIsPaid: false,
-        expAmount: ''
+        ExpensesID: 0,
+        Name: '',
+        CountryID: '1',
+        CreditOrDebit:'',
+        ExpensesTypeID: 0,
+        isCreditCard: false,
+        ExpenseDate: '',
+        isPaid: false,
+        Amount: 0
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,56 +34,56 @@ class expensesModal extends React.Component {
   };
 
   handleSubmit(e) {
-    var expenseObject = new Object();
-    //expenseObject.ExpensesID = this.state.expId;
-    expenseObject.Name = this.state.expName;
-    expenseObject.CreditOrDebit = this.state.expCreditOrDebit;
-    expenseObject.isPaid = this.state.expIsPaid;
-    expenseObject.Amount = this.state.expAmount;
-    expenseObject.CountryID = this.state.expCountryID;
-    expenseObject.isCreditCard = this.state.expIsCreditCard;
-    expenseObject.ExpensesTypeID = this.state.expType;
-    expenseObject.ExpenseDate = this.state.expExpenseDate;
-    
-    
+    //define expense
+    var expenseObject = this.state;
 
-    // ExpensesApi.postExpenses(expenseObject);
-
+    //new record
+    expenseObject.ExpensesID = 0;
+    
     ExpensesApi.postExpenses(expenseObject)
-    .then(resp => {
-        alert('a');
-    });
+        .then(data => {
 
-    // alert(expenseObject.Name);
-    // alert(expenseObject.Amount);
+          // this.setState({
+          //   ExpensesID: id
+          // })
+          expenseObject.ExpensesID = data.id;
+
+          this.props.action(expenseObject);
+        }, (err) => {
+          console.log("expensesModal: handleSubmit - error: ${err}");
+        });
+
+    // .then(resp => {  
+    //   this.props.action(expenseObject);
+    // });
   };
   
   render () {
     return (
-      <Semantic.Modal trigger={<Semantic.Button>Show Modal</Semantic.Button>}>
+      <Semantic.Modal trigger={<Semantic.Button>Add New Record</Semantic.Button>}>
         <Semantic.Modal.Header>Add/Edit Expense</Semantic.Modal.Header>
         <Semantic.Modal.Content scrolling>
             <Semantic.Form>
             <Semantic.Form.Field>
-              <Semantic.Input label='Name' name='expName' onChange={this.handleChange} />
+              <Semantic.Input label='Name' name='Name' onChange={this.handleChange} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='CreditOrDebit' name='expCreditOrDebit' onChange={this.handleChange} />
+              <Semantic.Input label='CreditOrDebit' name='CreditOrDebit' onChange={this.handleChange} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='Type' name='expType' onChange={this.handleChange} />
+              <Semantic.Input label='ExpensesTypeID' name='ExpensesTypeID' onChange={this.handleChange} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Checkbox label='isCreditCard' name='expIsCreditCard' type='checkbox' onChange={this.handleChange} checked={this.state.expIsCreditCard}  />
+              <Semantic.Checkbox label='isCreditCard' name='isCreditCard' type='checkbox' onChange={this.handleChange} checked={this.state.expIsCreditCard}  />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='ExpenseDate' name='expExpenseDate' onChange={this.handleChange} />
+              <Semantic.Input label='ExpenseDate' name='ExpenseDate' onChange={this.handleChange} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Checkbox label='isPaid' name='expIsPaid' type='checkbox' onChange={this.handleChange} checked={this.state.expIsPaid}  />
+              <Semantic.Checkbox label='isPaid' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.expIsPaid}  />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='Amount' name='expAmount' onChange={this.handleChange} />
+              <Semantic.Input label='Amount' name='Amount' onChange={this.handleChange} />
             </Semantic.Form.Field>
             <Semantic.Button onClick={this.handleSubmit} >Submit</Semantic.Button>
           </Semantic.Form>

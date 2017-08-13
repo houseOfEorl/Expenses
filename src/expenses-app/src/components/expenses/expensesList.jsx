@@ -1,6 +1,6 @@
 ﻿var React = require('react');
 var Semantic = require('semantic-ui-react');
-
+var ExpensesApi = require('../../api/expensesApi');
 
 
 class ExpensesList extends React.Component	{
@@ -9,37 +9,94 @@ class ExpensesList extends React.Component	{
     {
         super(props);
         this.handleOnClickEdit = this.handleOnClickEdit.bind(this);
+        this.createExpenseRow = this.createExpenseRow.bind(this);
+        this.state = {
+            records: []
+        };
     }
 
     handleOnClickEdit(expense) {
+
+        //ExpensesApi.removeExpenses(expense);
+        //render ();
         alert(expense.ExpensesID);
     }
+
+    handleOnClickDelete(expense) {
+        
+       ExpensesApi.removeExpenses(expense);
+
+       var recordsNotDeleted = this.state.records.filter(x => x.ExpensesID !== expense.ExpensesID);
+       console.log(recordsNotDeleted);
+       this.setState({
+           records: recordsNotDeleted
+       })
+    }
+
+    // componentDidMount()
+    // {
+    //     this.setState({
+    //         records: this.props.expenses
+    //     });
+
+    //     console.log("componentWillReceiveProps")
+    // }
+
+    // componentWillReceiveProps(nextProps)
+    // {
+    //     console.log("componentWillReceiveProps")
+    // }
+
+    // componentWillUpdate(nextProps, nextState)
+    // {
+    //     console.log("componentWillUpdate")
+    // }
+
+    componentDidUpdate(prevProps, prevState)
+    {
+        if(prevProps.expenses !== this.props.expenses)
+        {
+            this.setState({
+                records: this.props.expenses
+            });
+        }
+        // else if(prevProps.expenses !== prevState.records)
+        // {
+        //     this.setState({
+        //         records: this.props.expenses
+        //     });
+        // }
+
+        // console.log("componentWillUpdate")
+    }
+
+    createExpenseRow = function (expense) {
+        //console.log(expense);
+        return (
+
+            <Semantic.Table.Row key={expense.ExpensesID}>
+                {/* <Semantic.Table.Cell>{expense.ExpensesID}</Semantic.Table.Cell> */}
+                <Semantic.Table.Cell>{expense.Name}</Semantic.Table.Cell>
+                <Semantic.Table.Cell>{expense.CreditOrDebit}</Semantic.Table.Cell>
+                {/* <Semantic.Table.Cell>{expense.Type.Description}</Semantic.Table.Cell> */}
+                <Semantic.Table.Cell>{String(expense.isCreditCard)}</Semantic.Table.Cell>
+                <Semantic.Table.Cell>{expense.ExpenseDate.split('T')[0]}</Semantic.Table.Cell>
+                <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
+                <Semantic.Table.Cell>{expense.Amount}</Semantic.Table.Cell>
+                <Semantic.Table.Cell>
+                    <Semantic.Button onClick={() => this.handleOnClickEdit(expense)} icon ><Semantic.Icon name={'edit'}  /></Semantic.Button>
+                    <Semantic.Button onClick={() => this.handleOnClickDelete(expense)} icon ><Semantic.Icon name={'trash outline'}  /></Semantic.Button>
+                </Semantic.Table.Cell>
+            </Semantic.Table.Row>
+        );
+    };
     
 	render () {
 
         //console.log(expense);
         //console.log(expense.id);
+        var expComponents = this.state.records.map(this.createExpenseRow, this)
 
-        var createExpenseRow = function (expense) {
-            //console.log(expense);
-			return (
-
-                <Semantic.Table.Row key={expense.ExpensesID}>
-                    {/* <Semantic.Table.Cell>{expense.ExpensesID}</Semantic.Table.Cell> */}
-                    <Semantic.Table.Cell>{expense.Name}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{expense.CreditOrDebit}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{expense.Type.Description}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{String(expense.isCreditCard)}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{expense.ExpenseDate.split('T')[0]}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>{expense.Amount}</Semantic.Table.Cell>
-                    <Semantic.Table.Cell>
-                        <Semantic.Button onClick={() => this.handleOnClickEdit(expense)} icon ><Semantic.Icon name={'edit'}  /></Semantic.Button>
-                        <Semantic.Icon name={'trash outline'} />
-                    </Semantic.Table.Cell>
-                </Semantic.Table.Row>
-			);
-		};
 
 		return (
             
@@ -56,9 +113,9 @@ class ExpensesList extends React.Component	{
                             <Semantic.Table.HeaderCell >
                                 CreditOrDebit
                             </Semantic.Table.HeaderCell>
-                            <Semantic.Table.HeaderCell >
+                            {/* <Semantic.Table.HeaderCell >
                                 Type
-                            </Semantic.Table.HeaderCell>
+                            </Semantic.Table.HeaderCell> */}
                             <Semantic.Table.HeaderCell >
                                 isCreditCard
                             </Semantic.Table.HeaderCell>
@@ -74,7 +131,9 @@ class ExpensesList extends React.Component	{
                         </Semantic.Table.Row>
                     </Semantic.Table.Header>
                     <Semantic.Table.Body>
-                        {this.props.expenses.map(createExpenseRow, this)}
+                        {
+                            expComponents
+                        }
                     </Semantic.Table.Body>
 				</Semantic.Table>
 			</div>

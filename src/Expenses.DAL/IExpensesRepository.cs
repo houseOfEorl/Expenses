@@ -8,11 +8,13 @@ namespace Expenses.DAL
 {
     public interface IExpensesRepository
     {
+        ExpensesEntity GetExpenseById(int id);
         IEnumerable<ExpensesEntity> GetAllExpenses();
         IEnumerable<ExpensesEntity> GetExpensesByPeriod(DateTime dtPeriod);
         IEnumerable<ExpensesEntity> GetAvarageAmountPerMonthByCountry(int idPais);
         Decimal GetAvarageAmountByCountry(int idPais);
-        void AddExpense(ExpensesEntity expense);
+        int AddExpense(ExpensesEntity expense);
+        void RemoveExpense(ExpensesEntity expense);
         Task<bool> SaveChangesAsync();
     }
 }
