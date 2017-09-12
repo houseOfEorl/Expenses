@@ -1,6 +1,7 @@
 ﻿var React = require('react');
 var Semantic = require('semantic-ui-react');
 var ExpensesApi = require('../../api/expensesApi');
+var ExpensesModal = require('./expensesModal')
 
 
 class ExpensesList extends React.Component	{
@@ -17,8 +18,8 @@ class ExpensesList extends React.Component	{
 
     handleOnClickEdit(expense) {
 
-        //ExpensesApi.removeExpenses(expense);
-        //render ();
+        <ExpensesModal action={this.handleAddRecord} />
+
         alert(expense.ExpensesID);
     }
 
@@ -84,7 +85,7 @@ class ExpensesList extends React.Component	{
                 <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{expense.Amount}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>
-                    <Semantic.Button onClick={() => this.handleOnClickEdit(expense)} icon ><Semantic.Icon name={'edit'}  /></Semantic.Button>
+                    <ExpensesModal action={this.handleAddRecord} iconName={"edit"} exp={expense} />
                     <Semantic.Button onClick={() => this.handleOnClickDelete(expense)} icon ><Semantic.Icon name={'trash outline'}  /></Semantic.Button>
                 </Semantic.Table.Cell>
             </Semantic.Table.Row>

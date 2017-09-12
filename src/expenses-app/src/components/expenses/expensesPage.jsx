@@ -107,7 +107,7 @@ class ExpensesPage extends React.Component{
                     </Semantic.Menu.Item>    
                 </Semantic.Menu>
                 <Semantic.Segment attached='bottom'>
-                    <ExpensesModal action={this.handleAddRecord} />
+                    <ExpensesModal action={this.handleAddRecord} buttonName={"Add New Record"} />
                     <ExpensesList expenses={this.state.expensesCredit} />
                     <ExpensesList expenses={this.state.expensesDebit} />
                 </Semantic.Segment>
