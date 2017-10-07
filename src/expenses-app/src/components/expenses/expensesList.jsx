@@ -75,11 +75,11 @@ class ExpensesList extends React.Component	{
         //console.log(expense);
         return (
 
-            <Semantic.Table.Row key={expense.ExpensesID}>
+            <Semantic.Table.Row key={expense.ExpensesID} >
                 {/* <Semantic.Table.Cell>{expense.ExpensesID}</Semantic.Table.Cell> */}
                 <Semantic.Table.Cell>{expense.Name}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{expense.CreditOrDebit}</Semantic.Table.Cell>
-                {/* <Semantic.Table.Cell>{expense.Type.Description}</Semantic.Table.Cell> */}
+                <Semantic.Table.Cell>{expense.ExpensesTypeID}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{String(expense.isCreditCard)}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{expense.ExpenseDate.split('T')[0]}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
@@ -102,7 +102,7 @@ class ExpensesList extends React.Component	{
 		return (
             
 			<div>
-				<Semantic.Table sortable celled fixed>
+				<Semantic.Table sortable celled fixed className={"table"}>
                     <Semantic.Table.Header>
                         <Semantic.Table.Row>
                             {/* <Semantic.Table.HeaderCell >
@@ -114,9 +114,9 @@ class ExpensesList extends React.Component	{
                             <Semantic.Table.HeaderCell >
                                 CreditOrDebit
                             </Semantic.Table.HeaderCell>
-                            {/* <Semantic.Table.HeaderCell >
+                            <Semantic.Table.HeaderCell >
                                 Type
-                            </Semantic.Table.HeaderCell> */}
+                            </Semantic.Table.HeaderCell>
                             <Semantic.Table.HeaderCell >
                                 isCreditCard
                             </Semantic.Table.HeaderCell>

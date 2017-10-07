@@ -2,7 +2,16 @@ var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
 var Semantic = require('semantic-ui-react');
 
+const optionCreditOrDebit = [
+  { key:"C", text:"Credit", value: "C"},
+  { key:"D", text:"Debit", value:"D"}
+]
 
+const optionPaymentType = [
+  { key:"0", text: "Basic", value:"0"},
+  { key:"1", text: "Grocery", value:"1" },
+  { key:"2", text: "Restaurant", value:"2" }
+]
 
 class expensesModal extends React.Component {
 
@@ -79,7 +88,7 @@ class expensesModal extends React.Component {
   
   render () {
     return (
-      <Semantic.Modal trigger={<Semantic.Button icon={this.props.iconName}>{this.props.buttonName}</Semantic.Button>}>
+      <Semantic.Modal trigger={<Semantic.Button size={"small"} icon={this.props.iconName}>{this.props.buttonName}</Semantic.Button>}>
         <Semantic.Modal.Header>Add/Edit Expense</Semantic.Modal.Header>
         <Semantic.Modal.Content scrolling>
             <Semantic.Form>
@@ -87,10 +96,10 @@ class expensesModal extends React.Component {
               <Semantic.Input label='Name' name='Name' onChange={this.handleChange} value={this.state.Name} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='CreditOrDebit' name='CreditOrDebit' onChange={this.handleChange} value={this.state.CreditOrDebit} />
+              <Semantic.Dropdown label='CreditOrDebit' name='CreditOrDebit' options={optionCreditOrDebit} onChange={this.handleChange}  defaultValue={this.state.CreditOrDebit} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
-              <Semantic.Input label='ExpensesTypeID' name='ExpensesTypeID' onChange={this.handleChange} value={this.state.ExpensesTypeID} />
+              <Semantic.Form.Select placeholder='ExpensesTypeID' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange}  value={this.state.ExpensesTypeID} />
             </Semantic.Form.Field>
             <Semantic.Form.Field>
               <Semantic.Checkbox label='isCreditCard' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.expIsCreditCard}  />
