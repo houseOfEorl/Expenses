@@ -14,17 +14,22 @@ const options = [
 class ExpensesPage extends React.Component{
 
 	constructor(props) {
-		super(props);
+        super(props);
+        
+        var currentTime = new Date()
+        var dt = currentTime.getFullYear() + "-" + (currentTime.getMonth() + 1)
+
 		this.state = { 
             expensesCredit: [],
             expensesDebit: [],
-            //period: new Date(Date.now()).toLocaleString()
-            period: "2017-08"
+            period: dt,
+            paymentOption: 1
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
+        this.handleChangePaymentOption = this.handleChangePaymentOption.bind(this);
     }
 
     filter(arr, criteria) {
@@ -35,22 +40,45 @@ class ExpensesPage extends React.Component{
         });
     };
 
+    getData(value) {
+        console.log(this.state.paymentOption);
+
+        if(this.state.paymentOption !== 1) {
+
+            var _isPaid = true;
+
+            if(this.state.paymentOption == 3) {
+                _isPaid = false
+            }
+            value = this.filter(value, {isPaid: _isPaid})
+            console.log(value);
+        }
+
+        return value;
+    }
+
     getCredit(value) {
+
+        var filterData = this.getData(value);
+
         this.setState({
-            expensesCredit: this.filter(value, { CreditOrDebit: 'C ' })
+            expensesCredit: this.filter(filterData, { CreditOrDebit: 'C ' })
         })
     };
 
     getDebit(value) {
         //console.log(value);
+
+        var filterData = this.getData(value);
+
         this.setState({
-            expensesDebit: this.filter(value, { CreditOrDebit: 'D ' })
+            expensesDebit: this.filter(filterData, { CreditOrDebit: 'D ' })
         })
     };
 
 
 	componentDidMount() {
-        ExpensesApi.getGithubInfo(this.state.period)
+        ExpensesApi.getExpenses(this.state.period)
             .then(function (data) {
                 this.getCredit(data.repos);
                 this.getDebit(data.repos);
@@ -61,9 +89,9 @@ class ExpensesPage extends React.Component{
     };
 
     handleSubmit(e) {
-        e.preventDefault();
+        //e.preventDefault();
         // console.log(this.state.period);
-        ExpensesApi.getGithubInfo(this.state.period)
+        ExpensesApi.getExpenses(this.state.period)
             .then(resp => {
                 this.getCredit(resp.repos);
                 this.getDebit(resp.repos);
@@ -76,16 +104,33 @@ class ExpensesPage extends React.Component{
         });
     };
 
+    handleChangePaymentOption(e, data) {
+        // console.log(data.value);
+        this.setState({
+            paymentOption: data.value
+        });
+    };
+
     handleAddRecord(expense) {
         
-        var expenses = this.state.expensesCredit;
+        if(expense.CreditOrDebit === "C") {
+            var expenses = this.state.expensesCredit;
+            
+            expenses.push(expense);
+            
+            this.setState({
+                expensesCredit: expenses
+            });
+        }
+        else {
+            var expenses = this.state.expensesDebit;
 
-        expenses.push(expense);
-
-        this.setState({
-            expensesCredit: expenses
-        });
-
+            expenses.push(expense);
+            
+            this.setState({
+                expensesDebit: expenses
+            });
+        }
         // console.log(foo);
     };
 
@@ -100,7 +145,7 @@ class ExpensesPage extends React.Component{
                     </Semantic.Menu.Item> 
                     <Semantic.Menu.Item>
                         <Semantic.Label size={'mini'}><Semantic.Icon name='dollar'/></Semantic.Label>
-                        <Semantic.Dropdown additionLabel={'Test:'} defaultValue={1}  options={options}/>
+                        <Semantic.Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
                     </Semantic.Menu.Item>    
                     <Semantic.Menu.Item>
                         <Semantic.Button onClick={this.handleSubmit}>Search</Semantic.Button>
@@ -108,8 +153,8 @@ class ExpensesPage extends React.Component{
                 </Semantic.Menu>
                 <Semantic.Segment attached='bottom'>
                     <ExpensesModal action={this.handleAddRecord} buttonName={"Add New Record"} />
-                    <ExpensesList expenses={this.state.expensesCredit} />
-                    <ExpensesList expenses={this.state.expensesDebit} />
+                    <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} />
+                    <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} />
                 </Semantic.Segment>
 			</div>
 		);

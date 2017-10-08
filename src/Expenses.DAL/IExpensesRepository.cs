@@ -14,6 +14,7 @@ namespace Expenses.DAL
         IEnumerable<ExpensesEntity> GetAvarageAmountPerMonthByCountry(int idPais);
         Decimal GetAvarageAmountByCountry(int idPais);
         int AddExpense(ExpensesEntity expense);
+        int UpdateExpense(ExpensesEntity expense);
         void RemoveExpense(ExpensesEntity expense);
         Task<bool> SaveChangesAsync();
     }

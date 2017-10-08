@@ -37,6 +37,22 @@ namespace Expenses.DAL
             }
         }
 
+        public int UpdateExpense(ExpensesEntity expense)
+        {
+            try
+            {
+                _context.Update(expense);
+                var result = _context.SaveChanges();
+
+                return expense.ExpensesID;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return 0;
+            }
+        }
+
         public void RemoveExpense(ExpensesEntity expense)
         {
             try

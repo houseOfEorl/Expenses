@@ -9,11 +9,11 @@ class expensesModal extends React.Component {
   constructor(props) {
       super(props);
 
-      // alert(this.props.exp)
+      //alert(this.props.exp)
       if (this.props.exp !== undefined)
       {
         this.state = {
-          ExpensesID: this.props.ExpensesID,
+          ExpensesID: this.props.exp.ExpensesID,
           Name: this.props.exp.Name,
           CountryID: this.props.exp.CountryID,
           CreditOrDebit:this.props.exp.CreditOrDebit,
@@ -56,25 +56,35 @@ class expensesModal extends React.Component {
     //define expense
     var expenseObject = this.state;
 
-    //new record
-    //expenseObject.ExpensesID = 0;
-    
-    ExpensesApi.postExpenses(expenseObject)
-        .then(data => {
+    if (expenseObject.ExpensesID !== 0)
+    {
+      ExpensesApi.putExpenses(expenseObject)
+      .then(data => {
 
-          // this.setState({
-          //   ExpensesID: id
-          // })
-          expenseObject.ExpensesID = data.id;
+        // this.setState({
+        //   ExpensesID: id
+        // })
+        this.props.action(expenseObject);
+      }, (err) => {
+        console.log("expensesModal: handleSubmit - error: ${err}");
+      });
 
-          this.props.action(expenseObject);
-        }, (err) => {
-          console.log("expensesModal: handleSubmit - error: ${err}");
-        });
+    }
+    else {
+      ExpensesApi.postExpenses(expenseObject)
+          .then(data => {
 
-    // .then(resp => {  
-    //   this.props.action(expenseObject);
-    // });
+            // this.setState({
+            //   ExpensesID: id
+            // })
+            expenseObject.ExpensesID = data.id;
+
+            this.props.action(expenseObject);
+          }, (err) => {
+            console.log("expensesModal: handleSubmit - error: ${err}");
+          });
+    }
+
   };
   
   render () {

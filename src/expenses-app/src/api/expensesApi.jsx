@@ -8,35 +8,25 @@ function getAllExpenses(period) {
     return axios.get('http://localhost:5050/api/Expenses/' + period);
 }
 
-function post(expense) {
-
-    // return axios.post('http://localhost:5050/api/Expenses', {
-    //     firstName: 'Fred',
-    //     lastName: 'Flintstone'
-    // })
-    // .then(function (response) {
-    //     console.log(response);
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // });
-
+function post(data) {
     return axios({
         method: 'post',
         url: 'http://localhost:5050/api/Expenses',
-        data: expense
+        data: data
     });
-
-    // return axios.post('http://localhost:5050/api/Expenses', {
-    //     data: { value: 'expense' }
-    // })
-    // .then(function (response){
-    //     console.log(response);
-    // })
 }
 
+function put(data) {
+    return axios({
+        method: 'put',
+        url: 'http://localhost:5050/api/Expenses',
+        data: data
+    });
+}
+
+
 var helpers = {
-    getGithubInfo: function (period) {
+    getExpenses: function (period) {
         return axios.all([getAllExpenses(period)])
             .then(function (arr) {
                 return {
@@ -46,13 +36,6 @@ var helpers = {
     },
 
     postExpenses: function(expense) {
-
-        // return axios({
-        //             method: 'post',
-        //             url: 'http://localhost:5050/api/Expenses',
-        //             data: expense
-        // });
-
         return axios.all([post(expense)])
             .then(function (arr) {
                 return {
@@ -60,11 +43,16 @@ var helpers = {
                 }
             }
         )
-        // return axios({
-        //     method: 'post',
-        //     url: 'http://localhost:5050/api/Expenses',
-        //     data: expense
-        // });
+    },
+
+    putExpenses: function(expense) {
+        return axios.all([put(expense)])
+            .then(function (arr) {
+                return {
+                    id: arr[0].data
+                }
+            }
+        )
     },
 
     removeExpenses: function(expense) {
