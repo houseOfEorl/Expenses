@@ -29,10 +29,16 @@ class ExpensesPage extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
+<<<<<<< HEAD
         this.handleChangePaymentOption = this.handleChangePaymentOption.bind(this);
     }
+=======
+    };
+>>>>>>> 55a769cd68d30db42a49ace978eaf13adb100704
 
     filter(arr, criteria) {
+        // console.log(arr);
+        // return arr;
         return arr.filter(function(obj) {
             return Object.keys(criteria).every(function(c) {
             return obj[c] === criteria[c];

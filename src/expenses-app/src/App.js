@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 // import 'bootstrap/dist/css/bootstrap.css'
 // import logo from './logo.svg';
 import ExpensesPage from './components/expenses/expensesPage';
 import 'semantic-ui-css/semantic.min.css';
-
+import './App.css';
 
 
 class App extends Component {
