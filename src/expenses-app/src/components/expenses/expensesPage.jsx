@@ -29,12 +29,7 @@ class ExpensesPage extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
-<<<<<<< HEAD
-        this.handleChangePaymentOption = this.handleChangePaymentOption.bind(this);
-    }
-=======
     };
->>>>>>> 55a769cd68d30db42a49ace978eaf13adb100704
 
     filter(arr, criteria) {
         // console.log(arr);
@@ -159,7 +154,7 @@ class ExpensesPage extends React.Component{
                 </Semantic.Menu>
                 <Semantic.Segment attached='bottom'>
                     <ExpensesModal action={this.handleAddRecord} buttonName={"Add New Record"} />
-                    <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} />
+                    <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} /><br/>
                     <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} />
                 </Semantic.Segment>
 			</div>

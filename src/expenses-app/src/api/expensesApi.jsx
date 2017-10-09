@@ -6,10 +6,9 @@ var ExpensesData = require('./expensesData.jsx');
 // }
 
 function getAllExpenses(period) {
-    return axios.get('http://localhost:5050/api/Expenses/' + period);
-    // return axios.get('http://localhost:5050/api/Expenses/' + period);
-    console.log(ExpensesData);
-    return ExpensesData;
+   return axios.get('http://localhost:5050/api/Expenses/' + period);
+    // console.log(ExpensesData);
+    // return ExpensesData;
 }
 
 function post(data) {
@@ -31,15 +30,11 @@ function put(data) {
 
 var helpers = {
     getExpenses: function (period) {
-=======
-    getGithubInfo: function (period) {
         // return ExpensesData.expenses;
->>>>>>> 55a769cd68d30db42a49ace978eaf13adb100704
         return axios.all([getAllExpenses(period)])
             .then(function (arr) {
                 return {
                     repos: arr[0].data
-                    repos: arr[0].expenses
                 }
             })
     },

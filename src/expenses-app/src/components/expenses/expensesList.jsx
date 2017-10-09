@@ -85,7 +85,7 @@ class ExpensesList extends React.Component	{
                 <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>{expense.Amount}</Semantic.Table.Cell>
                 <Semantic.Table.Cell>
-                    <ExpensesModal action={this.props.action} iconName={"edit"} exp={expense} />
+                    <ExpensesModal action={this.props.action} iconName={"edit"} size={"mini"} exp={expense} />
                     <Semantic.Button onClick={() => this.handleOnClickDelete(expense)} icon ><Semantic.Icon name={'trash outline'}  /></Semantic.Button>
                 </Semantic.Table.Cell>
             </Semantic.Table.Row>
@@ -102,11 +102,7 @@ class ExpensesList extends React.Component	{
 		return (
             
 			<div>
-<<<<<<< HEAD
 				<Semantic.Table sortable celled fixed size={"small"} compact={"true"}>
-=======
-				<Semantic.Table sortable celled fixed className={"table"}>
->>>>>>> 55a769cd68d30db42a49ace978eaf13adb100704
                     <Semantic.Table.Header>
                         <Semantic.Table.Row>
                             {/* <Semantic.Table.HeaderCell >
