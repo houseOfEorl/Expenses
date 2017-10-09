@@ -114,8 +114,8 @@ class expensesModal extends React.Component {
                 <Semantic.Form.Select label='Type' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange} defaultValue={this.state.ExpensesTypeID}  />
               </Semantic.Form.Group>
               <Semantic.Form.Group widths='equal'>
-                <Semantic.Form.Checkbox label='is Credit Card?' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.expIsCreditCard}  />
-                <Semantic.Form.Checkbox label='is Paid?' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.expIsPaid}  />
+                <Semantic.Form.Checkbox label='is Credit Card?' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.isCreditCard}  />
+                <Semantic.Form.Checkbox label='is Paid?' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.isPaid}  />
               </Semantic.Form.Group>
               <Semantic.Form.Group widths='equal'>
                 <Semantic.Form.Input label='ExpenseDate' name='ExpenseDate' onChange={this.handleChange} value={this.state.ExpenseDate} />
