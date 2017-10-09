@@ -8,9 +8,15 @@ const optionCreditOrDebit = [
 ]
 
 const optionPaymentType = [
-  { key:"0", text: "Basic", value:"0"},
-  { key:"1", text: "Grocery", value:"1" },
-  { key:"2", text: "Restaurant", value:"2" }
+  {key:1, text: "Basic",  value: 1},
+  {key:2, text: "Investment", value: 2},
+  {key:3, text: "Credit card", value: 3},
+  {key:4, text: "Leisure", value: 4},
+  {key:5, text: "Grocery", value: 5},
+  {key:6, text: "Others", value: 6},
+  {key:7, text: "Restaurant", value: 7},
+  {key:9, text: "Pets", value: 9},
+  {key:10, text: "Health", value: 10}
 ]
 
 class expensesModal extends React.Component {
@@ -102,27 +108,19 @@ class expensesModal extends React.Component {
         <Semantic.Modal.Header>Add/Edit Expense</Semantic.Modal.Header>
         <Semantic.Modal.Content scrolling>
             <Semantic.Form>
-            <Semantic.Form.Field>
-              <Semantic.Input label='Name' name='Name' onChange={this.handleChange} value={this.state.Name} />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Dropdown label='CreditOrDebit' name='CreditOrDebit' options={optionCreditOrDebit} onChange={this.handleChange}  defaultValue={this.state.CreditOrDebit} />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Form.Select placeholder='ExpensesTypeID' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange}  value={this.state.ExpensesTypeID} />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Checkbox label='isCreditCard' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.expIsCreditCard}  />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Input label='ExpenseDate' name='ExpenseDate' onChange={this.handleChange} value={this.state.ExpenseDate} />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Checkbox label='isPaid' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.expIsPaid}  />
-            </Semantic.Form.Field>
-            <Semantic.Form.Field>
-              <Semantic.Input label='Amount' name='Amount' onChange={this.handleChange} value={this.state.Amount} />
-            </Semantic.Form.Field>
+              <Semantic.Form.Group widths='equal'>
+                <Semantic.Form.Input label='Name' name='Name' onChange={this.handleChange} value={this.state.Name} />
+                <Semantic.Form.Select label='Credit Or Debit' name='CreditOrDebit' options={optionCreditOrDebit} onChange={this.handleChange}  defaultValue={this.state.CreditOrDebit} />
+                <Semantic.Form.Select label='Type' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange} defaultValue={this.state.ExpensesTypeID}  />
+              </Semantic.Form.Group>
+              <Semantic.Form.Group widths='equal'>
+                <Semantic.Form.Checkbox label='is Credit Card?' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.expIsCreditCard}  />
+                <Semantic.Form.Checkbox label='is Paid?' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.expIsPaid}  />
+              </Semantic.Form.Group>
+              <Semantic.Form.Group widths='equal'>
+                <Semantic.Form.Input label='ExpenseDate' name='ExpenseDate' onChange={this.handleChange} value={this.state.ExpenseDate} />
+                <Semantic.Form.Input label='Amount' name='Amount' onChange={this.handleChange} value={this.state.Amount} />
+              </Semantic.Form.Group>
             <Semantic.Button onClick={this.handleSubmit} >Submit</Semantic.Button>
           </Semantic.Form>
         </Semantic.Modal.Content>

@@ -63,7 +63,7 @@ class ExpensesPage extends React.Component{
         var filterData = this.getData(value);
 
         this.setState({
-            expensesCredit: this.filter(filterData, { CreditOrDebit: 'C ' })
+            expensesCredit: this.filter(filterData, { CreditOrDebit: 'C' })
         })
     };
 
@@ -73,7 +73,7 @@ class ExpensesPage extends React.Component{
         var filterData = this.getData(value);
 
         this.setState({
-            expensesDebit: this.filter(filterData, { CreditOrDebit: 'D ' })
+            expensesDebit: this.filter(filterData, { CreditOrDebit: 'D' })
         })
     };
 
