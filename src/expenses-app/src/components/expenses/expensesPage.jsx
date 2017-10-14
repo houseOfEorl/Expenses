@@ -22,6 +22,8 @@ class ExpensesPage extends React.Component{
 		this.state = { 
             expensesCredit: [],
             expensesDebit: [],
+            expensesOriginalCredit: [],
+            expensesOriginalDebit: [],
             period: dt,
             paymentOption: 1
         };
@@ -29,6 +31,7 @@ class ExpensesPage extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
+        this.handleChangePaymentOption = this.handleChangePaymentOption.bind(this);
     };
 
     filter(arr, criteria) {
@@ -42,7 +45,7 @@ class ExpensesPage extends React.Component{
     };
 
     getData(value) {
-        console.log(this.state.paymentOption);
+        // console.log(this.state.paymentOption);
 
         if(this.state.paymentOption !== 1) {
 
@@ -52,11 +55,11 @@ class ExpensesPage extends React.Component{
                 _isPaid = false
             }
             value = this.filter(value, {isPaid: _isPaid})
-            console.log(value);
+            // console.log(value);
         }
 
         return value;
-    }
+    };
 
     getCredit(value) {
 
@@ -64,7 +67,9 @@ class ExpensesPage extends React.Component{
 
         this.setState({
             expensesCredit: this.filter(filterData, { CreditOrDebit: 'C' })
-        })
+        });
+
+
     };
 
     getDebit(value) {
@@ -96,6 +101,12 @@ class ExpensesPage extends React.Component{
             .then(resp => {
                 this.getCredit(resp.repos);
                 this.getDebit(resp.repos);
+
+                this.setState({
+                    expensesOriginalCredit: this.expensesCredit,
+                    expensesOriginalDebit: this.expensesDebit
+                })
+
             });
     };
 
@@ -106,7 +117,6 @@ class ExpensesPage extends React.Component{
     };
 
     handleChangePaymentOption(e, data) {
-        // console.log(data.value);
         this.setState({
             paymentOption: data.value
         });
@@ -139,7 +149,6 @@ class ExpensesPage extends React.Component{
 		return (
 			<div>
                 <h1>Expenses</h1>
-
                 <Semantic.Menu attached='top'>
                     <Semantic.Menu.Item>
                         <Semantic.Input placeholder="Date" onChange={this.handleChangePeriod} />
