@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import ExpensesPage from './components/expenses/expensesPage';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
+import Semantic from 'semantic-ui-react';
+import './Styles/utils/monthPicker.css';
 
 
 class App extends Component {

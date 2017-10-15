@@ -3,6 +3,7 @@ var ExpensesApi = require('../../api/expensesApi');
 var ExpensesList = require('./expensesList');
 var Semantic = require('semantic-ui-react');
 var ExpensesModal = require('./expensesModal')
+var MonthPicker = require('../utils/monthPicker');
 
 const options = [
   { key: 1, text: 'All', value: 1 },
@@ -149,20 +150,22 @@ class ExpensesPage extends React.Component{
 		return (
 			<div>
                 <h1>Expenses</h1>
+                
                 <Semantic.Menu attached='top'>
                     <Semantic.Menu.Item>
-                        <Semantic.Input placeholder="Date" onChange={this.handleChangePeriod} />
+                        <div id="page-container"></div>
                     </Semantic.Menu.Item> 
                     <Semantic.Menu.Item>
-                        <Semantic.Label size={'mini'}><Semantic.Icon name='dollar'/></Semantic.Label>
                         <Semantic.Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
                     </Semantic.Menu.Item>    
                     <Semantic.Menu.Item>
                         <Semantic.Button onClick={this.handleSubmit}>Search</Semantic.Button>
-                    </Semantic.Menu.Item>    
+                    </Semantic.Menu.Item>
+                    <Semantic.Menu.Item position='right'>
+                        <ExpensesModal action={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} />
+                    </Semantic.Menu.Item>
                 </Semantic.Menu>
                 <Semantic.Segment attached='bottom'>
-                    <ExpensesModal action={this.handleAddRecord} buttonName={"Add New Record"} />
                     <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} /><br/>
                     <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} />
                 </Semantic.Segment>

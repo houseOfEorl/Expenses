@@ -42,3 +42,9 @@
 .ui.icon.button {
   padding: 3%;
 }
+
+.Icon {
+  padding: 0px;
+  height: 0px;
+  width: 1px;
+}
