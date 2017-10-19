@@ -38,20 +38,33 @@ class MonthPicker extends React.Component {
     constructor(props, context) {
         super(props, context)
 
+        var currentTime = new Date();
+        var currentYear = currentTime.getFullYear();
+        var currentMonth = currentTime.getMonth() + 1;
+
         this.state = {
-            mvalue: {year: 2014, month: 11}
+            mvalue: {year: currentYear, month: currentMonth}
         }
 
         this.handleClickMonthBox = this.handleClickMonthBox.bind(this)
         this.handleAMonthDissmis = this.handleAMonthDissmis.bind(this)
+        this.handleAMonthChange = this.handleAMonthChange.bind(this)
     }
 
     handleClickMonthBox(e) {
-        this.refs.pickAMonth.show()
+        this.refs.pickAMonth.show();
     }
 
     handleAMonthDissmis(value) {
-        this.setState( {mvalue: value} )
+        this.setState( {mvalue: value} );
+        this.props.actionChangePeriod(value);
+    }
+
+    handleAMonthChange(year, month, idx) {
+        console.log(year);
+        console.log(month);
+        // this.setState( {mvalue: value} );
+        // this.props.actionChangePeriod(value);
     }
 
     render() {
@@ -60,8 +73,6 @@ class MonthPicker extends React.Component {
                 months: ['Jan', 'Feb', 'Mar', 'Spr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                 , from: 'From', to: 'To'
             }
-            , mvalue = {year: 2015, month: 11}
-            , mrange = {from: {year: 2014, month: 8}, to: {year: 2015, month: 5}}
     
         let makeText = m => {
             if (m && m.year && m.month) return (pickerLang.months[m.month-1] + '. ' + m.year)
@@ -70,16 +81,15 @@ class MonthPicker extends React.Component {
     
         return (
 
-            <div className="edit">
+            <div>
                 <Picker
                     ref="pickAMonth"
-                    years={[2008, 2010, 2011, 2012, 2014, 2015, 2016, 2017]}
-                    value={mvalue}
+                    value={this.state.mvalue}
                     lang={pickerLang.months}
                     onChange={this.handleAMonthChange}
                     onDismiss={this.handleAMonthDissmis}
                     >
-                    <MonthBox value={makeText(mvalue)} onClick={this.handleClickMonthBox} />
+                    <MonthBox value={makeText(this.state.mvalue)} onClick={this.handleClickMonthBox} />
                 </Picker>
             </div>
         )

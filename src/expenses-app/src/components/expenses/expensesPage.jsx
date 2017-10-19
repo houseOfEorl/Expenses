@@ -2,7 +2,7 @@
 var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
 var ExpensesList = require('./expensesList');
-var Semantic = require('semantic-ui-react');
+var { Menu, Dropdown, Segment, Modal, Button, Icon, Form } = require('semantic-ui-react')
 var ExpensesModal = require('./expensesModal');
 
 const options = [
@@ -97,23 +97,23 @@ class ExpensesPage extends React.Component{
 
     handleSubmit(e) {
         //e.preventDefault();
-        // console.log(this.state.period);
-        ExpensesApi.getExpenses(this.state.period)
-            .then(resp => {
-                this.getCredit(resp.repos);
-                this.getDebit(resp.repos);
+        console.log(this.state.period);
+        // ExpensesApi.getExpenses(this.state.period)
+        //     .then(resp => {
+        //         this.getCredit(resp.repos);
+        //         this.getDebit(resp.repos);
 
-                this.setState({
-                    expensesOriginalCredit: this.expensesCredit,
-                    expensesOriginalDebit: this.expensesDebit
-                })
+        //         this.setState({
+        //             expensesOriginalCredit: this.expensesCredit,
+        //             expensesOriginalDebit: this.expensesDebit
+        //         })
 
-            });
+        //     });
     };
 
-    handleChangePeriod(e) {
+    handleChangePeriod(data) {
         this.setState({
-            period: e.target.value
+            period: data
         });
     };
 
@@ -149,24 +149,24 @@ class ExpensesPage extends React.Component{
 	render() {
 		return (
 			<div>
-                <Semantic.Menu attached='top'>
-                    <Semantic.Menu.Item>
-                        <MonthPicker />
-                    </Semantic.Menu.Item> 
-                    <Semantic.Menu.Item>
-                        <Semantic.Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
-                    </Semantic.Menu.Item>    
-                    <Semantic.Menu.Item>
-                        <Semantic.Button onClick={this.handleSubmit}>Search</Semantic.Button>
-                    </Semantic.Menu.Item>
-                    <Semantic.Menu.Item position='right'>
+                <Menu attached='top'>
+                    <Menu.Item>
+                        <Icon name={"calendar"}/> <MonthPicker actionChangePeriod={this.handleChangePeriod} />
+                    </Menu.Item> 
+                    <Menu.Item>
+                        <Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
+                    </Menu.Item>    
+                    <Menu.Item>
+                        <Button onClick={this.handleSubmit}>Search</Button>
+                    </Menu.Item>
+                    <Menu.Item position='right'>
                         <ExpensesModal action={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} />
-                    </Semantic.Menu.Item>
-                </Semantic.Menu>
-                <Semantic.Segment attached='bottom'>
+                    </Menu.Item>
+                </Menu>
+                <Segment attached='bottom'>
                     <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} /><br/>
                     <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} />
-                </Semantic.Segment>
+                </Segment>
 			</div>
 		);
 	};
