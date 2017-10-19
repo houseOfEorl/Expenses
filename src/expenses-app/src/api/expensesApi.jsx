@@ -7,9 +7,9 @@ var ExpensesData = require('./expensesData.jsx');
 // }
 
 function getAllExpenses(period) {
-   return axios.get('http://localhost:5050/api/Expenses/' + period);
+//    return axios.get('http://localhost:5050/api/Expenses/' + period);
     // console.log(ExpensesData);
-    // return ExpensesData;
+    return ExpensesData;
 }
 
 function post(data) {

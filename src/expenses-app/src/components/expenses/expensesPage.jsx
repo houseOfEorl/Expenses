@@ -1,9 +1,9 @@
-﻿var React = require('react');
+﻿import MonthPicker from '../utils/monthPicker';
+var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
 var ExpensesList = require('./expensesList');
 var Semantic = require('semantic-ui-react');
-var ExpensesModal = require('./expensesModal')
-var MonthPicker = require('../utils/monthPicker');
+var ExpensesModal = require('./expensesModal');
 
 const options = [
   { key: 1, text: 'All', value: 1 },
@@ -149,11 +149,9 @@ class ExpensesPage extends React.Component{
 	render() {
 		return (
 			<div>
-                <h1>Expenses</h1>
-                
                 <Semantic.Menu attached='top'>
                     <Semantic.Menu.Item>
-                        <div id="page-container"></div>
+                        <MonthPicker />
                     </Semantic.Menu.Item> 
                     <Semantic.Menu.Item>
                         <Semantic.Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
@@ -174,4 +172,4 @@ class ExpensesPage extends React.Component{
 	};
 }
 
-module.exports = ExpensesPage;
+export default ExpensesPage;
