@@ -17,9 +17,6 @@ class ExpensesList extends React.Component	{
     }
 
     handleOnClickEdit(expense) {
-
-        <ExpensesModal action={this.handleAddRecord} />
-
         // alert(expense.ExpensesID);
     }
 

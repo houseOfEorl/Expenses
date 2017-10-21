@@ -63,8 +63,11 @@ class MonthPicker extends React.Component {
     handleAMonthChange(year, month, idx) {
         console.log(year);
         console.log(month);
+        this.state = {
+            mvalue: {year: year, month: month}
+        }
         // this.setState( {mvalue: value} );
-        // this.props.actionChangePeriod(value);
+        this.props.actionChangePeriod(this.state.mvalue);
     }
 
     render() {

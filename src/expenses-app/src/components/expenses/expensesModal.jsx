@@ -1,6 +1,6 @@
 var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
-var { Modal, Button, Icon, Form } = require('semantic-ui-react')
+var { Modal, Button, Form } = require('semantic-ui-react')
 
 
 const optionCreditOrDebit = [
@@ -105,7 +105,7 @@ class expensesModal extends React.Component {
   
   render () {
     return (
-      <Modal trigger={<Button size={"small"} ><Icon name={this.props.iconName} className="Icon"></Icon>{this.props.buttonName}</Button>}>
+      <Modal trigger={<Button size={"small"} icon={"edit"}>{this.props.buttonName}</Button>}>
         <Modal.Header>Add/Edit Expense</Modal.Header>
         <Modal.Content scrolling>
             <Form>

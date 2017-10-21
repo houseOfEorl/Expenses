@@ -2,7 +2,7 @@
 var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
 var ExpensesList = require('./expensesList');
-var { Menu, Dropdown, Segment, Modal, Button, Icon, Form } = require('semantic-ui-react')
+var { Menu, Dropdown, Segment, Button, Icon } = require('semantic-ui-react')
 var ExpensesModal = require('./expensesModal');
 
 const options = [
@@ -23,8 +23,6 @@ class ExpensesPage extends React.Component{
 		this.state = { 
             expensesCredit: [],
             expensesDebit: [],
-            expensesOriginalCredit: [],
-            expensesOriginalDebit: [],
             period: dt,
             paymentOption: 1
         };
@@ -52,7 +50,7 @@ class ExpensesPage extends React.Component{
 
             var _isPaid = true;
 
-            if(this.state.paymentOption == 3) {
+            if(this.state.paymentOption === 3) {
                 _isPaid = false
             }
             value = this.filter(value, {isPaid: _isPaid})
@@ -98,17 +96,12 @@ class ExpensesPage extends React.Component{
     handleSubmit(e) {
         //e.preventDefault();
         console.log(this.state.period);
-        // ExpensesApi.getExpenses(this.state.period)
-        //     .then(resp => {
-        //         this.getCredit(resp.repos);
-        //         this.getDebit(resp.repos);
+        ExpensesApi.getExpenses(this.state.period)
+            .then(resp => {
+                this.getCredit(resp.repos);
+                this.getDebit(resp.repos);
 
-        //         this.setState({
-        //             expensesOriginalCredit: this.expensesCredit,
-        //             expensesOriginalDebit: this.expensesDebit
-        //         })
-
-        //     });
+            });
     };
 
     handleChangePeriod(data) {
@@ -125,8 +118,10 @@ class ExpensesPage extends React.Component{
 
     handleAddRecord(expense) {
         
+        var expenses = "";
+
         if(expense.CreditOrDebit === "C") {
-            var expenses = this.state.expensesCredit;
+            expenses = this.state.expensesCredit;
             
             expenses.push(expense);
             
@@ -135,7 +130,7 @@ class ExpensesPage extends React.Component{
             });
         }
         else {
-            var expenses = this.state.expensesDebit;
+            expenses = this.state.expensesDebit;
 
             expenses.push(expense);
             
@@ -154,13 +149,13 @@ class ExpensesPage extends React.Component{
                         <Icon name={"calendar"}/> <MonthPicker actionChangePeriod={this.handleChangePeriod} />
                     </Menu.Item> 
                     <Menu.Item>
-                        <Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
+                        <Icon name={"dollar"}/> <Dropdown additionLabel={'Test:'} defaultValue={1}  options={options} onChange={this.handleChangePaymentOption}/>
                     </Menu.Item>    
                     <Menu.Item>
                         <Button onClick={this.handleSubmit}>Search</Button>
                     </Menu.Item>
                     <Menu.Item position='right'>
-                        <ExpensesModal action={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} />
+                        <Icon name={"add user"}/> <ExpensesModal action={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} />
                     </Menu.Item>
                 </Menu>
                 <Segment attached='bottom'>
