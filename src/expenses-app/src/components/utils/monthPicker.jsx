@@ -25,7 +25,7 @@ class MonthBox extends React.Component {
             <div className="box" onClick={this._handleClick}>
                 <label>{this.state.value}</label>
             </div>
-        )
+        )   
     }
 
     _handleClick(e) {
@@ -73,7 +73,7 @@ class MonthPicker extends React.Component {
     render() {
         
         let pickerLang = {
-                months: ['Jan', 'Feb', 'Mar', 'Set', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                months: ['Jan', 'Feb', 'Mar', 'Sep', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                 , from: 'From', to: 'To'
             }
     

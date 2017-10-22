@@ -34,7 +34,7 @@ namespace Expenses.API.Controllers
                 DateTime.TryParse(date, out today);
                 //DateTime dt = Convert.ToDateTime(date);
 
-                var expenses = _repository.GetExpensesByPeriod(today);
+                var expenses = _repository.GetExpensesByPeriod(today).OrderByDescending(x => x.ExpenseDate);
 
                 //string json = JsonConvert.SerializeObject(expenses);
 

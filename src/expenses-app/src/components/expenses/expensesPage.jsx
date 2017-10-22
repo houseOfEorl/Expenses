@@ -95,7 +95,7 @@ class ExpensesPage extends React.Component{
 
     handleSubmit(e) {
         //e.preventDefault();
-        console.log(this.state.period);
+        // console.log(this.state.period);
         ExpensesApi.getExpenses(this.state.period)
             .then(resp => {
                 this.getCredit(resp.repos);
@@ -105,8 +105,9 @@ class ExpensesPage extends React.Component{
     };
 
     handleChangePeriod(data) {
+
         this.setState({
-            period: data
+            period: data.year + '-' + data.month
         });
     };
 

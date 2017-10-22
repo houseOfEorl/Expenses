@@ -1,5 +1,5 @@
 ﻿var React = require('react');
-var Semantic = require('semantic-ui-react');
+var { Table, Button, Icon, Label } = require('semantic-ui-react');
 var ExpensesApi = require('../../api/expensesApi');
 var ExpensesModal = require('./expensesModal')
 
@@ -12,7 +12,8 @@ class ExpensesList extends React.Component	{
         this.handleOnClickEdit = this.handleOnClickEdit.bind(this);
         this.createExpenseRow = this.createExpenseRow.bind(this);
         this.state = {
-            records: []
+            records: [],
+            total: 0
         };
     }
 
@@ -54,7 +55,15 @@ class ExpensesList extends React.Component	{
     {
         if(prevProps.expenses !== this.props.expenses)
         {
+            var sum = 0;
+            var len =  this.props.expenses.length;
+            for(var i = 0; i < len; i++)
+            {
+                sum += this.props.expenses[i].Amount;
+            }
+
             this.setState({
+                total: sum.toFixed(2),
                 records: this.props.expenses
             });
         }
@@ -72,20 +81,20 @@ class ExpensesList extends React.Component	{
         // console.log(this.props.action);
         return (
 
-            <Semantic.Table.Row key={expense.ExpensesID} >
-                {/* <Semantic.Table.Cell>{expense.ExpensesID}</Semantic.Table.Cell> */}
-                <Semantic.Table.Cell>{expense.Name}</Semantic.Table.Cell>
-                <Semantic.Table.Cell>{expense.CreditOrDebit}</Semantic.Table.Cell>
-                {/* <Semantic.Table.Cell>{expense.ExpensesTypeID}</Semantic.Table.Cell> */}
-                <Semantic.Table.Cell>{String(expense.isCreditCard)}</Semantic.Table.Cell>
-                <Semantic.Table.Cell>{expense.ExpenseDate.split('T')[0]}</Semantic.Table.Cell>
-                <Semantic.Table.Cell>{String(expense.isPaid)}</Semantic.Table.Cell>
-                <Semantic.Table.Cell>{expense.Amount}</Semantic.Table.Cell>
-                <Semantic.Table.Cell>
+            <Table.Row key={expense.ExpensesID} >
+                {/* <Table.Cell>{expense.ExpensesID}</Table.Cell> */}
+                <Table.Cell>{expense.Name}</Table.Cell>
+                <Table.Cell>{expense.CreditOrDebit}</Table.Cell>
+                {/* <Table.Cell>{expense.ExpensesTypeID}</Table.Cell> */}
+                <Table.Cell>{String(expense.isCreditCard)}</Table.Cell>
+                <Table.Cell>{expense.ExpenseDate.split('T')[0]}</Table.Cell>
+                <Table.Cell>{String(expense.isPaid)}</Table.Cell>
+                <Table.Cell>{expense.Amount}</Table.Cell>
+                <Table.Cell>
                     <ExpensesModal action={this.props.action} iconName={"edit"} size={"mini"} exp={expense} />
-                    <Semantic.Button onClick={() => this.handleOnClickDelete(expense)} icon ><Semantic.Icon name={'trash outline'}  /></Semantic.Button>
-                </Semantic.Table.Cell>
-            </Semantic.Table.Row>
+                    <Button onClick={() => this.handleOnClickDelete(expense)} icon ><Icon name={'trash outline'}  /></Button>
+                </Table.Cell>
+            </Table.Row>
         );
     };
     
@@ -99,41 +108,51 @@ class ExpensesList extends React.Component	{
 		return (
             
 			<div>
-				<Semantic.Table sortable celled fixed size={"small"} compact={"true"}>
-                    <Semantic.Table.Header>
-                        <Semantic.Table.Row>
-                            {/* <Semantic.Table.HeaderCell >
+				<Table sortable celled fixed size={"small"} compact={"true"}>
+                    <Table.Header>
+                        <Table.Row>
+                            {/* <Table.HeaderCell >
                                 ID
-                            </Semantic.Table.HeaderCell> */}
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell> */}
+                            <Table.HeaderCell >
                                 Name
-                            </Semantic.Table.HeaderCell>
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell>
+                            <Table.HeaderCell >
                                 CreditOrDebit
-                            </Semantic.Table.HeaderCell>
-                            {/* <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell>
+                            {/* <Table.HeaderCell >
                                 Type
-                            </Semantic.Table.HeaderCell> */}
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell> */}
+                            <Table.HeaderCell >
                                 isCreditCard
-                            </Semantic.Table.HeaderCell>
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell>
+                            <Table.HeaderCell >
                                 ExpenseDate
-                            </Semantic.Table.HeaderCell>
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell>
+                            <Table.HeaderCell >
                                 isPaid
-                            </Semantic.Table.HeaderCell>
-                            <Semantic.Table.HeaderCell >
+                            </Table.HeaderCell>
+                            <Table.HeaderCell >
                                 Amount
-                            </Semantic.Table.HeaderCell>
-                        </Semantic.Table.Row>
-                    </Semantic.Table.Header>
-                    <Semantic.Table.Body>
+                            </Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
                         {
                             expComponents
                         }
-                    </Semantic.Table.Body>
-				</Semantic.Table>
+                    </Table.Body>
+                    <Table.Footer fullWidth >
+                        <Table.Row positive>
+                            <Table.Cell colSpan = '5'>
+                                <b>Total:</b>
+                            </Table.Cell>
+                            <Table.Cell colSpan = '2'>
+                                <b>{this.state.total}</b>
+                            </Table.Cell>
+                        </Table.Row>
+                    </Table.Footer>
+				</Table>
 			</div>
 		);
 	};
