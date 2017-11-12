@@ -24,13 +24,19 @@ class ExpensesPage extends React.Component{
             expensesCredit: [],
             expensesDebit: [],
             period: dt,
-            paymentOption: 1
+            paymentOption: 1,
+            accountantCredit: 0,
+            accountantCreditPaid: 0,
+            accountantDebit: 0,
+            accountantDebitPaid: 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangePeriod = this.handleChangePeriod.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
+        this.handleDeleteRecord = this.handleDeleteRecord.bind(this);
         this.handleChangePaymentOption = this.handleChangePaymentOption.bind(this);
+        this.setAccountant = this.setAccountant.bind(this);
     };
 
     filter(arr, criteria) {
@@ -92,15 +98,20 @@ class ExpensesPage extends React.Component{
                 // })
             }.bind(this));
     };
+    
+    componentDidUpdate(prevProps, prevState)
+    {
+        var foo = "a";
+    }
 
     handleSubmit(e) {
         //e.preventDefault();
         // console.log(this.state.period);
+        this.setState({accountantCredit: 0, accountantCreditPaid:0, accountantDebit: 0, accountantDebitPaid:0})
         ExpensesApi.getExpenses(this.state.period)
             .then(resp => {
                 this.getCredit(resp.repos);
                 this.getDebit(resp.repos);
-
             });
     };
 
@@ -118,29 +129,73 @@ class ExpensesPage extends React.Component{
     };
 
     handleAddRecord(expense) {
-        
-        var expenses = "";
 
         if(expense.CreditOrDebit === "C") {
-            expenses = this.state.expensesCredit;
-            
-            expenses.push(expense);
+            var newStateArray = this.state.expensesCredit.slice();
+            newStateArray.push(expense);
             
             this.setState({
-                expensesCredit: expenses
+                expensesCredit: newStateArray
             });
         }
         else {
-            expenses = this.state.expensesDebit;
-
-            expenses.push(expense);
+            var newStateArray = this.state.expensesDebit.slice();
+            newStateArray.push(expense);
             
             this.setState({
-                expensesDebit: expenses
+                expensesDebit: newStateArray
             });
+
         }
         // console.log(foo);
     };
+
+    handleDeleteRecord(expense) {
+        
+        ExpensesApi.removeExpenses(expense);
+
+        if(expense.CreditOrDebit === "C") {
+            var newStateArray = this.state.expensesCredit.filter(x => x.ExpensesID !== expense.ExpensesID);
+            
+            this.setState({
+                expensesCredit: newStateArray
+            });
+        }
+        else {
+            var newStateArray = this.state.expensesDebit.filter(x => x.ExpensesID !== expense.ExpensesID);
+            
+            this.setState({
+                expensesDebit: newStateArray
+            });
+
+        }
+        
+        // var recordsNotDeleted = this.state.records.filter(x => x.ExpensesID !== expense.ExpensesID);
+        // console.log(recordsNotDeleted);
+        // this.setState({
+        //     records: recordsNotDeleted
+        // })
+    };
+
+    setAccountant(value, valuePaid, isCreditOrDebit) {
+        if(isCreditOrDebit == "C")
+        {
+            this.setState({
+                accountantCredit: parseFloat(value),
+                accountantCreditPaid: parseFloat(valuePaid)
+            })
+        }
+        else
+        {
+            this.setState({
+                accountantDebit: this.state.accountantDebit + parseFloat(value),
+                accountantDebitPaid: this.state.accountantDebitPaid + parseFloat(valuePaid)
+            })
+        }
+        // this.setState(prevState => ({
+        //     accountant: prevState.accountant + parseFloat(value)
+        // }));
+    }
 
 	render() {
 		return (
@@ -156,12 +211,25 @@ class ExpensesPage extends React.Component{
                         <Button onClick={this.handleSubmit}>Search</Button>
                     </Menu.Item>
                     <Menu.Item position='right'>
-                        <Icon name={"add user"}/> <ExpensesModal action={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} />
+                        <Icon name={"add user"}/> <ExpensesModal handleAddRecord={this.handleAddRecord} iconName={"edit"} buttonName={"Add New Record"} newRecord={true} />
                     </Menu.Item>
                 </Menu>
-                <Segment attached='bottom'>
-                    <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} /><br/>
-                    <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} />
+                <Segment attached='bottom'> 
+                    {this.state.accountantCredit >= 0 &&
+                        <div className='green'><b>Total: { (this.state.accountantCredit + this.state.accountantDebit).toFixed(2) }</b></div>
+                    }
+                    {this.state.accountantCredit < 0 &&
+                        <div className='red'><b>Total: {(this.state.accountantCredit + this.state.accountantDebit).toFixed(2)}</b></div>
+                    }
+
+                    {this.state.accountantCreditPaid >= 0 &&
+                        <div className='green'><b>Total Paid: {(this.state.accountantCreditPaid + this.state.accountantDebitPaid).toFixed(2) }</b></div>
+                    }
+                    {this.state.accountantCreditPaid < 0 &&
+                        <div className='red'><b>Total Paid: {(this.state.accountantCreditPaid + this.state.accountantDebitPaid).toFixed(2)}</b></div>
+                    }
+                    <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} setAccountant={this.setAccountant} handleDeleteRecord={this.handleDeleteRecord} /><br/>
+                    <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} setAccountant={this.setAccountant} handleDeleteRecord={this.handleDeleteRecord} />
                 </Segment>
 			</div>
 		);

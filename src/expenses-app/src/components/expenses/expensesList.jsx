@@ -9,72 +9,46 @@ class ExpensesList extends React.Component	{
     constructor (props)
     {
         super(props);
-        this.handleOnClickEdit = this.handleOnClickEdit.bind(this);
+        this.handleOnClickDelete = this.handleOnClickDelete.bind(this);
         this.createExpenseRow = this.createExpenseRow.bind(this);
         this.state = {
             records: [],
+            totalPerType: 0,
             total: 0
         };
     }
 
-    handleOnClickEdit(expense) {
-        // alert(expense.ExpensesID);
-    }
 
     handleOnClickDelete(expense) {
         
-       ExpensesApi.removeExpenses(expense);
+       this.props.handleDeleteRecord(expense);
 
-       var recordsNotDeleted = this.state.records.filter(x => x.ExpensesID !== expense.ExpensesID);
-       console.log(recordsNotDeleted);
-       this.setState({
-           records: recordsNotDeleted
-       })
     }
-
-    // componentDidMount()
-    // {
-    //     this.setState({
-    //         records: this.props.expenses
-    //     });
-
-    //     console.log("componentWillReceiveProps")
-    // }
-
-    // componentWillReceiveProps(nextProps)
-    // {
-    //     console.log("componentWillReceiveProps")
-    // }
-
-    // componentWillUpdate(nextProps, nextState)
-    // {
-    //     console.log("componentWillUpdate")
-    // }
 
     componentDidUpdate(prevProps, prevState)
     {
         if(prevProps.expenses !== this.props.expenses)
         {
             var sum = 0;
+            var sumPaid = 0;
             var len =  this.props.expenses.length;
             for(var i = 0; i < len; i++)
             {
-                sum += this.props.expenses[i].Amount;
+                sum += parseFloat(this.props.expenses[i].Amount);
+                if(this.props.expenses[i].isPaid){
+                    sumPaid += parseFloat(this.props.expenses[i].Amount);
+                    // console.log(sumPaid);
+                }
             }
 
+            this.props.setAccountant(sum, sumPaid, this.props.expenses[0].CreditOrDebit);
+
             this.setState({
-                total: sum.toFixed(2),
+                totalPerType: sum,
+                total: this.total + sum,
                 records: this.props.expenses
             });
         }
-        // else if(prevProps.expenses !== prevState.records)
-        // {
-        //     this.setState({
-        //         records: this.props.expenses
-        //     });
-        // }
-
-        // console.log("componentWillUpdate")
     }
 
     createExpenseRow = function (expense) {
@@ -91,7 +65,7 @@ class ExpensesList extends React.Component	{
                 <Table.Cell>{String(expense.isPaid)}</Table.Cell>
                 <Table.Cell>{expense.Amount}</Table.Cell>
                 <Table.Cell>
-                    <ExpensesModal action={this.props.action} iconName={"edit"} size={"mini"} exp={expense} />
+                    <ExpensesModal action={this.props.action} iconName={"edit"} size={"mini"} exp={expense} newRecord={false} />
                     <Button onClick={() => this.handleOnClickDelete(expense)} icon ><Icon name={'trash outline'}  /></Button>
                 </Table.Cell>
             </Table.Row>
@@ -143,12 +117,17 @@ class ExpensesList extends React.Component	{
                         }
                     </Table.Body>
                     <Table.Footer fullWidth >
-                        <Table.Row positive>
+                        <Table.Row >
                             <Table.Cell colSpan = '5'>
                                 <b>Total:</b>
                             </Table.Cell>
                             <Table.Cell colSpan = '2'>
-                                <b>{this.state.total}</b>
+                                {this.state.totalPerType >= 0 &&
+                                    <div className='green'><b>{this.state.totalPerType}</b></div>
+                                }
+                                {this.state.totalPerType < 0 &&
+                                    <div className='red'><b>{this.state.totalPerType}</b></div>
+                                }
                             </Table.Cell>
                         </Table.Row>
                     </Table.Footer>

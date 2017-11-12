@@ -6,6 +6,8 @@ using Expenses.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Expenses.DAL.Helpers;
+using System.Reflection;
+using Expenses.Common.Utils;
 //using Expenses.DAL.Helpers;
 
 namespace Expenses.DAL
@@ -32,7 +34,7 @@ namespace Expenses.DAL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
                 return 0;
             }
         }
@@ -48,7 +50,7 @@ namespace Expenses.DAL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
                 return 0;
             }
         }
@@ -62,7 +64,7 @@ namespace Expenses.DAL
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
             }
         }
 
@@ -82,7 +84,6 @@ namespace Expenses.DAL
             {
                 var month = dtPeriod.Month;
                 var year = dtPeriod.Year;
-
                 return _context.ExpensesEntity
                     .Include(x => x.Type)
                     .Where(x => x.ExpenseDate.Month == month && x.ExpenseDate.Year == year)
@@ -90,7 +91,7 @@ namespace Expenses.DAL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
                 return null;
             }
         }
@@ -119,7 +120,7 @@ namespace Expenses.DAL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
                 return null;
             }
         }
@@ -162,7 +163,7 @@ namespace Expenses.DAL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
                 return 0;
             }
         }
@@ -171,6 +172,8 @@ namespace Expenses.DAL
         {
             return (await _context.SaveChangesAsync()) > 0;
         }
+
+
     }
 
     public class ReturnDecimal

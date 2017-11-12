@@ -214,3 +214,10 @@ ModelManifest.xml
 #config files
 appsettings.json
 client_secrets.json
+/src/Expenses.API/Publish.zip
+/src/Expenses.API/Publish.zip
+Expenses.WebAPI/logs/20171104.txt
+Expenses.WebAPI/logs/20171105.txt
+Expenses.WebAPI/logs/20171111.txt
+Expenses.WebAPI/logs/20171112.txt
+*.pubxml

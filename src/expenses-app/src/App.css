@@ -48,3 +48,12 @@
   height: 0px;
   width: 1px;
 }
+
+div.red {
+  color: red;
+  font-style: "bold"
+}
+
+div.green {
+  color:green;
+}

@@ -6,8 +6,12 @@ var ExpensesData = require('./expensesData.jsx');
 //     return axios.get('https://api.github.com/users/' + username + '/repos');
 // }
 
+// var webApiurl = 'http://api.almendro.com.br/api/Expenses/';
+var webApiurl = 'http://localhost:64307/api/Expenses/';
+
+
 function getAllExpenses(period) {
-   return axios.get('http://localhost:5050/api/Expenses/' + period);
+   return axios.get(webApiurl + period);
     // console.log(ExpensesData);
     // return ExpensesData;
 }
@@ -15,7 +19,7 @@ function getAllExpenses(period) {
 function post(data) {
     return axios({
         method: 'post',
-        url: 'http://localhost:5050/api/Expenses',
+        url: webApiurl,
         data: data
     });
 }
@@ -23,7 +27,7 @@ function post(data) {
 function put(data) {
     return axios({
         method: 'put',
-        url: 'http://localhost:5050/api/Expenses',
+        url: webApiurl,
         data: data
     });
 }
@@ -63,7 +67,7 @@ var helpers = {
     removeExpenses: function(expense) {
         return axios({
             method: 'delete',
-            url: 'http://localhost:5050/api/Expenses/' + expense.ExpensesID,
+            url: webApiurl + expense.ExpensesID,
             data: expense
         });
     }

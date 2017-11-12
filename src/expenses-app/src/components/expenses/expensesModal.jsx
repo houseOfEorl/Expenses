@@ -1,6 +1,6 @@
 var React = require('react');
 var ExpensesApi = require('../../api/expensesApi');
-var { Modal, Button, Form } = require('semantic-ui-react')
+var { Modal, Button, Form, Checkbox } = require('semantic-ui-react')
 
 
 const optionCreditOrDebit = [
@@ -25,8 +25,10 @@ class expensesModal extends React.Component {
   constructor(props) {
       super(props);
 
+      this.state = { modalOpen: false }
+
       //alert(this.props.exp)
-      if (this.props.exp !== undefined)
+      if ((this.props.exp !== undefined))
       {
         this.state = {
           ExpensesID: this.props.exp.ExpensesID,
@@ -44,7 +46,7 @@ class expensesModal extends React.Component {
       {
         this.state = {
           ExpensesID: 0,
-          Name: '',
+          Name: "",
           CountryID: '1',
           CreditOrDebit:'',
           ExpensesTypeID: 0,
@@ -56,6 +58,34 @@ class expensesModal extends React.Component {
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleOpen = this.handleOpen.bind(this);
+      this.handleClose= this.handleClose.bind(this);
+  }
+
+  handleOpen () 
+  { 
+    if(this.props.newRecord) 
+    {
+      this.setState({           
+        ExpensesID: 0,
+        Name: "",
+        CountryID: '1',
+        CreditOrDebit:'',
+        ExpensesTypeID: 0,
+        isCreditCard: false,
+        ExpenseDate: '',
+        isPaid: false,
+        Amount: 0
+      })
+    }
+
+    this.setState({modalOpen: true })
+
+  }
+
+  handleClose () 
+  { 
+    this.setState({modalOpen: false })
   }
 
   handleChange(e, data) {
@@ -80,7 +110,7 @@ class expensesModal extends React.Component {
         // this.setState({
         //   ExpensesID: id
         // })
-        this.props.action(expenseObject);
+        this.props.handleAddRecord(expenseObject);
       }, (err) => {
         console.log("expensesModal: handleSubmit - error: ${err}");
       });
@@ -95,17 +125,21 @@ class expensesModal extends React.Component {
             // })
             expenseObject.ExpensesID = data.id;
 
-            this.props.action(expenseObject);
+            this.props.handleAddRecord(expenseObject);
           }, (err) => {
             console.log("expensesModal: handleSubmit - error: ${err}");
           });
     }
 
+    //Close modal
+    this.setState({modalOpen: false})
   };
   
   render () {
     return (
-      <Modal trigger={<Button size={"small"} icon={"edit"}>{this.props.buttonName}</Button>}>
+      <Modal 
+        open={this.state.modalOpen}
+        trigger={<Button size={"small"} icon={"edit"} onClick={this.handleOpen}>{this.props.buttonName}</Button>}>
         <Modal.Header>Add/Edit Expense</Modal.Header>
         <Modal.Content scrolling>
             <Form>
@@ -115,15 +149,19 @@ class expensesModal extends React.Component {
                 <Form.Select label='Type' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange} defaultValue={this.state.ExpensesTypeID}  />
               </Form.Group>
               <Form.Group widths='equal'>
-                <Form.Checkbox label='is Credit Card?' name='isCreditCard' type='checkbox' onChange={this.handleChange}  checked={this.state.isCreditCard}  />
+                <Form.Field >
+                  <Checkbox label='is Credit Card?' name='isCreditCard' onChange={this.handleChange}  checked={this.state.isCreditCard}  />
+                </Form.Field>
                 <Form.Checkbox label='is Paid?' name='isPaid' type='checkbox' onChange={this.handleChange} checked={this.state.isPaid}  />
               </Form.Group>
               <Form.Group widths='equal'>
                 <Form.Input label='ExpenseDate' name='ExpenseDate' onChange={this.handleChange} value={this.state.ExpenseDate} />
                 <Form.Input label='Amount' name='Amount' onChange={this.handleChange} value={this.state.Amount} />
               </Form.Group>
+            <Button onClick={this.handleClose} >Cancel</Button>  
             <Button onClick={this.handleSubmit} >Submit</Button>
           </Form>
+          <br /><br /><br /><br /><br />
         </Modal.Content>
       </Modal>
     )
