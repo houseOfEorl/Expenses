@@ -65,7 +65,7 @@ class ExpensesList extends React.Component	{
                 <Table.Cell>{String(expense.isPaid)}</Table.Cell>
                 <Table.Cell>{expense.Amount}</Table.Cell>
                 <Table.Cell>
-                    <ExpensesModal action={this.props.action} iconName={"edit"} size={"mini"} exp={expense} newRecord={false} />
+                    <ExpensesModal handleAddRecord={this.props.action} iconName={"edit"} size={"mini"} exp={expense} newRecord={false} />
                     <Button onClick={() => this.handleOnClickDelete(expense)} icon ><Icon name={'trash outline'}  /></Button>
                 </Table.Cell>
             </Table.Row>

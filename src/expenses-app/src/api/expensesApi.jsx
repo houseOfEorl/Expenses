@@ -6,8 +6,8 @@ var ExpensesData = require('./expensesData.jsx');
 //     return axios.get('https://api.github.com/users/' + username + '/repos');
 // }
 
-// var webApiurl = 'http://api.almendro.com.br/api/Expenses/';
-var webApiurl = 'http://localhost:64307/api/Expenses/';
+var webApiurl = 'http://api.almendro.com.br/api/Expenses/';
+// var webApiurl = 'http://localhost:64307/api/Expenses/';
 
 
 function getAllExpenses(period) {
