@@ -17,71 +17,26 @@ using Microsoft.Extensions.Configuration;
 
 namespace EmailService
 {
-    public class Bank
+    public class Email
     {
+        public static IConfigurationRoot Configuration { get; set; }
 
-
-        private UserCredential getCredential()
-        {
-            UserCredential credential;
-            using (var stream = new FileStream("client_secrets.json", FileMode.Open, FileAccess.Read))
-            {
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    new[] { GmailService.Scope.GmailReadonly, GmailService.Scope.MailGoogleCom, GmailService.Scope.GmailModify },
-                    "betoOtherUI",
-                    CancellationToken.None,
-                    new FileDataStore(this.GetType().ToString())).Result;
-                Console.WriteLine("Credential file saved to: " + this.GetType().ToString());
-
-
-                //credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                //    GoogleClientSecrets.Load(stream).Secrets,
-                //    // This OAuth 2.0 access scope allows for read-only access to the authenticated 
-                //    // user's account, but not other types of account access.
-                //    new[] { GmailService.Scope.GmailReadonly, GmailService.Scope.MailGoogleCom, GmailService.Scope.GmailModify },
-                //    "betoOtherUI",
-                //    CancellationToken.None,
-                //    new FileDataStore(this.GetType().ToString())
-                //);
-            }
-
-            return credential;
-
-        }
-
-        public void getEmails()
+        public void GetEmails()
         {
             try
             {
-
-                UserCredential credential = getCredential();
-
-                var gmailService = new GmailService(new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = this.GetType().ToString()
-                });
-
-                var emailListRequest = gmailService.Users.Messages.List(GetEmail());
-                emailListRequest.LabelIds = "INBOX";
-                emailListRequest.IncludeSpamTrash = false;
+                string emailAdress = GetEmailAddress();
+                GmailRepository gmailRepository = new GmailRepository(emailAdress);
 
 
-                var getDbContext = new GetDbContext();
-                var context = getDbContext.ReturnDbContext();
+                string lastLoad = GetLastTimeEmailWasChecked();
+                
+                List<ExpensesEntity> expensesReturn = new List<ExpensesEntity>();
 
-                var rep = new EmailConfigRepository(context, null);
-                var lastLoad = rep.getLastLoadDate().ToString("yyyy-MM-dd");
+                UserCredential credential = gmailRepository.GetCredential();
+                GmailService gmailService = gmailRepository.GetGmailService(credential);
 
-                //emailListRequest.Q = "is:unread"; //this was added because I only wanted undread email's...
-
-                //get last load date
-                emailListRequest.Q = "after:" + lastLoad;
-
-                //get our emails
-                var emailListResponse = emailListRequest.Execute();
+                ListMessagesResponse emailListResponse  = gmailRepository.LoadEmails(lastLoad, gmailService);
 
                 if (emailListResponse != null && emailListResponse.Messages != null)
                 {
@@ -89,7 +44,7 @@ namespace EmailService
                     foreach (var email in emailListResponse.Messages)
                     {
 
-                        var emailInfoRequest = gmailService.Users.Messages.Get(GetEmail(), email.Id);
+                        var emailInfoRequest = gmailService.Users.Messages.Get(emailAdress, email.Id);
                         //make another request for that email id...
                         var emailInfoResponse = emailInfoRequest.Execute();
 
@@ -126,7 +81,7 @@ namespace EmailService
                                     }
                                     else
                                     {
-                                        body = getNestedParts(emailInfoResponse.Payload.Parts, "");
+                                        body = GetNestedParts(emailInfoResponse.Payload.Parts, "");
                                     }
                                     //need to replace some characters as the data for the email's body is base64
                                     String codedBody = body.Replace("-", "+");
@@ -139,11 +94,11 @@ namespace EmailService
                                     //Console.WriteLine(body.Replace("\n", " "));
 
                                     //Get the value
-                                    var amount = getValue(body, "There was an authorization for $", "on account");
+                                    var amount = GetValue(body, "There was an authorization for $", "on account");
                                     Console.WriteLine(amount);
 
                                     //Get the place
-                                    var place = getValue(body, "* at ", ".");
+                                    var place = GetValue(body, "* at ", ".");
                                     //var place = getValue(body, "* at ", ".");
                                     //place = place.Replace("\n", "");
                                     //int index = place.IndexOf(" ");
@@ -152,7 +107,8 @@ namespace EmailService
 
 
                                     var expense = ParseExpense(amount, place, date);
-                                    InsertExpense(expense);
+                                    //InsertExpense(expense);
+                                    expensesReturn.Add(expense);
 
                                     break;
 
@@ -164,12 +120,47 @@ namespace EmailService
                     }
                 }
 
-                rep.setLastLoadDate(DateTime.Now);
+                SetLastTimeEmailWasChecked();
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Failed to get messages!" + ex.Message);
+            }
+        }
+
+        private static string GetLastTimeEmailWasChecked()
+        {
+            try
+            { 
+                var getDbContext = new GetDbContext();
+                var context = getDbContext.ReturnDbContext();
+                var emailConfigRepo = new EmailConfigRepository(context, null);
+
+                string lastLoad = emailConfigRepo.GetLastLoadDate().ToString("yyyy-MM-dd");
+
+                return lastLoad;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to get GetLastTimeEmailWasChecked!" + ex.Message);
+                return null;
+            }
+        }
+
+        private static void SetLastTimeEmailWasChecked()
+        {
+            try
+            {
+                var getDbContext = new GetDbContext();
+                var context = getDbContext.ReturnDbContext();
+                var emailConfigRepo = new EmailConfigRepository(context, null);
+
+                emailConfigRepo.SetLastLoadDate(DateTime.Now);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to get GetLastTimeEmailWasChecked!" + ex.Message);
             }
         }
 
@@ -189,19 +180,19 @@ namespace EmailService
             return expense;
         }
 
-        private void InsertExpense(ExpensesEntity expense)
-        {
-            var getDbContext = new GetDbContext();
-            var _context = getDbContext.ReturnDbContext();
+        //private void InsertExpense(ExpensesEntity expense)
+        //{
+        //    var getDbContext = new GetDbContext();
+        //    var _context = getDbContext.ReturnDbContext();
 
-            ExpensesRepository foo = new ExpensesRepository(_context, null);
-            foo.AddExpense(expense);
-            _context.SaveChanges();
-            _context.Dispose();
-        }
+        //    ExpensesRepository foo = new ExpensesRepository(_context, null);
+        //    foo.AddExpense(expense);
+        //    _context.SaveChanges();
+        //    _context.Dispose();
+        //}
 
 
-        private static String getNestedParts(IList<MessagePart> part, string curr)
+        private static String GetNestedParts(IList<MessagePart> part, string curr)
         {
             string str = curr;
             if (part == null)
@@ -221,7 +212,7 @@ namespace EmailService
                     }
                     else
                     {
-                        return getNestedParts(parts.Parts, str);
+                        return GetNestedParts(parts.Parts, str);
                     }
                 }
 
@@ -230,44 +221,44 @@ namespace EmailService
 
         }
 
-        /// <summary>
-        /// Get a value in the message between two strings
-        /// </summary>
-        /// <param name="body">whole message</param>
-        /// <param name="startName">pass a value before the value</param>
-        /// <param name="endName">pass a value after the value</param>
-        /// <returns></returns>
-        private static String getValue(string body, string startName, string endName)
-        {
-            var startPosition = body.IndexOf(startName) + startName.Length;
-            var endPosition = body.IndexOf(endName, startPosition);
 
-            var value = body.Substring(startPosition, endPosition - startPosition);
+    #region Utils
+            /// <summary>
+            /// Get a value in the message between two strings
+            /// </summary>
+            /// <param name="body">whole message</param>
+            /// <param name="startName">pass a value before the value</param>
+            /// <param name="endName">pass a value after the value</param>
+            /// <returns></returns>
+            private static String GetValue(string body, string startName, string endName)
+            {
+                var startPosition = body.IndexOf(startName) + startName.Length;
+                var endPosition = body.IndexOf(endName, startPosition);
 
-            return value;
-        }
+                var value = body.Substring(startPosition, endPosition - startPosition);
 
-        public static IConfigurationRoot Configuration { get; set; }
+                return value;
+            }
 
-        /// <summary>
-        /// get email dsa
-        /// </summary>
-        /// <returns></returns>
-        public static string GetEmail()
-        {
-            string _email;
 
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables();
+            public static string GetEmailAddress()
+            {
+                string _email;
 
-            Configuration = builder.Build();
+                var builder = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables();
 
-            //_connectionString = Configuration.Get<string>("Data:MyDb:ConnectionString");
-            _email = Configuration.GetSection("Email").Value;
+                Configuration = builder.Build();
 
-            return _email;
-        }
+                //_connectionString = Configuration.Get<string>("Data:MyDb:ConnectionString");
+                _email = Configuration.GetSection("Email").Value;
+
+                return _email;
+            }
+    #endregion
+
+
 
     }
 }

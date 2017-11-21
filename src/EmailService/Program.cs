@@ -7,8 +7,8 @@ namespace EmailService
         static void Main(string[] args)
         {
             Console.WriteLine("Load Gmail");
-            Bank bank = new Bank();
-            bank.getEmails();
+            Email bank = new Email();
+            bank.GetEmails();
         }
     }
 }

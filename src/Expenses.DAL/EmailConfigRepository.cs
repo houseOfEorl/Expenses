@@ -18,12 +18,12 @@ namespace Expenses.DAL
             _logger = logger;
         }
 
-        public DateTime getLastLoadDate()
+        public DateTime GetLastLoadDate()
         {
             return _context.EmailConfig.Select(x => x.LastLoadDate).FirstOrDefault();
         }
 
-        public void setLastLoadDate(DateTime loadDate)
+        public void SetLastLoadDate(DateTime loadDate)
         {
             var record = _context.EmailConfig.FirstOrDefault();
             record.LastLoadDate = loadDate;
