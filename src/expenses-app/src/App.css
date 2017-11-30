@@ -35,9 +35,9 @@
   padding: 0.1%;
 }
 
-.ui.fixed.table tr:nth-child(even) {
+/* .ui.fixed.table tr:nth-child(even) {
   background-color: #DDDBDB
-}
+} */
 
 .ui.icon.button {
   padding: 3%;

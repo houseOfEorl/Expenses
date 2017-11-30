@@ -62,7 +62,9 @@ class ExpensesList extends React.Component	{
                 {/* <Table.Cell>{expense.ExpensesTypeID}</Table.Cell> */}
                 <Table.Cell>{String(expense.isCreditCard)}</Table.Cell>
                 <Table.Cell>{expense.ExpenseDate.split('T')[0]}</Table.Cell>
-                <Table.Cell>{String(expense.isPaid)}</Table.Cell>
+                <Table.Cell positive={expense.isPaid} negative={!expense.isPaid}>
+                    {String(expense.isPaid)}
+                </Table.Cell>
                 <Table.Cell>{expense.Amount}</Table.Cell>
                 <Table.Cell>
                     <ExpensesModal handleAddRecord={this.props.action} iconName={"edit"} size={"mini"} exp={expense} newRecord={false} />
