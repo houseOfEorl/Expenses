@@ -60,7 +60,7 @@ namespace Expenses.DAL
             try
             {
                 _context.Remove(expense);
-                var result = SaveChangesAsync();
+                var result = _context.SaveChanges();
             }
             catch(Exception ex)
             {
