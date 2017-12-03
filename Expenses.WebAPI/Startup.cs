@@ -14,6 +14,7 @@ using Expenses.DAL;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Expenses.WebAPI.Logger;
+using Expenses.Entities;
 
 namespace Expenses.WebAPI
 {
@@ -68,6 +69,7 @@ namespace Expenses.WebAPI
             services.AddTransient(x => tokenOptions);
 
             services.AddTransient<IExpensesRepository, ExpensesRepository>();
+           
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -113,9 +115,9 @@ namespace Expenses.WebAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
 
-            //loggerFactory.AddConsole();
-            //loggerFactory.AddDebug();
-            loggerFactory.AddLogFile(LogLevel.Error);
+            var logPath = Configuration.GetSection("LogSettings:Path").Value;
+            LogSettings logSettings = new LogSettings { Path = logPath };
+            loggerFactory.AddLogFile(LogLevel.Error, logSettings);
 
             // Register a simple error handler to catch token expiries and change them to a 401, 
             // and return all other errors as a 500. This should almost certainly be improved for

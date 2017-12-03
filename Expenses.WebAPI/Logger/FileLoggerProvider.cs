@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Expenses.Entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,18 @@ namespace Expenses.WebAPI.Logger
     {
         private readonly Func<string, LogLevel, bool> _filter;
         //private readonly IMailService _mailService;
+        private readonly LogSettings _logSettings;
 
-        public FileLoggerProvider(Func<string, LogLevel, bool> filter/*, IMailService mailService*/)
+        public FileLoggerProvider(Func<string, LogLevel, bool> filter, LogSettings logSettings/*, IMailService mailService*/)
         {
             //_mailService = mailService;
+            _logSettings = logSettings;
             _filter = filter;
         }
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new FileLogger(categoryName, _filter/*, _mailService*/);
+            return new FileLogger(categoryName, _filter, _logSettings/*, _mailService*/);
         }
 
         public void Dispose()

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Expenses.Entities;
 
 namespace Expenses.WebAPI.Logger
 {
@@ -11,12 +12,14 @@ namespace Expenses.WebAPI.Logger
         private string _categoryName;
         private Func<string, LogLevel, bool> _filter;
         //private IMailService _mailService;
+        private readonly LogSettings _logSettings;
 
         //public FileLogger(string categoryName, Func<string, LogLevel, bool> filter, IMailService mailService)
-        public FileLogger(string categoryName, Func<string, LogLevel, bool> filter)
+        public FileLogger(string categoryName, Func<string, LogLevel, bool> filter, LogSettings logSettings)
         {
             _categoryName = categoryName;
             _filter = filter;
+            _logSettings = logSettings;
             //_mailService = mailService;
         }
 
@@ -57,7 +60,8 @@ namespace Expenses.WebAPI.Logger
                 message += Environment.NewLine + Environment.NewLine + exception.ToString();
             }
 
-            using(StreamWriter writer = File.AppendText(@".\logs\" + DateTime.Now.ToString("yyyyMMdd") + ".txt") )
+            var path = _logSettings.Path + @"\" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            using (StreamWriter writer = File.AppendText(path))
             {
                 writer.WriteLine(DateTime.Now.ToString() + " - " + message + Environment.NewLine);
             }
