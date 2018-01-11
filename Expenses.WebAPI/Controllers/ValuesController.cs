@@ -21,11 +21,38 @@ namespace Expenses.WebAPI.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult Get()
         {
             //_logger.LogError("test");
-            //throw new Exception("Horsed");
-            return new string[] { "value1", "value2" };
+            try
+            {
+                //throw new Exception("fck");
+                return Ok(new string[] { "value1", "value2" });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize("Bearer")]
+        [HttpPost]
+        public IActionResult Post([FromBody]dynamic someData)
+        {
+            //_logger.LogError("test");
+            try
+            {
+                //throw new Exception("fck");
+
+                var foo = someData;
+                //throw new Exception("fck");
+
+                return Ok(new string[] { "value1", "value2" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // GET api/values/5

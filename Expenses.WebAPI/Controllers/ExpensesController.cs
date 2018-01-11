@@ -9,6 +9,7 @@ using Expenses.DAL.Entities;
 using Microsoft.Extensions.Logging;
 using Expenses.Common.Utils;
 using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +29,7 @@ namespace Expenses.WebAPI.Controllers
         }
         #endregion
 
-        // GET: api/values
+        [Authorize("Bearer")]
         [HttpGet("{date}")]
         public IActionResult Get(string date)
         {

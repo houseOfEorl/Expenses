@@ -83,7 +83,7 @@ namespace Expenses.WebAPI.Controllers
             // Obviously, at this point you need to validate the username and password against whatever system you wish.
             if ((req.username == "TEST" && req.password == "TEST") || (req.username == "TEST2" && req.password == "TEST"))
             {
-                DateTime? expires = DateTime.UtcNow.AddMinutes(2);
+                DateTime? expires = DateTime.UtcNow.AddDays(1);
                 var token = GetToken(req.username, expires);
                 return new { authenticated = true, entityId = 1, token = token, tokenExpires = expires };
             }

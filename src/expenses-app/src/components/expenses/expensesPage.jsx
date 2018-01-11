@@ -1,6 +1,6 @@
 ﻿import MonthPicker from '../utils/monthPicker';
 var React = require('react');
-var ExpensesApi = require('../../api/expensesApi');
+var ExpensesApi = require('../../api/apiCaller');
 var ExpensesList = require('./expensesList');
 var { Menu, Dropdown, Segment, Button, Icon } = require('semantic-ui-react')
 var ExpensesModal = require('./expensesModal');
@@ -89,21 +89,16 @@ class ExpensesPage extends React.Component{
 
 
 	componentDidMount() {
-        ExpensesApi.getExpenses(this.state.period)
-            .then(function (data) {
-                this.getCredit(data.repos);
-                this.getDebit(data.repos);
+        ExpensesApi.getWithToken("Expenses", this.state.period)
+            .then(function (resp) {
+                this.getCredit(resp.data);
+                this.getDebit(resp.data);
                 // this.setState({
                 //     expenses: data.repos
                 // })
             }.bind(this));
     };
     
-    componentDidUpdate(prevProps, prevState)
-    {
-        var foo = "a";
-    }
-
     handleSubmit(e) {
         //e.preventDefault();
         // console.log(this.state.period);
@@ -169,12 +164,6 @@ class ExpensesPage extends React.Component{
             });
 
         }
-        
-        // var recordsNotDeleted = this.state.records.filter(x => x.ExpensesID !== expense.ExpensesID);
-        // console.log(recordsNotDeleted);
-        // this.setState({
-        //     records: recordsNotDeleted
-        // })
     };
 
     setAccountant(value, valuePaid, isCreditOrDebit) {

@@ -1,5 +1,5 @@
 var React = require('react');
-var ExpensesApi = require('../../api/expensesApi');
+var ExpensesApi = require('../../api/apiCaller');
 var { Modal, Button, Form, Checkbox } = require('semantic-ui-react')
 
 
