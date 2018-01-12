@@ -66,6 +66,9 @@ class expensesModal extends React.Component {
   { 
     if(this.props.newRecord) 
     {
+       
+      var currentTime = new Date()
+
       this.setState({           
         ExpensesID: 0,
         Name: "",
@@ -73,7 +76,7 @@ class expensesModal extends React.Component {
         CreditOrDebit:'',
         ExpensesTypeID: 0,
         isCreditCard: false,
-        ExpenseDate: '',
+        ExpenseDate: currentTime.getFullYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate(),
         isPaid: false,
         Amount: 0
       })
@@ -104,7 +107,7 @@ class expensesModal extends React.Component {
 
     if (expenseObject.ExpensesID !== 0)
     {
-      ExpensesApi.putExpenses(expenseObject)
+      ExpensesApi.putWithToken("Expenses", expenseObject)
       .then(data => {
 
         // this.setState({
@@ -117,7 +120,7 @@ class expensesModal extends React.Component {
 
     }
     else {
-      ExpensesApi.postExpenses(expenseObject)
+      ExpensesApi.postWithToken("Expenses", expenseObject)
           .then(data => {
 
             // this.setState({

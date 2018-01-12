@@ -103,7 +103,7 @@ class ExpensesPage extends React.Component{
         //e.preventDefault();
         // console.log(this.state.period);
         this.setState({accountantCredit: 0, accountantCreditPaid:0, accountantDebit: 0, accountantDebitPaid:0})
-        ExpensesApi.getExpenses(this.state.period)
+        ExpensesApi.getWithToken("Expenses", this.state.period)
             .then(resp => {
                 this.getCredit(resp.repos);
                 this.getDebit(resp.repos);
@@ -147,7 +147,7 @@ class ExpensesPage extends React.Component{
 
     handleDeleteRecord(expense) {
         
-        ExpensesApi.removeExpenses(expense);
+        ExpensesApi.deleteWithToken(expense);
 
         if(expense.CreditOrDebit === "C") {
             var newStateArray = this.state.expensesCredit.filter(x => x.ExpensesID !== expense.ExpensesID);
