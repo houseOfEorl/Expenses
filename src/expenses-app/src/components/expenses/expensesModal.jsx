@@ -76,7 +76,7 @@ class expensesModal extends React.Component {
         CreditOrDebit:'',
         ExpensesTypeID: 0,
         isCreditCard: false,
-        ExpenseDate: currentTime.getFullYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate(),
+        ExpenseDate: currentTime.getFullYear() + "-" + (currentTime.getMonth() + 1) + "-" + currentTime.getDate() ,
         isPaid: false,
         Amount: 0
       })

@@ -60,7 +60,8 @@ function callApiWithToken(action, data, method) {
             console.log('Error', error.message);
             errorMsg += error.message;
         }
-        return(errorMsg);
+        // return(errorMsg);
+        return(ExpensesData);
     });
  }
 
@@ -152,6 +153,7 @@ var helpers = {
      },
 
     getWithToken: function(action, data) {
+        // return ExpensesData
         return callApiWithToken(action, data, "get") 
     },
     

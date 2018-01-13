@@ -25,8 +25,8 @@ class App extends Component {
       <div className="App">
         <div className="App-header"></div>
           <div>
-
-            {localStorage.ApiExpToken ? <ExpensesPage /> : <SignIn />}
+          <ExpensesPage />
+            {/* {localStorage.ApiExpToken ? <ExpensesPage /> : <SignIn />} */}
           </div> 
       </div>
     );
