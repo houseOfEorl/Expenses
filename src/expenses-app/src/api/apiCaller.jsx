@@ -6,10 +6,11 @@ var ExpensesData = require('./expensesData.jsx');
 //     return axios.get('https://api.github.com/users/' + username + '/repos');
 // }
 
-// var webApiurl = 'http://api.almendro.com.br/api/Expenses/';
-var webApiurl = 'http://localhost:64307/api/Expenses/';
+var webApiurl = 'http://api.almendro.com.br/api/Expenses/';
+// var webApiurl = 'http://localhost:64307/api/Expenses/';
 var action = '';
-var apiUrl = 'http://localhost:64307/api/';
+// var apiUrl = 'http://localhost:64307/api/';
+var apiUrl = 'http://api.almendro.com.br/api/';
 
 function getAllExpenses(period) {
    return axios.get(webApiurl + period);
@@ -45,8 +46,14 @@ function callApiWithToken(action, data, method) {
         return(response);
     })
     .catch(function (error) {
+
         var errorMsg = "Error: ";
         if(error.response) {
+            //invalid token, try to log in again
+            if(error.status = "401") {
+
+            }
+
             // The request was made, but the server responded with a status code
             // that falls out of the range of 2xx
             console.log(error.response.data);
@@ -60,8 +67,10 @@ function callApiWithToken(action, data, method) {
             console.log('Error', error.message);
             errorMsg += error.message;
         }
-        // return(errorMsg);
-        return(ExpensesData);
+        //flush the token if there's one
+        localStorage.removeItem("ApiExpToken")
+        return(errorMsg);
+        //return(ExpensesData);
     });
  }
 
@@ -154,7 +163,7 @@ var helpers = {
 
     getWithToken: function(action, data) {
         // return ExpensesData
-        return callApiWithToken(action, data, "get") 
+        return callApiWithToken(action + "/" + data, data, "get") 
     },
     
     deleteWithToken: function(action, data) {

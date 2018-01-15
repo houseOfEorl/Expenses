@@ -96,7 +96,10 @@ class ExpensesPage extends React.Component{
                 // this.setState({
                 //     expenses: data.repos
                 // })
-            }.bind(this));
+            }.bind(this))
+            .catch(function (error) {
+                console.log("error")
+            });
     };
     
     handleSubmit(e) {
@@ -105,8 +108,8 @@ class ExpensesPage extends React.Component{
         this.setState({accountantCredit: 0, accountantCreditPaid:0, accountantDebit: 0, accountantDebitPaid:0})
         ExpensesApi.getWithToken("Expenses", this.state.period)
             .then(resp => {
-                this.getCredit(resp.repos);
-                this.getDebit(resp.repos);
+                this.getCredit(resp.data);
+                this.getDebit(resp.data);
             });
     };
 
@@ -147,7 +150,7 @@ class ExpensesPage extends React.Component{
 
     handleDeleteRecord(expense) {
         
-        ExpensesApi.deleteWithToken(expense);
+        ExpensesApi.deleteWithToken("Expenses", expense);
 
         if(expense.CreditOrDebit === "C") {
             var newStateArray = this.state.expensesCredit.filter(x => x.ExpensesID !== expense.ExpensesID);

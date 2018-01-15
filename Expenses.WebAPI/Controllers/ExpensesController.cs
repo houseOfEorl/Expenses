@@ -77,8 +77,8 @@ namespace Expenses.WebAPI.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id, [FromBody]ExpensesEntity value)
+        [HttpDelete]
+        public void Delete([FromBody]ExpensesEntity value)
         {
             //var exp = _repository.GetExpenseById(value.ExpensesID);
             _repository.RemoveExpense(value);
