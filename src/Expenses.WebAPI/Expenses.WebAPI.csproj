@@ -31,9 +31,9 @@
     <None Include="Controllers\LogController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Expenses.Common\Expenses.Common.csproj" />
-    <ProjectReference Include="..\src\Expenses.DAL\Expenses.DAL.csproj" />
-    <ProjectReference Include="..\src\Expenses.Entities\Expenses.Entities.csproj" />
+    <ProjectReference Include="..\Expenses.Common\Expenses.Common.csproj" />
+    <ProjectReference Include="..\Expenses.DAL\Expenses.DAL.csproj" />
+    <ProjectReference Include="..\Expenses.Entities\Expenses.Entities.csproj" />
   </ItemGroup>
 
 </Project>
