@@ -1,5 +1,5 @@
 // The middleware to call the API for quotes
-import { CALL_API } from './middleware/api'
+import CallApi from './middleware/api'
 
 // There are three possible states for our login
 // process and we need actions for each of them
@@ -64,14 +64,14 @@ export function loginUser(creds) {
   
   let config = {
     method: 'POST',
-    headers: { 'Content-Type':'application/x-www-form-urlencoded' },
-    body: `username=${creds.username}&password=${creds.password}`
+    headers: { 'Content-Type':'application/json' },
+    body: `{username:"${creds.username}",password:"${creds.password}"}`
   }
   
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
-    return fetch('http://localhost:3001/sessions/create', config)
+    return fetch('http://api.almendro.com.br/api/token', config)
       .then(response =>
         response.json()
         .then(user => ({ user, response }))
@@ -84,7 +84,7 @@ export function loginUser(creds) {
         }
         else {
           // If login was successful, set the token in local storage
-          localStorage.setItem('id_token', user.id_token)
+          localStorage.setItem('id_token', user.token)
           
           // Dispatch the success action
           dispatch(receiveLogin(user))
@@ -102,29 +102,34 @@ export function logoutUser() {
   }
 }
 
-export const QUOTE_REQUEST = 'QUOTE_REQUEST'
-export const QUOTE_SUCCESS = 'QUOTE_SUCCESS'
-export const QUOTE_FAILURE = 'QUOTE_FAILURE'
+export const EXPENSE_REQUEST = 'EXPENSE_REQUEST'
+export const EXPENSE_SUCCESS = 'EXPENSE_SUCCESS'
+export const EXPENSE_FAILURE = 'EXPENSE_FAILURE'
 
 // Uses the API middlware to get a quote
-export function fetchQuote() {
-  return {
-    [CALL_API]: {
-      endpoint: 'random-quote',
-      types: [QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE]
-    }
-  }
-}
+// export function fetchExpense() {
+//   return {
+//     [CALL_API]: {
+//       endpoint: 'random-quote',
+//       types: [EXPENSE_REQUEST, EXPENSE_SUCCESS, EXPENSE_FAILURE]
+//     }
+//   }
+// }
 
 // Same API middlware is used to get a 
 // secret quote, but we set authenticated
 // to true so that the auth header is sent
-export function fetchSecretQuote() {
-  return {
-    [CALL_API]: {
-      endpoint: 'protected/random-quote',
-      authenticated: true,
-      types: [QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE]
+export function fetchSecureExpense(period) {
+  return dispatch => {
+    return CallApi('Expenses/' + period, true)
+      .then(function(response) {
+        return(response)
+      })
+      .catch(function(error){
+        if(error == 401) {
+          dispatch(loginError(error))
+        }
+        return Promise.reject(error)
+      })
     }
-  }
-}
+} 

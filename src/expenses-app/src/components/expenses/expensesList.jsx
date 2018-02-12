@@ -1,7 +1,7 @@
 ﻿var React = require('react');
 var { Table, Button, Icon, Label } = require('semantic-ui-react');
 var ExpensesApi = require('../../api/apiCaller');
-var ExpensesModal = require('./expensesModal')
+var ExpensesModal = require('./ExpensesModal')
 
 
 class ExpensesList extends React.Component	{

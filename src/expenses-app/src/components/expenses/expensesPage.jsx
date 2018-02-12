@@ -1,9 +1,9 @@
 ﻿import MonthPicker from '../utils/monthPicker';
 var React = require('react');
 var ExpensesApi = require('../../api/apiCaller');
-var ExpensesList = require('./expensesList');
+var ExpensesList = require('./ExpensesList');
 var { Menu, Dropdown, Segment, Button, Icon } = require('semantic-ui-react')
-var ExpensesModal = require('./expensesModal');
+var ExpensesModal = require('./ExpensesModal');
 
 const options = [
   { key: 1, text: 'All', value: 1 },
@@ -89,27 +89,34 @@ class ExpensesPage extends React.Component{
 
 
 	componentDidMount() {
-        ExpensesApi.getWithToken("Expenses", this.state.period)
-            .then(function (resp) {
-                this.getCredit(resp.data);
-                this.getDebit(resp.data);
-                // this.setState({
-                //     expenses: data.repos
-                // })
-            }.bind(this))
-            .catch(function (error) {
-                console.log("error")
-            });
+        this.handleSubmit("")
+        // ExpensesApi.getWithToken("Expenses", this.state.period)
+        //     .then(function (resp) {
+        //         this.getCredit(resp.data);
+        //         this.getDebit(resp.data);
+        //         // this.setState({
+        //         //     expenses: data.repos
+        //         // })
+        //     }.bind(this))
+        //     .catch(function (error) {
+        //         console.log("error")
+        //     });
     };
     
     handleSubmit(e) {
         //e.preventDefault();
         // console.log(this.state.period);
         this.setState({accountantCredit: 0, accountantCreditPaid:0, accountantDebit: 0, accountantDebitPaid:0})
-        ExpensesApi.getWithToken("Expenses", this.state.period)
-            .then(resp => {
-                this.getCredit(resp.data);
-                this.getDebit(resp.data);
+        this.props.onSecureClick(this.state.period)
+            .then(function (resp) {
+                this.getCredit(JSON.parse(resp));
+                this.getDebit(JSON.parse(resp));
+                // this.setState({
+                //     expenses: data.repos
+                // })
+            }.bind(this))
+            .catch(function (error) {
+                console.log(error)
             });
     };
 

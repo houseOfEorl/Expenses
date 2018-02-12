@@ -1,18 +1,22 @@
 ﻿import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
 
-const Header = () => {
-  return (
-    <nav className="navbar navbar-default">
-        <div className="container-fluid">
-            <ul className="nav navbar-nav">
-                <li>Home</li>
-                <li>Expenses</li>
-                <li>About</li>
-            </ul>
-        </div>
-    </nav>
-  );
-};
 
-export default Header;
+export default class Header extends React.Component {
+    render() {
+        const {dispatch, isAuthenticated} = this.props
+
+        return (
+            <Menu>
+                <Menu.Item><Link to ="/home">Home</Link></Menu.Item>
+                <Menu.Item><Link to ="/expenses">Expenses</Link></Menu.Item>
+                <Menu.Item><Link to ="/correios">Correios</Link></Menu.Item>
+                <Menu.Item>
+                    {!isAuthenticated && "is NOT Authenticated" }
+                    {isAuthenticated && "is Authenticated" }
+                </Menu.Item>
+            </Menu>
+        );
+    }
+}

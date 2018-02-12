@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { 
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-  QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE
+  EXPENSE_REQUEST, EXPENSE_SUCCESS, EXPENSE_FAILURE
 } from './actions'
 
 // The auth reducer. The starting state sets authentication
@@ -47,17 +47,17 @@ function quotes(state = {
     authenticated: false
   }, action) {
   switch (action.type) {
-    case QUOTE_REQUEST:
+    case EXPENSE_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       })
-    case QUOTE_SUCCESS:
+    case EXPENSE_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         quote: action.response,
         authenticated: action.authenticated || false
       })
-    case QUOTE_FAILURE:
+    case EXPENSE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false
       })
