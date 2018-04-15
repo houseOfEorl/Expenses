@@ -71,6 +71,7 @@ export function loginUser(creds) {
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
+    // return fetch('http://localhost:64307/api//token', config)
     return fetch('http://api.almendro.com.br/api/token', config)
       .then(response =>
         response.json()

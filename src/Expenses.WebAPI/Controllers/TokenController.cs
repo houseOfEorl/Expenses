@@ -80,7 +80,7 @@ namespace Expenses.WebAPI.Controllers
         [HttpPost]
         public dynamic Post([FromBody] AuthRequest req)
         {
-            // Obviously, at this point you need to validate the username and password against whatever system you wish.
+            //TODO: fix it
             if ((req.username == "TEST" && req.password == "TEST") || (req.username == "TEST2" && req.password == "TEST"))
             {
                 DateTime? expires = DateTime.UtcNow.AddDays(1);

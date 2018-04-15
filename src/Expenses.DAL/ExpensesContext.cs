@@ -17,6 +17,8 @@ namespace Expenses.DAL
 
         public virtual DbSet<ExpensesEntity> ExpensesEntity { get; set; }
 
+        public virtual DbSet<BankTypeEntity> BankTypeEntity { get; set; }
+
         public virtual DbSet<ExpensesMonthly> ExpensesMonthly { get; set; }
 
         public virtual DbSet<Country> Country { get; set; }

@@ -29,26 +29,32 @@ class ExpensesList extends React.Component	{
     {
         if(prevProps.expenses !== this.props.expenses)
         {
-            var sum = 0;
-            var sumPaid = 0;
-            var len =  this.props.expenses.length;
-            for(var i = 0; i < len; i++)
-            {
-                sum += parseFloat(this.props.expenses[i].Amount);
-                if(this.props.expenses[i].isPaid){
-                    sumPaid += parseFloat(this.props.expenses[i].Amount);
-                    // console.log(sumPaid);
-                }
-            }
-
-            this.props.setAccountant(sum, sumPaid, this.props.expenses[0].CreditOrDebit);
-
-            this.setState({
-                totalPerType: sum,
-                total: this.total + sum,
-                records: this.props.expenses
-            });
+            this.calculateTotalAmounts()
         }
+    }
+
+    calculateTotalAmounts()
+    {
+        var sum = 0;
+        var sumPaid = 0;
+        var aSumBanks = []
+        var len =  this.props.expenses.length;
+        for(var i = 0; i < len; i++)
+        {
+            sum += parseFloat(this.props.expenses[i].Amount);
+            if(this.props.expenses[i].isPaid){
+                sumPaid += parseFloat(this.props.expenses[i].Amount);
+                // console.log(sumPaid);
+            }
+        }
+
+        this.props.setAccountant(sum, sumPaid, this.props.expenses[0].CreditOrDebit, this.props.expenses[0].CreditOrDebit);
+
+        this.setState({
+            totalPerType: sum,
+            total: this.total + sum,
+            records: this.props.expenses
+        });
     }
 
     createExpenseRow = function (expense) {
@@ -59,8 +65,10 @@ class ExpensesList extends React.Component	{
                 {/* <Table.Cell>{expense.ExpensesID}</Table.Cell> */}
                 <Table.Cell>{expense.Name}</Table.Cell>
                 <Table.Cell>{expense.CreditOrDebit}</Table.Cell>
-                {/* <Table.Cell>{expense.ExpensesTypeID}</Table.Cell> */}
+                <Table.Cell>{expense.Bank.Description}</Table.Cell>
                 <Table.Cell>{String(expense.isCreditCard)}</Table.Cell>
+                {/* <Table.Cell>{expense.ExpensesTypeID}</Table.Cell> */}
+                {/* <Table.Cell>{String(expense.isCreditCard)}</Table.Cell> */}
                 <Table.Cell>{expense.ExpenseDate.split('T')[0]}</Table.Cell>
                 <Table.Cell positive={expense.isPaid} negative={!expense.isPaid}>
                     {String(expense.isPaid)}
@@ -95,6 +103,9 @@ class ExpensesList extends React.Component	{
                             </Table.HeaderCell>
                             <Table.HeaderCell >
                                 CreditOrDebit
+                            </Table.HeaderCell>
+                            <Table.HeaderCell >
+                                Bank
                             </Table.HeaderCell>
                             {/* <Table.HeaderCell >
                                 Type

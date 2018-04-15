@@ -20,6 +20,11 @@ const optionPaymentType = [
   {key:10, text: "Health", value: 10}
 ]
 
+const optionBankType = [
+  {key:1, text: "Scotia",  value: 1},
+  {key:2, text: "Tangerine", value: 2},
+]
+
 class expensesModal extends React.Component {
 
   constructor(props) {
@@ -36,6 +41,7 @@ class expensesModal extends React.Component {
           CountryID: this.props.exp.CountryID,
           CreditOrDebit:this.props.exp.CreditOrDebit,
           ExpensesTypeID: this.props.exp.ExpensesTypeID,
+          BankTypeID: this.props.exp.BankTypeID,
           isCreditCard: this.props.exp.isCreditCard,
           ExpenseDate: this.props.exp.ExpenseDate,
           isPaid: this.props.exp.isPaid,
@@ -50,6 +56,7 @@ class expensesModal extends React.Component {
           CountryID: '1',
           CreditOrDebit:'',
           ExpensesTypeID: 0,
+          BankTypeID: 0,
           isCreditCard: false,
           ExpenseDate: '',
           isPaid: false,
@@ -75,6 +82,7 @@ class expensesModal extends React.Component {
         CountryID: '1',
         CreditOrDebit:'',
         ExpensesTypeID: 0,
+        BankTypeID: 0,
         isCreditCard: false,
         ExpenseDate: currentTime.getFullYear() + "-" + (currentTime.getMonth() + 1) + "-" + currentTime.getDate() ,
         isPaid: false,
@@ -150,6 +158,7 @@ class expensesModal extends React.Component {
                 <Form.Input label='Name' name='Name' onChange={this.handleChange} value={this.state.Name} />
                 <Form.Select label='Credit Or Debit' name='CreditOrDebit' options={optionCreditOrDebit} onChange={this.handleChange}  defaultValue={this.state.CreditOrDebit} />
                 <Form.Select label='Type' name='ExpensesTypeID' options={optionPaymentType} onChange={this.handleChange} defaultValue={this.state.ExpensesTypeID}  />
+                <Form.Select label='BankTypeID' name='BankTypeID' options={optionBankType} onChange={this.handleChange} defaultValue={this.state.BankTypeID}  />
               </Form.Group>
               <Form.Group widths='equal'>
                 <Form.Field >

@@ -135,23 +135,25 @@ class ExpensesPage extends React.Component{
 
     handleAddRecord(expense) {
 
-        if(expense.CreditOrDebit === "C") {
-            var newStateArray = this.state.expensesCredit.slice();
-            newStateArray.push(expense);
-            
-            this.setState({
-                expensesCredit: newStateArray
-            });
-        }
-        else {
-            var newStateArray = this.state.expensesDebit.slice();
-            newStateArray.push(expense);
-            
-            this.setState({
-                expensesDebit: newStateArray
-            });
+        this.handleSubmit(null)
 
-        }
+        // if(expense.CreditOrDebit === "C") {
+        //     var newStateArray = this.state.expensesCredit.slice();
+        //     newStateArray.push(expense);
+            
+        //     this.setState({
+        //         expensesCredit: newStateArray
+        //     });
+        // }
+        // else {
+        //     var newStateArray = this.state.expensesDebit.slice();
+        //     newStateArray.push(expense);
+            
+        //     this.setState({
+        //         expensesDebit: newStateArray
+        //     });
+
+        // }
         // console.log(foo);
     };
 
@@ -227,6 +229,7 @@ class ExpensesPage extends React.Component{
                     {this.state.accountantCreditPaid < 0 &&
                         <div className='red'><b>Total Paid: {(this.state.accountantCreditPaid + this.state.accountantDebitPaid).toFixed(2)}</b></div>
                     }
+
                     <ExpensesList expenses={this.state.expensesCredit} action={this.handleSubmit} setAccountant={this.setAccountant} handleDeleteRecord={this.handleDeleteRecord} /><br/>
                     <ExpensesList expenses={this.state.expensesDebit} action={this.handleSubmit} setAccountant={this.setAccountant} handleDeleteRecord={this.handleDeleteRecord} />
                 </Segment>

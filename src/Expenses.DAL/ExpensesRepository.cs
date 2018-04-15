@@ -86,8 +86,39 @@ namespace Expenses.DAL
                 var year = dtPeriod.Year;
                 return _context.ExpensesEntity
                     .Include(x => x.Type)
+                    .Include(x => x.Bank)
                     .Where(x => x.ExpenseDate.Month == month && x.ExpenseDate.Year == year)
                     .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ErrorMsg.ReturErrorMsgWithClassAndMethodName(this.GetType().FullName, MethodBase.GetCurrentMethod().Name, ex.Message));
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get total amounts by bank per period
+        /// </summary>
+        /// <param name="dtPeriod"></param>
+        /// <returns></returns>
+        public Object GetTotaAmountsPerPeriod(DateTime dtPeriod)
+        {
+            try
+            {
+                var month = dtPeriod.Month;
+                var year = dtPeriod.Year;
+
+                var group = _context.ExpensesEntity
+                    .Include(x => x.Bank)
+                    .Where(x => x.ExpenseDate.Month == month && x.ExpenseDate.Year == year)
+                    .GroupBy(x => x.Bank.Description).ToList();
+
+                var result = group.Select(n => new { Name = n.Key, Total = n.Sum( s => s.Amount) });
+                //.Select(n => new { Name = n.Key, Total = n.Sum(i => i.Amount) }).ToList();
+
+
+                return result;
             }
             catch (Exception ex)
             {

@@ -31,6 +31,10 @@ namespace Expenses.DAL.Entities
 
         public int ExpensesTypeID { get; set; }
 
+        public BankTypeEntity Bank { get; set; }
+
+        public int BankTypeID { get; set; }
+
         private DateTime _expenseDate;
 
         public DateTime CreatedDate

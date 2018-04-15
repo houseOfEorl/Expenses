@@ -79,6 +79,19 @@ namespace Expenses.DAL.Tests
 
             Assert.NotEqual(0, exp);
         }
+
+        [Fact]
+        public void TestGetTotaAmountsPerPeriod_Just_Good()
+        {
+            var getDbContext = new GetDbContextDAL();
+            var context = getDbContext.ReturnDbContext();
+
+            var rep = new ExpensesRepository(context, null);
+
+            var exp = rep.GetTotaAmountsPerPeriod(DateTime.Now);
+
+            Assert.Equal(0, exp);
+        }
     }
 }
 
