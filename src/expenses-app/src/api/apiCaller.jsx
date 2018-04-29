@@ -1,9 +1,9 @@
 ﻿var axios = require('axios');
 var ExpensesData = require('./expensesData.jsx');
+var appConfig = require('../configurations/app.json');
 
 var action = '';
-// var apiUrl = 'http://localhost:64307/api/';
-var apiUrl = 'http://api.almendro.com.br/api/';
+var apiUrl = appConfig.apiServerAdress;
 
 
 function callApiWithToken(action, data, method) {

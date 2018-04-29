@@ -1,6 +1,6 @@
-// const BASE_URL = 'http://localhost:64307/api/'
-const BASE_URL = 'http://api.almendro.com.br/api/'
+var appConfig = require('../configurations/app.json');
 
+const BASE_URL = appConfig.apiServerAdress;
 
 export default function abobora(endpoint, authenticated) {
   
@@ -16,6 +16,7 @@ export default function abobora(endpoint, authenticated) {
       throw "No token saved!"
     }
   }
+
   
   return fetch(BASE_URL + endpoint, config)
     .then(response =>

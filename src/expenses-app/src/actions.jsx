@@ -1,5 +1,8 @@
 // The middleware to call the API for quotes
 import CallApi from './middleware/api'
+var appConfig = require('./configurations/app.json');
+
+const BASE_URL = appConfig.apiServerAdress;
 
 // There are three possible states for our login
 // process and we need actions for each of them
@@ -72,7 +75,7 @@ export function loginUser(creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
     // return fetch('http://localhost:64307/api//token', config)
-    return fetch('http://api.almendro.com.br/api/token', config)
+    return fetch(BASE_URL + 'token', config)
       .then(response =>
         response.json()
         .then(user => ({ user, response }))
