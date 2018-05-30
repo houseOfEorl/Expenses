@@ -72,34 +72,6 @@ var helpers = {
                 return(errorMsg);
             });
      },
-
-    //  getWithToken: function(action, parameters) {
-    //     return axios.get(apiUrl + action + '/' + parameters, { headers: { Authorization: "Bearer " + localStorage.ApiExpToken } })
-    //         .then(function (response) {
-    //             return(response);
-    //         })
-    //         .catch(function (error) {
-    //             var errorMsg = "Error: ";
-    //             if(error.response) {
-    //                 // The request was made, but the server responded with a status code
-    //                 // that falls out of the range of 2xx
-    //                 console.log(error.response.data);
-    //                 console.log(error.response.status);
-    //                 console.log(error.response.headers);
-    //                 errorMsg += error.response.data;
-    //             }
-    //             else
-    //             {
-    //                  // Something happened in setting up the request that triggered an Error
-    //                 console.log('Error', error.message);
-    //                 errorMsg += error.message;
-    //             }
-    //             //flush the token if there's one
-    //             localStorage.removeItem("ApiExpToken")
-
-    //             return(errorMsg);
-    //         });
-    //  },
      
      post: function(action, data) {
 
@@ -149,44 +121,6 @@ var helpers = {
      putWithToken: function(action, data) {
          return callApiWithToken(action, data, "put") 
      },
-
-    // getExpenses: function (period) {
-    //     // return ExpensesData.expenses;
-    //     return axios.all([getAllExpenses(period)])
-    //         .then(function (arr) {
-    //             return {
-    //                 repos: arr[0].data
-    //             }
-    //         })
-    // },
-
-    // postExpenses: function(expense) {
-    //     return axios.all([post(expense)])
-    //         .then(function (arr) {
-    //             return {
-    //                 id: arr[0].data
-    //             }
-    //         }
-    //     )
-    // },
-
-    // putExpenses: function(expense) {
-    //     return axios.all([put(expense)])
-    //         .then(function (arr) {
-    //             return {
-    //                 id: arr[0].data
-    //             }
-    //         }
-    //     )
-    // },
-
-    // removeExpenses: function(expense) {
-    //     return axios({
-    //         method: 'delete',
-    //         url: webApiurl + expense.ExpensesID,
-    //         data: expense
-    //     });
-    // }
 }
 
 

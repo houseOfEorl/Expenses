@@ -24,13 +24,13 @@ export default function abobora(endpoint, authenticated) {
       .then(text => ({ text, response }))
     ).then(({ text, response }) => {
       if (!response.ok) {
-        // console.log(response)
-        // console.log(response.status)
+        console.log(response)
+        console.log(response.status)
         return Promise.reject(response.status)
       }
       return text
     }).catch(function(error){
-      // console.log(error)
+      console.log(error)
       return Promise.reject(error)
     })
 }
