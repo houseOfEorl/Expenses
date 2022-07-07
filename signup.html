@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <title>Knowledge First Financial</title>
@@ -445,8 +446,7 @@
   <!-- Polyfill for URLSearchParams -->
   <script src="https://cdn.rawgit.com/inexorabletash/polyfill/v0.1.14/polyfill.min.js"></script>
   <script>
-    const emailInput = document.getElementById('readonlyEmail');
-	console.log(emailInput)
+    const emailInput = document.getElementById('email');
     const newPasswordInput = document.getElementById('newPassword');
     
     const cancelButton = document.getElementById('cancel');
@@ -492,40 +492,6 @@
 
     newPasswordInput.insertAdjacentElement('afterend', toggleNewPassword);
 
-    // Material icon initial visibility states
-    clearEmail.style.display = 'none';
-    toggleNewPassword.style.display = 'none';
-
-    // Material icon visibility - clear email
-    let isEmailMouseOver = false;
-    clearEmail.onmouseover = function () {
-      isEmailMouseOver = true;
-    };
-    clearEmail.onmouseleave = function() {
-      isEmailMouseOver = false;
-    };
-    emailInput.onblur = function () {
-      if (!isEmailMouseOver && !isEmailError) clearEmail.style.display = 'none';
-    };
-    emailInput.onfocus = function () {
-      clearEmail.style.display = '';
-    }
-    
-    // Material icon visibility - password toggle
-    let isPasswordMouseOver = false;
-    toggleNewPassword.onmouseover = function () {
-      isPasswordMouseOver = true;
-    };
-    toggleNewPassword.onmouseleave = function() {
-      isPasswordMouseOver = false;
-    };
-    newPasswordInput.onblur = function () {
-      if (!isPasswordMouseOver && !isPasswordError) toggleNewPassword.style.display = 'none';
-    };
-    newPasswordInput.onfocus = function () {
-      toggleNewPassword.style.display = '';
-    }
-
     // Error states - Email
     const emailError = document.getElementsByClassName('error itemLevel')[0];
     let isEmailError = false;
@@ -538,7 +504,6 @@
         emailInput.style.background = 'white';
         emailInput.style.outline = 'none';
         emailLabel.setAttribute('id', 'emailLabel--error');
-        clearEmail.style.display = '';
         isEmailError = true;
       } else {
         clearEmail.innerHTML = 'clear';
@@ -561,7 +526,6 @@
 
     emailObserver.observe(emailError, { childList: true });
 
-    
     // Error states - Password
     const passwordError = document.getElementsByClassName('error itemLevel')[1];
     let isPasswordError = false;
@@ -574,7 +538,6 @@
         newPasswordInput.style.background = 'white';
         newPasswordInput.style.outline = 'none';
         newPasswordLabel.setAttribute('id', 'passwordLabel--error');
-        toggleNewPassword.style.display = '';
         isPasswordError = true;
       } else {
         const type = newPasswordInput.getAttribute("type") === "password" ? "password" : "text";
