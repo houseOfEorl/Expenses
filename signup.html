@@ -633,10 +633,10 @@
       get: (searchParams, prop) => searchParams.get(prop),
     });
     let emailInvite = params.emailInvite;
-    console.log("emailInvite:");
-    console.log(emailInvite);
-    console.log("emailInvite:");
-    console.log("emailInvite:");
+    if(emailInvite && emailInvite != 'null') {
+      emailInput.readOnly = true;
+      clearEmail.remove();
+    }
 
   </script>
 </body>
