@@ -460,19 +460,6 @@
     const newPasswordLabel = document.createElement('span');
     newPasswordLabel.setAttribute('id', 'passwordLabel');
 
-    // Insert email clear
-    const clearEmail = document.createElement('span');
-    const emailClassName = 'material-icons';
-    const emailId = 'clearEmail';
-    clearEmail.setAttribute('class', emailClassName);
-    clearEmail.setAttribute('id', emailId);
-    clearEmail.innerHTML = 'clear';
-
-    clearEmail.addEventListener('click', function() {
-      emailInput.value = '';
-    });
-
-    emailInput.insertAdjacentElement('afterend', clearEmail);
 
     // Insert password toggles
     const toggleNewPassword = document.createElement('span');
@@ -498,16 +485,12 @@
 
     const emailObserver = new MutationObserver(function(e) {
       if (e[0].target.innerHTML !== '') {
-        clearEmail.innerHTML = 'error';
-        clearEmail.setAttribute('id', 'clearEmail--error');
         emailInput.style.border = '2px solid #BA1B1B';
         emailInput.style.background = 'white';
         emailInput.style.outline = 'none';
         emailLabel.setAttribute('id', 'emailLabel--error');
         isEmailError = true;
       } else {
-        clearEmail.innerHTML = 'clear';
-        clearEmail.setAttribute('id', 'clearEmail');
         emailInput.style.border = '';
         emailInput.style.background = '';
         emailInput.style.outline = '';
