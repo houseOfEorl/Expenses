@@ -454,13 +454,6 @@
       history.back();
     }
     
-    // Check query string for email
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
-    let emailInvite = params.emailInvite;
-    console.log("emailInvite:");
-    console.log(emailInvite);
 
     // Insert custom input field labels
     const emailLabel = document.createElement('span');
@@ -634,6 +627,19 @@
       Have an account? <a href=${signInUrl}>Sign In</a>
     `;
     border.insertAdjacentElement('afterend', signInLink);
+    
+    // Check query string for email
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let emailInvite = params.emailInvite;
+    console.log("emailInvite:");
+    console.log(emailInvite);
+    if(emailInvite && emailInvite != 'null') {
+      console.log("isnide");
+      emailInput.readOnly = true;
+      clearEmail.remove();
+    }
 
   </script>
 </body>
