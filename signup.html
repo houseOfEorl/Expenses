@@ -446,9 +446,9 @@
   <!-- Polyfill for URLSearchParams -->
   <script src="https://cdn.rawgit.com/inexorabletash/polyfill/v0.1.14/polyfill.min.js"></script>
   <script>
-    const emailInput = document.getElementById('readonlyEmail');
+    const emailInput = document.getElementById('email');
     const newPasswordInput = document.getElementById('newPassword');
-    
+    console.log(emailInput);
     const cancelButton = document.getElementById('cancel');
     cancelButton.onclick = function() {
       history.back();
