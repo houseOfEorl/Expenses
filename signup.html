@@ -635,6 +635,7 @@
     let emailInvite = params.emailInvite;
     if(emailInvite && emailInvite != 'null') {
       emailInput.readOnly = true;
+      emailInput.disabled = true;
       clearEmail.remove();
     }
 
