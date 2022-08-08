@@ -747,52 +747,52 @@
     }
 
     // Show continue button after verification success
-    // const successText = document.getElementById('readonlyEmail_success');
-    // const successIcon = document.getElementsByClassName('success-icon-container')[0];
-    // const successHeader = document.getElementsByClassName('success-header-container')[0];
+    const successText = document.getElementById('readonlyEmail_success');
+    const successIcon = document.getElementsByClassName('success-icon-container')[0];
+    const successHeader = document.getElementsByClassName('success-header-container')[0];
 
-    // const successObserver = new MutationObserver(function(e) {
-    //   if (e[0].target.style.display !== 'none') {
-    //     // title.innerHTML = 'Your email address has been verified';
-    //     e[0].target.style.position = 'absolute';
-    //     e[0].target.style.top = '-9999px';
-    //     e[0].target.style.left = '-9999px';
-    //     continueButton.style.display = 'block';
-    //     verificationTextContainer.style.margin = 0;
-    //     successIcon.style.display = 'block';
-    //     cancelButton.style.display = 'none';
-    //     // title.style.textAlign = 'center';
-    //     // title.style.marginLeft = 'auto';
-    //     // title.style.marginRight = 'auto';
-    //     // title.style.marginTop = '0.5rem';
-    //     successHeader.style.display = 'block';
-    //   } else {
-    //     continueButton.style.display = 'none';
-    //     successIcon.style.display = 'none';
-    //   }
-    // });
-    // successObserver.observe(successText, { attributes: true });
+    const successObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display !== 'none') {
+        // title.innerHTML = 'Your email address has been verified';
+        e[0].target.style.position = 'absolute';
+        e[0].target.style.top = '-9999px';
+        e[0].target.style.left = '-9999px';
+        continueButton.style.display = 'block';
+        verificationTextContainer.style.margin = 0;
+        successIcon.style.display = 'block';
+        cancelButton.style.display = 'none';
+        // title.style.textAlign = 'center';
+        // title.style.marginLeft = 'auto';
+        // title.style.marginRight = 'auto';
+        // title.style.marginTop = '0.5rem';
+        successHeader.style.display = 'block';
+      } else {
+        continueButton.style.display = 'none';
+        successIcon.style.display = 'none';
+      }
+    });
+    successObserver.observe(successText, { attributes: true });
 
-    // // Continue button loading state
-    // const continueButtonText = continueButton.innerText;
-    // const loadingObserver = new MutationObserver(function(e) {
-    //   if (e[0].target.id === 'verifying_blurb') {
-    //     continueButton.innerHTML = `
-    //       <div class="loading-spinner" role="progressbar">
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //       </div>
-    //     `;
-    //   } else if (e[0].target.id === 'continue') {
-    //     // Do nothing
-    //   } else {
-    //     continueButton.innerHTML = continueButtonText;
-    //   }
-    // });
+    // Continue button loading state
+    const continueButtonText = continueButton.innerText;
+    const loadingObserver = new MutationObserver(function(e) {
+      if (e[0].target.id === 'verifying_blurb') {
+        continueButton.innerHTML = `
+          <div class="loading-spinner" role="progressbar">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        `;
+      } else if (e[0].target.id === 'continue') {
+        // Do nothing
+      } else {
+        continueButton.innerHTML = continueButtonText;
+      }
+    });
     loadingObserver.observe(document, {childList: true, subtree: true});
   </script>
 </body>
