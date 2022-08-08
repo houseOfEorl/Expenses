@@ -1,0 +1,799 @@
+<html>
+<head>
+  <title>Knowledge First Financial</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+    ::-ms-reveal {
+      display: none;
+    }
+
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    *, *::after, *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      align-items: center;
+      background-color: gray;
+      color: #404040;
+      display: flex;
+      font-family: 'Gotham', 'Roboto', sans-serif;
+      justify-content: center;
+      height: 100%;
+    }
+
+    input, button {
+      font-family: 'Gotham', 'Roboto', sans-serif;
+    }
+
+    br {
+      line-height: 0.5;
+    }
+
+    .container {
+      background-color: #FFFFFF;
+      margin: 1.5rem 0;
+      max-width: 26rem;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .header {
+      background-color: #016489;
+      clip-path: polygon(0 0, 100% 0, 100% 65%, 0 100%);
+      height: 6.5rem;
+      width: 100%;
+    }
+
+    .header__img-container {
+      align-items: center;
+      display: flex;
+      height: 65%;
+      justify-content: space-between;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    .company-logo {
+      height: 3.5rem;
+      margin-top: 1.25rem;
+      margin-left: 5rem;
+      width: 12.6rem;
+    }
+
+    .lock-icon {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+
+    .content {
+      margin: 2rem 1.5rem;
+    }
+
+    .title {
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+      max-width: 20rem;
+      width: 100%;
+    }
+
+    h1 {
+      position: relative;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      z-index: 1;
+    }
+
+    h2, label, .intro, .helpLink {
+      display: none;
+    }
+
+    .attr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    .attrEntry {
+      position: relative;
+    }
+
+    .verification-text-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .verificationInfoText,
+    .verificationSuccessText {
+      font-size: 1rem;
+    }
+
+    input {
+      width: 100%;
+      background-color: #FFFFFF;
+      font-size: 1rem;
+      outline: none;
+      border: 1px solid #BABABA;
+      padding: 1.2rem 1rem;
+      color: #1E1B16;
+      transition: 0.1s ease-out;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
+
+    span {
+      position: absolute;
+      top: calc(100% - 11.1rem);
+      left: 0;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      transform: translateY(-50%);
+      background-color: white;
+      color: #00658C;
+      padding: 0 0.5rem;
+      margin: 0 0.5rem;
+      transition: 0.1s ease-out;
+      transform-origin: left top;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    input:hover {
+      border: 1px solid #4DB5EA;
+    }
+
+    input:focus {
+      border: 2px solid #4DB5EA;
+      outline: 1px solid #00658C;
+      background-color: #EAF2F4;
+    }
+
+    input:focus + span {
+      color: #00658C;
+      line-height: 1rem;
+      font-size: 0.75rem;
+      top: calc(100% - 13.1rem);
+      transform: translateY(-50%) scale(0.9) !important;
+    }
+
+    input:not(:placeholder-shown) + span {
+      top: calc(100% - 13.1rem);
+      color: #00658C;
+      line-height: 1rem;
+      font-size: 0.75rem;
+      transform: translateY(-50%) scale(0.9) !important;
+    }
+
+    input:not(:focus)::placeholder {
+      opacity: 0;
+    }
+
+    input:disabled, input:read-only {
+      color: #7B757F;
+      cursor: auto;
+    }
+
+    input:disabled:hover,
+    input:read-only:hover,
+    input:read-only:focus {
+      border-color: #BABABA;
+      background-color: white;
+      border-width: 1px;
+    }
+
+    .attrEntry > #new-password-field-label:not(:focus) {
+      transform: translateY(-50%);
+    }
+
+    #readOnlyEmail {
+      margin-top: 1rem;
+    }
+
+    .verifyInput {
+      margin-top: 0.5rem;
+    }
+
+    #inputLabel--error {
+      color: #BA1B1B;
+    }
+
+    #clearInput {
+      cursor: pointer;
+      pointer-events: all;
+      position: absolute;
+      vertical-align: auto;
+      top: calc(100% - 10.9rem);
+      right: 0;
+      left: 19.5rem;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.5rem;
+      color: #00658C;
+      background-color: transparent;
+      user-select: none;
+    }
+
+    #clearInput--error {
+      cursor: pointer;
+      pointer-events: all;
+      position: absolute;
+      vertical-align: auto;
+      top: calc(100% - 10.9rem);
+      right: 0;
+      left: 19.5rem;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.5rem;
+      color: #BA1B1B;
+      background-color: transparent;
+      user-select: none;
+    }
+
+    #readonlyEmail_ver_input_label {
+      margin-top: 0.5rem;
+      margin-right: auto;
+    }
+
+    #readonlyEmail_ver_input--error {
+      border: 2px solid #BA1B1B;
+      background-color: white;
+    }
+
+    #verifyInputLabel--error {
+      color: #BA1B1B;
+    }
+
+    .buttons {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .buttons:first-of-type {
+      align-items: start;
+      margin-top: -1.5rem;
+    }
+
+    button {
+      text-transform: uppercase;
+      width: 15rem;
+      height: 2.75rem;
+      border-radius: 3.125rem;
+      border: none;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: #016489;
+      cursor: pointer;
+      font-weight: 500;
+      background-color: transparent;
+    }
+
+    #continue,
+    #readonlyEmail_ver_but_send,
+    #readonlyEmail_ver_but_verify {
+      background-color: #FFD991;
+      margin-top: 2rem;
+      padding: 0 1.5rem;
+    }
+
+    #continue:hover,
+    #readonlyEmail_ver_but_send:hover,
+    #readonlyEmail_ver_but_verify:hover {
+      background-color: #FFE1A4;
+    }
+
+    button:focus {
+      background-color: #FFD991;
+      border: 2px solid #4DB5Ea;
+      padding: 0 1.5rem;
+      outline: 1px solid #016489;
+    }
+
+    #continue:active,
+    #readonlyEmail_ver_but_send:active,
+    #readonlyEmail_ver_but_verify:active {
+      color: #004C6A;
+      background-color: #F4BE48;
+      border: none;
+      outline: none;
+    }
+
+    #continue {
+      margin-top: 0.5rem;
+    }
+
+    #cancel {
+      margin-top: 0.25rem;
+      padding: 0 1.5rem;
+    }
+
+    #readonlyEmail_ver_but_resend {
+      margin-top: 0.75rem;
+      padding: 0 1.5rem;
+    }
+
+    #cancel:hover,
+    #readonlyEmail_ver_but_resend:hover {
+      background-color: #E8ECE8;
+    }
+
+    #cancel:focus,
+    #readonlyEmail_ver_but_resend:focus {
+      background-color: #E8ECE8;
+      border: 2px solid #4DB5Ea;
+      outline: 1px solid #016489;
+    }
+
+    #cancel:active,
+    #readonlyEmail_ver_but_resend:active {
+      color: #004C6A;
+      background-color: #DDE5E4;
+      border: none;
+      outline: none;
+    }
+
+    #readonlyEmail_ver_but_send {
+      margin-top: 2rem;
+    }
+
+    #readonlyEmail_ver_but_verify {
+      margin-top: 2.5rem;
+    }
+
+    #backArrow {
+      position: relative;
+      background-color: transparent;
+      top: 0.75rem;
+      padding: 0;
+      margin: 0;
+      color: #0C6C93;
+      margin-right: 0.5rem;
+    }
+
+    #emailAddress {
+      font-weight: 500;
+    }
+
+    .error {
+      overflow-wrap: break-word;
+      color: #BA1B1B;
+    }
+
+    .error > p {
+      overflow-wrap: break-word;
+    }
+
+    .error.itemLevel {
+      margin-bottom: 0.5rem;
+      color: #BA1B1B;
+      line-height: 1;
+      font-size: 0.75rem;
+      font-weight: 300;
+    }
+
+    .error.pageLevel {
+      color: #BA1B1B;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0.5rem 0;
+    }
+
+    .border {
+      margin: auto;
+      width: 100%;
+      margin-top: 2rem;
+      outline: none;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid;
+      border-color: #D8D8D8;
+    }
+
+    .error-banner {
+      display: flex;
+      align-items: center;
+      padding: 1.125rem 0.875rem;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .error-banner > .material-icons {
+      position: relative;
+      margin-right: 0.625rem;
+      margin-left: 0;
+      transform: none;
+      padding: 0;
+      color: #BA1B1B;
+      background-color: #FCF7F0;
+    }
+
+    .success-icon-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .success-header-container {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: -0.5rem;
+    }
+
+    .success-header {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+      font-weight: 200;
+    }
+
+    #simplemodal-overlay {
+      background: transparent !important;
+    }
+
+    .simplemodal-container {
+      display: none !important;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      height: 1rem;
+      position: relative;
+      width: 1rem;
+    }
+
+    .loading-spinner div {
+      animation: loading-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border: 1.5px solid #016489;
+      border-radius: 50%;
+      border-color: #016489 transparent transparent transparent;
+      box-sizing: border-box;
+      display: block;
+      height: 1rem;
+      margin: 0 auto;
+      position: absolute;
+      width: 1rem;
+    }
+
+    .loading-spinner div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .loading-spinner div:nth-child(2) {
+      animation-delay: -0.375s;
+    }
+    .loading-spinner div:nth-child(3) {
+      animation-delay: -0.30s;
+    }
+    .loading-spinner div:nth-child(4) {
+      animation-delay: -0.225s;
+    }
+    .loading-spinner div:nth-child(5) {
+      animation-delay: -0.15s;
+    }
+    .loading-spinner div:nth-child(6) {
+      animation-delay: -0.075s;
+    }
+
+    @keyframes loading-spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 26em) {
+      .container {
+        height: 100%;
+        margin: 0 auto;
+      }
+
+      .company-logo {
+        margin-left: calc(50% - 7.5rem);
+      }
+
+      #clearInput,
+      #clearInput--error {
+        left: calc(100% - 3.5rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="error-banner" style="display: none;">
+      <span class="material-icons">remove_circle_outline</span>
+      <p></p>
+    </div>
+    <div class="header">
+      <div class="header__img-container">
+        <a id="company-logo-link" href="<%= __BASEURL__ %>">
+        <img
+          class="company-logo"
+          data-tenant-branding-logo="true"
+          src="<%= __BASEURL__ %>/templates/assets/logo/kff.svg"
+          alt="Company Logo"
+        >
+      </a>
+        <div>
+          <img
+            class="lock-icon"
+            src="<%= __BASEURL__ %>/templates/assets/icons/lock.svg"
+            alt="Lock icon"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="success-icon-container" style="display: none;">
+      <img
+        class="success-icon"
+        src="<%= __BASEURL__ %>/templates/assets/icons/success-icon.svg"
+        alt="Success icon"
+      >
+    </div>
+    <div class="success-header-container" style="display: none;">
+      <h class="success-header">
+        Success!
+      </h>
+    </div>
+    <div class="content">
+      <div id="api" data-name="SelfAsserted" role="main">
+      </div>
+    </div>
+    </div>
+  </div>
+  <script>
+    // Hide claim verification text
+    const claimVerificationText = document.getElementById('claimVerificationServerError');
+    claimVerificationText.style.display = 'none';
+
+    // Hide default input label
+    const defaultInputLabel = document.getElementById('readonlyEmail_ver_input_label');
+    defaultInputLabel.style.display = 'none';
+
+    // Assign class to verification text container
+    const verificationInfoText = document.getElementById('readonlyEmail_info');
+    const verificationTextContainer = verificationInfoText.parentNode;
+    verificationTextContainer.setAttribute('class', 'verification-text-container');
+
+    // Insert header
+    // const buttons = document.getElementsByClassName('buttons')[0];
+    // const title = document.createElement('h1');
+    // title.setAttribute('class', 'title');
+    // title.innerHTML = 'Verify your email address';
+
+    // buttons.insertAdjacentElement('afterend', title);
+
+    const verifyInput = document.getElementsByClassName('verifyInput')[0];
+
+    // Remove placeholders
+    verifyInput.setAttribute('placeholder', " ");
+
+    // Custom input label
+    const inputLabel = document.createElement('span');
+    inputLabel.setAttribute('id', 'inputLabel');
+    inputLabel.style.display = 'none';
+    inputLabel.innerHTML = 'Security code';
+
+    // Custom clear input field
+    const clearInput = document.createElement('span');
+    const clearInputClassName = 'material-icons';
+    const clearInputId = 'clearInput';
+    clearInput.setAttribute('class', clearInputClassName);
+    clearInput.setAttribute('id', clearInputId);
+    clearInput.innerHTML = 'clear';
+
+    clearInput.addEventListener('click', function() {
+      verifyInput.value = '';
+    });
+
+    // Material icon initial visibility states
+    clearInput.style.display = 'none';
+
+    // Material icon visibility - clear input
+    let isInputMouseover = false;
+    clearInput.onmouseover = function () {
+      isInputMouseover = true;
+    };
+    clearInput.onmouseleave = function() {
+      isInputMouseover = false;
+    };
+    verifyInput.onblur = function () {
+      if (!isInputMouseover && !isFieldError) clearInput.style.display = 'none';
+    };
+    verifyInput.onfocus = function () {
+      clearInput.style.display = '';
+    }
+
+    verifyInput.insertAdjacentElement('afterend', clearInput);
+    verifyInput.insertAdjacentElement('afterend', inputLabel);
+
+    // Error states - verification error
+    const fieldError = document.getElementById('readonlyEmail_fail_retry');
+    let isFieldError = false;
+
+    const fieldObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display !== 'none') {
+        clearInput.innerHTML = 'error';
+        verifyInput.style.border = '2px solid #BA1B1B';
+        verifyInput.style.background = 'white';
+        verifyInput.style.outline = 'none';
+        clearInput.setAttribute('id', 'clearInput--error');
+        inputLabel.setAttribute('id', 'inputLabel--error');
+        clearInput.style.display = '';
+        isFieldError = true;
+      } else {
+        clearInput.innerHTML = 'clear';
+        verifyInput.style.border = '';
+        verifyInput.style.background = '';
+        verifyInput.style.outline = '';
+        clearInput.setAttribute('id', 'clearInput');
+        inputLabel.setAttribute('id', 'inputLabel');
+        isFieldError = false;
+      }
+    });
+
+    fieldObserver.observe(fieldError, { attributes: true, childList: true });
+
+    // buttons
+    const continueButton = document.getElementById('continue');
+    const sendNewButton = document.getElementById('readonlyEmail_ver_but_resend');
+    continueButton.style.display = 'none';
+
+    // description
+    const emailInput = document.getElementById('readonlyEmail');
+    const emailAddress = emailInput.value;
+    emailInput.style.display = 'none';
+
+    // Update verification intro & info texts
+    const verificationIntro = document.getElementById('readonlyEmail_intro');
+    const verificationInfo = document.getElementById('readonlyEmail_info');
+    verificationIntro.innerHTML += `
+    <br></br><b id="emailAddress">${emailAddress}</b>
+    `;
+    verificationInfo.innerHTML += `
+    <br></br><b id="emailAddress">${emailAddress}</b>
+    `;
+
+    const cancelButton = document.getElementById('cancel');
+
+    const inputObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display === 'none') {
+        inputLabel.style.display = 'none'
+        clearInput.style.display = 'none';
+        defaultInputLabel.style.display = 'none';
+        cancelButton.style.display = 'inline';
+      }
+      else {
+        inputLabel.style.display = '';
+        clearInput.style.display = '';
+        defaultInputLabel.style.display = 'none';
+        cancelButton.style.display = 'none';
+      }
+    });
+
+    inputObserver.observe(verifyInput, { attributes: true, childList: true })
+
+    // Show error banner & verification error states
+    const errorBanner = document.getElementsByClassName('error-banner')[0];
+    const verificationErrors = document.getElementsByClassName('verificationErrorText');
+
+    let isVerificationError = false;
+
+    for (let i = 0; i < verificationErrors.length; i++) {
+      const errorObserver = new MutationObserver(function(e) {
+        if (e[0].target.style.display !== 'none') isVerificationError = true;
+        else isVerificationError = false;
+
+        if (isVerificationError) {
+          errorBanner.childNodes[3].innerHTML = e[0].target.innerHTML;
+          e[0].target.style.position = 'absolute';
+          e[0].target.style.top = '-9999px';
+          e[0].target.style.left = '-9999px';
+          errorBanner.style.display = 'flex';
+        }
+        else if (!isVerificationError && !isPageLevelError && !isFieldError) errorBanner.style.display = 'none';
+      });
+      errorObserver.observe(verificationErrors[i], { attributes: true, childList: true, subtree: true });
+    }
+
+    // Show error banner for page level errors
+    const pageLevelErrors = document.getElementsByClassName('pageLevel');
+    let isPageLevelError = false;
+
+    for (let i = 0; i < pageLevelErrors.length; i++) {
+      const pageLevelObserver = new MutationObserver(function(e) {
+        if (e[0].target.style.display !== 'none') isPageLevelError = true;
+        else isPageLevelError = false;
+
+        if (isPageLevelError) {
+          errorBanner.childNodes[3].innerHTML = e[0].target.innerHTML;
+          e[0].target.style.position = 'absolute';
+          e[0].target.style.top = '-9999px';
+          e[0].target.style.left = '-9999px';
+          errorBanner.style.display = 'flex';
+        }
+        else if (!isVerificationError && !isPageLevelError && !isFieldError) errorBanner.style.display = 'none';
+      });
+      pageLevelObserver.observe(pageLevelErrors[i], { attributes: true, childList: true, subtree: true });
+    }
+
+    // Show continue button after verification success
+    // const successText = document.getElementById('readonlyEmail_success');
+    // const successIcon = document.getElementsByClassName('success-icon-container')[0];
+    // const successHeader = document.getElementsByClassName('success-header-container')[0];
+
+    // const successObserver = new MutationObserver(function(e) {
+    //   if (e[0].target.style.display !== 'none') {
+    //     // title.innerHTML = 'Your email address has been verified';
+    //     e[0].target.style.position = 'absolute';
+    //     e[0].target.style.top = '-9999px';
+    //     e[0].target.style.left = '-9999px';
+    //     continueButton.style.display = 'block';
+    //     verificationTextContainer.style.margin = 0;
+    //     successIcon.style.display = 'block';
+    //     cancelButton.style.display = 'none';
+    //     // title.style.textAlign = 'center';
+    //     // title.style.marginLeft = 'auto';
+    //     // title.style.marginRight = 'auto';
+    //     // title.style.marginTop = '0.5rem';
+    //     successHeader.style.display = 'block';
+    //   } else {
+    //     continueButton.style.display = 'none';
+    //     successIcon.style.display = 'none';
+    //   }
+    // });
+    // successObserver.observe(successText, { attributes: true });
+
+    // // Continue button loading state
+    // const continueButtonText = continueButton.innerText;
+    // const loadingObserver = new MutationObserver(function(e) {
+    //   if (e[0].target.id === 'verifying_blurb') {
+    //     continueButton.innerHTML = `
+    //       <div class="loading-spinner" role="progressbar">
+    //         <div></div>
+    //         <div></div>
+    //         <div></div>
+    //         <div></div>
+    //         <div></div>
+    //         <div></div>
+    //       </div>
+    //     `;
+    //   } else if (e[0].target.id === 'continue') {
+    //     // Do nothing
+    //   } else {
+    //     continueButton.innerHTML = continueButtonText;
+    //   }
+    // });
+    loadingObserver.observe(document, {childList: true, subtree: true});
+  </script>
+</body>
+</html>
