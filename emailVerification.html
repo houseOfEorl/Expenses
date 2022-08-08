@@ -753,23 +753,10 @@
 
     const successObserver = new MutationObserver(function(e) {
       if (e[0].target.style.display !== 'none') {
-        // title.innerHTML = 'Your email address has been verified';
-        // e[0].target.style.position = 'absolute';
-        // e[0].target.style.top = '-9999px';
-        // e[0].target.style.left = '-9999px';
-        // continueButton.style.display = 'block';
-        // verificationTextContainer.style.margin = 0;
-        // successIcon.style.display = 'block';
-        // cancelButton.style.display = 'none';
-        // title.style.textAlign = 'center';
-        // title.style.marginLeft = 'auto';
-        // title.style.marginRight = 'auto';
-        // title.style.marginTop = '0.5rem';
-        // successHeader.style.display = 'block';
-        console.log('line 769')
+        //detect that the Continue button has been enabled, then automate the clicks with JS
         cancelButton.style.display = 'none';
         successText.innerHTML = `
-          <div class="loading-spinner" role="progressbar">
+          <div class="loading-spinner" role="progressbar" style="margin-left: 10rem;">
             <div></div>
             <div></div>
             <div></div>
@@ -782,36 +769,11 @@
       } else {
         continueButton.style.display = 'none';
         successIcon.style.display = 'none';
-        console.log('line 773')
       }
     });
 
     successObserver.observe(successText, { attributes: true });
 
-    // // Continue button loading state
-    // const continueButtonText = continueButton.innerText;
-    // const loadingObserver = new MutationObserver(function(e) {
-    //   if (e[0].target.id === 'verifying_blurb') {
-    //     console.log('verifying_blurb')
-    //     continueButton.innerHTML = `
-    //       <div class="loading-spinner" role="progressbar">
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //         <div></div>
-    //       </div>
-    //     `;
-    //   } else if (e[0].target.id === 'continue') {
-    //     console.log('inside else if')
-    //     // Do nothing
-    //   } else {
-    //     console.log('inside else')
-    //     continueButton.innerHTML = continueButtonText;
-    //   }
-    // });
-    // loadingObserver.observe(document, {childList: true, subtree: true});
   </script>
 </body>
 </html>
