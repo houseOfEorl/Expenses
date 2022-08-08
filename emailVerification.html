@@ -766,6 +766,16 @@
         // title.style.marginRight = 'auto';
         // title.style.marginTop = '0.5rem';
         // successHeader.style.display = 'block';
+        successText.innerHTML = `
+          <div class="loading-spinner" role="progressbar">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>`;
+        cancelButton.style.display = 'none';
         console.log('line 769')
         // continueButton.click();
       } else {
