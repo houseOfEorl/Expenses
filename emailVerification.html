@@ -754,18 +754,18 @@
     const successObserver = new MutationObserver(function(e) {
       if (e[0].target.style.display !== 'none') {
         // title.innerHTML = 'Your email address has been verified';
-        e[0].target.style.position = 'absolute';
-        e[0].target.style.top = '-9999px';
-        e[0].target.style.left = '-9999px';
-        continueButton.style.display = 'block';
-        verificationTextContainer.style.margin = 0;
-        successIcon.style.display = 'block';
-        cancelButton.style.display = 'none';
+        // e[0].target.style.position = 'absolute';
+        // e[0].target.style.top = '-9999px';
+        // e[0].target.style.left = '-9999px';
+        // continueButton.style.display = 'block';
+        // verificationTextContainer.style.margin = 0;
+        // successIcon.style.display = 'block';
+        // cancelButton.style.display = 'none';
         // title.style.textAlign = 'center';
         // title.style.marginLeft = 'auto';
         // title.style.marginRight = 'auto';
         // title.style.marginTop = '0.5rem';
-        successHeader.style.display = 'block';
+        // successHeader.style.display = 'block';
         console.log('line 769')
         continueButton.click();
       } else {
