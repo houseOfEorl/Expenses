@@ -766,9 +766,11 @@
         // title.style.marginRight = 'auto';
         // title.style.marginTop = '0.5rem';
         successHeader.style.display = 'block';
+        console.log('line 769')
       } else {
         continueButton.style.display = 'none';
         successIcon.style.display = 'none';
+        console.log('line 773')
       }
     });
     successObserver.observe(successText, { attributes: true });
@@ -777,6 +779,7 @@
     const continueButtonText = continueButton.innerText;
     const loadingObserver = new MutationObserver(function(e) {
       if (e[0].target.id === 'verifying_blurb') {
+        console.log('verifying_blurb')
         continueButton.innerHTML = `
           <div class="loading-spinner" role="progressbar">
             <div></div>
@@ -788,8 +791,10 @@
           </div>
         `;
       } else if (e[0].target.id === 'continue') {
+        console.log('inside else if')
         // Do nothing
       } else {
+        console.log('inside else')
         continueButton.innerHTML = continueButtonText;
       }
     });
