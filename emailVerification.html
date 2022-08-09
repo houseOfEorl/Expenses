@@ -466,6 +466,7 @@
       height: 1rem;
       position: relative;
       width: 1rem;
+      margin-left: 10rem;
     }
 
     .loading-spinner div {
@@ -756,7 +757,7 @@
         //detect that the Continue button has been enabled, then automate the clicks with JS
         cancelButton.style.display = 'none';
         successText.innerHTML = `
-          <div class="loading-spinner" role="progressbar" style="margin-left: 10rem;">
+          <div class="loading-spinner" role="progressbar">
             <div></div>
             <div></div>
             <div></div>
@@ -773,7 +774,6 @@
     });
 
     successObserver.observe(successText, { attributes: true });
-
   </script>
 </body>
 </html>
