@@ -1,0 +1,113 @@
+/*
+	Copyright (C) Hoefler & Co.
+	This software is the property of Hoefler & Co. (H&Co).
+	Your right to access and use this software is subject to the
+	applicable License Agreement, or Terms of Service, that exists
+	between you and H&Co. If no such agreement exists, you may not
+	access or use this software for any purpose.
+	This software may only be hosted at the locations specified in
+	the applicable License Agreement or Terms of Service, and only
+	for the purposes expressly set forth therein. You may not copy,
+	modify, convert, create derivative works from or distribute this
+	software in any way, or make it accessible to any third party,
+	without first obtaining the written permission of H&Co.
+	For more information, please visit us at http://typography.com.
+*/
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Thin.otf') format('opentype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-ThinItalic.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Light.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-LightItalic.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-RegularItalic.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Medium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-MediumItalic.otf') format('opentype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Bold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-BoldItalic.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-ExtraBold.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-ExtraBoldItalic.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-Black.otf') format('opentype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Motiva Sans';
+	src: url('./otf/MotivaSans-BlackItalic.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+}
