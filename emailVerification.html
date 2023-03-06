@@ -31,7 +31,7 @@
   <div id='loadingSpinner' role="progressbar"></div>
 
   <script>
-    console.log("bar1234590")
+    console.log("bar123459011")
     function goBack() {
       history.back();
     }
@@ -41,7 +41,7 @@
     const verificationIntro = document.getElementsByClassName('intro')[0];
     const verificationInfo = document.getElementById('emailVerificationControl_success_message');
     verificationIntro.innerHTML += emailElement;
-    verificationInfo.innerHTML += emailElement;
+    
 
     // Remove placeholders
     const codeInput = document.getElementById('verificationCode');
@@ -120,6 +120,7 @@
     const inputObserver = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         if (sendButton.style.display === 'none') {
+          verificationInfo.innerHTML += emailElement;
           inputLabel.style.display = '';
           verificationIntro.style.display = 'none';
         } else {
