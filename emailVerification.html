@@ -30,7 +30,7 @@
   <div id='loadingSpinner' role="progressbar"></div>
 
    <script>
-    console.log("bar1234")
+    console.log("bar12345")
      function goBack() {
       history.back();
     }
@@ -116,14 +116,15 @@
     const loadingObserver = new MutationObserver(function(mutations) {
 	    console.log("it goies here")
       mutations.forEach(function(mutation) {
-        if (mutation.target.style.display !== 'none') {
-		console.log("it goies here 1")
-          mainContainer.style.display = 'block';
-          loadingSpinner.style.display = 'none';
-        } else if (mutation.target.style.display === 'none') {
-		console.log("it goies here 2")
+        if (sendButton.style.display === 'none' && verifyButton.style.display === 'none') {
+	
+	  console.log("it goies here 2")
           mainContainer.style.display = 'none';
           loadingSpinner.style.display = 'inline-block';
+        } else {
+	  console.log("it goies here 1")
+          mainContainer.style.display = 'block';
+          loadingSpinner.style.display = 'none';	
         }
       });
     });
