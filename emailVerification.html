@@ -114,11 +114,14 @@
     const verifyButton = document.getElementById('emailVerificationControl_but_verify_code');
 
     const loadingObserver = new MutationObserver(function(mutations) {
+	    console.log("it goies here")
       mutations.forEach(function(mutation) {
         if (mutation.target.style.display !== 'none') {
+		console.log("it goies here 1")
           mainContainer.style.display = 'block';
           loadingSpinner.style.display = 'none';
         } else if (mutation.target.style.display === 'none') {
+		console.log("it goies here 2")
           mainContainer.style.display = 'none';
           loadingSpinner.style.display = 'inline-block';
         }
