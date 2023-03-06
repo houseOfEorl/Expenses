@@ -1,0 +1,405 @@
+<html>
+<head>
+  <title>Embark</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://deveducateinc.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    ::-ms-reveal {
+      display: none;
+    }
+
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    *, *::after, *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      background-color: #FFFFFF;
+      color: #000000;
+      display: flex;
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+      height: 100%;
+      justify-content: center;
+    }
+
+    input, button {
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+    }
+
+    .container {
+      background-color: #FFFFFF;
+      margin: 0 1.5rem;
+      max-width: 25rem;
+      width: 100%;
+    }
+
+    .content {
+      padding-bottom: 3rem;
+    }
+
+    #backButton {
+      margin: 2rem 0 4.875rem;
+    }
+
+    #headline {
+      color: #1C1463;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 2rem;
+      margin: 0 0 1rem;
+    }
+
+    h2, label, br, .intro, .helpLink, .buttons:first-of-type, .error.itemLevel, 
+    .error.pageLevel, .simplemodal-container, #continue, #cancel, #readOnlyEmail, 
+    #readOnlyEmail_success, #readOnlyEmail_ver_input_label {
+      display: none !important;
+    }
+
+    .verificationInfoText {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .emailAddress {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      word-break: break-word;
+    }
+
+    .verificationErrorText.error { 
+      background-color: #FFEDE8;
+      border-radius: 0.75rem;
+      color: #000000;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+
+    .verificationErrorText.error span {
+      color: #FA4F00;
+      margin-right: 0.625rem;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    .buttons {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 1.125rem;
+      font-weight: 900;
+      height: 3.5rem;
+      letter-spacing: normal;
+      line-height: 1.25rem;
+      max-width: 15rem;
+      outline: none;
+      text-transform: none;
+      width: 100%;
+    }
+
+    .iconButton {
+      align-items: center;
+      display: flex;
+      height: 2.25rem;
+      justify-content: center;
+      width: 2.25rem;
+    }
+
+    #readOnlyEmail_ver_but_send {
+      margin-top: 1rem;
+    }
+
+    #readOnlyEmail_ver_but_verify {
+      margin: 3rem 0 0.5rem;
+    }
+
+    #readOnlyEmail_ver_but_send,
+    #readOnlyEmail_ver_but_verify,
+    .iconButton {
+      background: #594FF0;
+      color: #FFFFFF;
+    }
+
+    #readOnlyEmail_ver_but_send:focus, 
+    #readOnlyEmail_ver_but_verify:focus,
+    .iconButton:focus {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.3), rgba(78, 67, 229, 0.3)), #1C1463;
+    }
+
+    #readOnlyEmail_ver_but_send:focus, 
+    #readOnlyEmail_ver_but_verify:focus {
+      border: 3px solid #C3C0FF;
+    }
+
+    .iconButton:focus {
+      outline: 3px solid #C3C0FF;
+    }
+
+    #readOnlyEmail_ver_but_send:hover, 
+    #readOnlyEmail_ver_but_verify:hover,
+    .iconButton:hover,
+    .iconButtonFilled:active {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.5), rgba(78, 67, 229, 0.5)), #1C1463;
+    }
+
+    #readOnlyEmail_ver_but_send:active, 
+    #readOnlyEmail_ver_but_verify:active {
+      background: #685FFF;
+      outline: none;
+    }
+
+    .iconButton:active {
+      outline: 3px solid #C3C0FF;
+      outline-offset: 3px;
+    }
+
+    #readOnlyEmail_ver_but_resend {
+      background: #594FF0;
+      color: #FFFFFF;
+    }
+
+    #readOnlyEmail_ver_but_resend {
+      background: transparent;
+      color: #594FF0;
+    }
+
+    #readOnlyEmail_ver_but_resend:hover, 
+    #readOnlyEmail_ver_but_resend:focus {
+      border: 2px solid #594FF0;
+    }
+
+    #readOnlyEmail_ver_but_resend:active {
+      background: #C3C0FF;
+      color: #1C1463;
+      outline: none;
+    }
+
+    .attr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attrEntry {
+      position: relative;
+    }
+
+    input {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(28, 20, 99, 0.25);
+      border-radius: 0.5rem;
+      color: #1C1463;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 1px;
+      outline: none;
+      padding: 1.2rem 1rem;
+      transition: 0.1s ease-out;
+      width: 100%;
+    }
+
+    #inputLabel {
+      position: absolute;
+      top: calc(100% - 12.4rem);
+      left: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      transform: translateY(-50%);
+      background-color: white;
+      color: #594FF0;
+      padding: 0 0.5rem;
+      margin: 0 0.5rem;
+      transition: 0.1s ease-out;
+      transform-origin: left top;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    input:focus {
+      border: 2px solid #594FF0;
+      margin: 0 2px 0 0;
+    }
+
+    input:focus + #inputLabel,
+    input:not(:placeholder-shown) + #inputLabel {
+      font-size: 0.875rem;
+      letter-spacing: 0.005em;
+      top: calc(100% - 14.35rem);
+      transform: translateY(-50%) !important;
+    }
+
+    input:not(:focus)::placeholder {
+      opacity: 0;
+    }
+
+    input:disabled, input:read-only {
+      cursor: auto;
+    }
+
+    #simplemodal-overlay {
+      background: transparent !important;
+    }
+
+    #loadingSpinner {
+      animation: loadingSpinner 1s linear infinite;
+      align-self: center;
+      background: linear-gradient(#FFFFFF, #FFFFFF),
+      conic-gradient(from 0.15turn, #FFFFFF, #594FF0);
+      background-clip: content-box, border-box;
+      background-origin: border-box;
+      border: 0.75rem solid transparent;
+      border-radius: 50%;
+      display: none;
+      height: 4rem;
+      width: 4rem;
+    }
+
+    @keyframes loadingSpinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+ 
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <button id="backButton" class="iconButton" onclick="goBack()">
+        <span class="material-icons">arrow_back</span>
+      </button>
+      <h1 id="headline">
+        Let's verify your email
+      </h1>
+      <div id="api" data-name="SelfAsserted" role="main"></div>
+    </div>
+  </div>
+  <div id='loadingSpinner' role="progressbar"></div>
+
+  <script>
+    function goBack() {
+      history.back();
+    }
+
+    // Copy and insert email address into verification text
+    const emailInput = document.getElementById('readOnlyEmail');
+    const emailElement = `<b class="emailAddress">${emailInput.value}</b>`;
+    const verificationIntro = document.getElementById('readOnlyEmail_intro');
+    const verificationInfo = document.getElementById('readOnlyEmail_info');
+    verificationIntro.innerHTML += emailElement;
+    verificationInfo.innerHTML += emailElement;
+
+    // Remove placeholders
+    const codeInput = document.getElementById('readOnlyEmail_ver_input');
+    codeInput.setAttribute('placeholder', " ");
+
+    // Insert custom input label
+    const inputLabel = document.createElement('span');
+    inputLabel.setAttribute('id', 'inputLabel');
+    inputLabel.innerHTML = 'Security code';
+    codeInput.insertAdjacentElement('afterend', inputLabel);
+
+    // Show input label whenever input is displayed
+    const inputObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display === 'none') {
+        inputLabel.style.display = 'none';
+      } else {
+        inputLabel.style.display = '';
+      }
+    });
+    inputObserver.observe(codeInput, { attributes: true, childList: true })
+
+    // Handle verification error state
+    const verificationErrors = document.getElementsByClassName('verificationErrorText error');
+    const errorIcon = '<span class="material-icons">error</span>';
+
+    for (let i = 0; i < verificationErrors.length; i++) {
+      const errorMessage = verificationErrors[i].innerHTML;
+      verificationErrors[i].innerHTML = `${errorIcon}${errorMessage}`;
+
+      const verificationErrorsObserver = new MutationObserver(function(e) {
+        const isErrorHidden = e[0].target.getAttribute('aria-hidden');
+        if (isErrorHidden === "false") {
+          codeInput.style.border = '2px solid #FA4F00';
+          codeInput.style.margin = '0 2px 0 0';
+          inputLabel.style.color = '#FA4F00';
+          e[0].target.style.display = 'flex';
+          verificationInfo.style.display = "inline !important";
+        } else {
+          codeInput.style.border = '';
+          codeInput.style.margin = '';
+          inputLabel.style.color = '';
+          e[0].target.style.display = 'none';
+          verificationInfo.style.display = "inline !important";
+        }
+      });
+      verificationErrorsObserver.observe(verificationErrors[i], { attributes: true, childList: true, subtree: true });
+    }    
+
+    // Handle loading state
+    const mainContainer = document.getElementsByClassName('container')[0];
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const sendButton = document.getElementById('readOnlyEmail_ver_but_send');
+    const verifyButton = document.getElementById('readOnlyEmail_ver_but_verify');
+
+    const loadingObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.target.style.display !== 'none') {
+          mainContainer.style.display = 'block';
+          loadingSpinner.style.display = 'none';
+        } else if (mutation.target.style.display === 'none') {
+          mainContainer.style.display = 'none';
+          loadingSpinner.style.display = 'inline-block';
+        }
+      });
+    });
+    loadingObserver.observe(sendButton, { attributes: true });
+    loadingObserver.observe(verifyButton, { attributes: true });
+
+    // Detect validation success, then automate continue button click with JS
+    const successText = document.getElementById('readOnlyEmail_success');
+    const continueButton = document.getElementById('continue');
+
+    const successObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display !== 'none') {
+        continueButton.click();
+      }
+    });
+    successObserver.observe(successText, { attributes: true });
+  </script>
+</body>
+</html>
