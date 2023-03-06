@@ -29,9 +29,118 @@
   </div>
   <div id='loadingSpinner' role="progressbar"></div>
 
-  <script src="https://localhost/EmailVerification.js"></script>
    <script>
-    console.log("bar")
+    console.log("bar1")
+     function goBack() {
+      history.back();
+    }
+    // Copy and insert email address into verification text
+    const emailInput = document.getElementById('readOnlyEmail');
+    const emailElement = `<b class="emailAddress">${emailInput.value}</b>`;
+	const verificationIntro = document.getElementsByClassName('intro')[0];
+    const verificationInfo = document.getElementById('emailVerificationControl_success_message');
+    verificationIntro.innerHTML += emailElement;
+
+    // Remove placeholders
+    const codeInput = document.getElementById('verificationCode');
+    codeInput.setAttribute('placeholder', " ");
+
+    // // Insert custom input label
+    const inputLabel = document.createElement('span');
+    inputLabel.setAttribute('id', 'inputLabel');
+    inputLabel.innerHTML = 'Security code';
+    codeInput.insertAdjacentElement('afterend', inputLabel);
+
+    // // Show input label whenever input is displayed
+    const inputObserver = new MutationObserver(function(e) {
+      if (e[0].target.style.display === 'none') {
+        inputLabel.style.display = 'none';
+		verificationIntro.style.display = '';
+      } else {
+        inputLabel.style.display = '';
+		verificationInfo.innerHTML += emailElement;
+		verificationIntro.style.display = 'none';
+      }
+    });
+    inputObserver.observe(codeInput, { attributes: true, childList: true })
+
+    // Handle code input error state
+    const inlineError = document.getElementsByClassName('error itemLevel')[2];
+    const inlineErrorCodeObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+		codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.margin = '0 2px 0 0';
+		inputLabel.style.color = '#FA4F00';
+        serverError.style.display = 'flex';
+        serverErrorMessage.innerHTML = inlineError.innerHTML;
+		verificationInfo.style.display = 'none';
+		verificationIntro.style.display = 'none';
+      } else {
+        clearBannerError()
+      }
+    });
+
+    inlineErrorCodeObserver.observe(inlineError, { childList: true });
+
+
+    const bannerCodeError = document.getElementById('emailVerificationControl_error_message');
+    const bannerCodeErrorObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+		codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.margin = '0 2px 0 0';
+		inputLabel.style.color = '#FA4F00';
+        serverError.style.display = 'flex';
+        serverErrorMessage.innerHTML = bannerCodeError.innerHTML;
+		verificationInfo.style.display = 'none !important';
+		verificationIntro.style.display = 'none !important';
+      } else {
+        clearBannerError();
+      }
+    });
+    bannerCodeErrorObserver.observe(bannerCodeError, { childList: true });
+
+    function clearBannerError() {
+		codeInput.style.border = '';
+		codeInput.style.margin = '';
+		inputLabel.style.color = '';
+		serverError.style.display = 'none';
+		serverErrorMessage.innerHTML = '';
+    }
+
+    // Handle loading state
+    const mainContainer = document.getElementsByClassName('container')[0];
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const sendButton = document.getElementById('emailVerificationControl_but_send_code');
+    const verifyButton = document.getElementById('emailVerificationControl_but_verify_code');
+
+    const loadingObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.target.style.display !== 'none') {
+          mainContainer.style.display = 'block';
+          loadingSpinner.style.display = 'none';
+        } else if (mutation.target.style.display === 'none') {
+          mainContainer.style.display = 'none';
+          loadingSpinner.style.display = 'inline-block';
+        }
+      });
+    });
+    loadingObserver.observe(verifyButton, { attributes: true });
+
+    // Detect validation success message, then automate continue button click with JS
+    const continueButton = document.getElementById('continue');
+	const successMessage = 'E-mail address verified. You can now continue.';
+
+    const successObserver = new MutationObserver(function(e) {
+	  const currentMessage = e[0].target.innerHTML;
+      if (currentMessage.includes(successMessage)) {
+        continueButton.click();
+      }
+    });
+    successObserver.observe(verificationInfo, { attributes: true });
+	
+	$(":button").click(function () {
+      clearBannerError();
+    });
   </script>
 </body>
 
