@@ -30,7 +30,7 @@
   <div id='loadingSpinner' role="progressbar"></div>
 
    <script>
-    console.log("bar123")
+    console.log("bar1234")
      function goBack() {
       history.back();
     }
@@ -128,6 +128,7 @@
       });
     });
     loadingObserver.observe(sendButton, { attributes: true });
+    loadingObserver.observe(verifyButton, { attributes: true });
 
     // Detect validation success message, then automate continue button click with JS
     const continueButton = document.getElementById('continue');
