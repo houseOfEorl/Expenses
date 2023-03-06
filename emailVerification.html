@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://deveducateinc.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link href="https://deveducateinc.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet"
+    type="text/css" />
   <link href="https://localhost/EmailVerification.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -29,15 +30,15 @@
   </div>
   <div id='loadingSpinner' role="progressbar"></div>
 
-   <script>
-    console.log("bar12345")
-     function goBack() {
+  <script>
+    console.log("bar123456")
+    function goBack() {
       history.back();
     }
     // Copy and insert email address into verification text
     const emailInput = document.getElementById('readOnlyEmail');
     const emailElement = `<b class="emailAddress">${emailInput.value}</b>`;
-	const verificationIntro = document.getElementsByClassName('intro')[0];
+    const verificationIntro = document.getElementsByClassName('intro')[0];
     const verificationInfo = document.getElementById('emailVerificationControl_success_message');
     verificationIntro.innerHTML += emailElement;
 
@@ -51,35 +52,17 @@
     inputLabel.innerHTML = 'Security code';
     codeInput.insertAdjacentElement('afterend', inputLabel);
 
-    // // Show input label whenever input is displayed
-    const inputObserver = new MutationObserver(function(e) {
-      console.log('farfar', e[0].target.style.display)
-	    verificationInfo.innerHTML += emailElement;
-      if (e[0].target.style.display === 'none') {
-	      console.log('farfar2')
-        inputLabel.style.display = '';
-		
-		verificationIntro.style.display = 'none';
-	      
-      } else {
-	      console.log('farfar1')
-        inputLabel.style.display = 'none';
-		verificationIntro.style.display = '';
-      }
-    });
-    inputObserver.observe(codeInput, { attributes: true, childList: true })
-
     // Handle code input error state
     const inlineError = document.getElementsByClassName('error itemLevel')[2];
     const inlineErrorCodeObserver = new MutationObserver(function (e) {
       if (e[0].target.innerHTML !== '') {
-		codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.border = '2px solid #FA4F00';
         codeInput.style.margin = '0 2px 0 0';
-		inputLabel.style.color = '#FA4F00';
+        inputLabel.style.color = '#FA4F00';
         serverError.style.display = 'flex';
         serverErrorMessage.innerHTML = inlineError.innerHTML;
-		verificationInfo.style.display = 'none';
-		verificationIntro.style.display = 'none';
+        verificationInfo.style.display = 'none';
+        verificationIntro.style.display = 'none';
       } else {
         clearBannerError()
       }
@@ -91,13 +74,13 @@
     const bannerCodeError = document.getElementById('emailVerificationControl_error_message');
     const bannerCodeErrorObserver = new MutationObserver(function (e) {
       if (e[0].target.innerHTML !== '') {
-		codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.border = '2px solid #FA4F00';
         codeInput.style.margin = '0 2px 0 0';
-		inputLabel.style.color = '#FA4F00';
+        inputLabel.style.color = '#FA4F00';
         serverError.style.display = 'flex';
         serverErrorMessage.innerHTML = bannerCodeError.innerHTML;
-		verificationInfo.style.display = 'none !important';
-		verificationIntro.style.display = 'none !important';
+        verificationInfo.style.display = 'none !important';
+        verificationIntro.style.display = 'none !important';
       } else {
         clearBannerError();
       }
@@ -105,11 +88,11 @@
     bannerCodeErrorObserver.observe(bannerCodeError, { childList: true });
 
     function clearBannerError() {
-		codeInput.style.border = '';
-		codeInput.style.margin = '';
-		inputLabel.style.color = '';
-		serverError.style.display = 'none';
-		serverErrorMessage.innerHTML = '';
+      codeInput.style.border = '';
+      codeInput.style.margin = '';
+      inputLabel.style.color = '';
+      serverError.style.display = 'none';
+      serverErrorMessage.innerHTML = '';
     }
 
     // Handle loading state
@@ -118,37 +101,48 @@
     const sendButton = document.getElementById('emailVerificationControl_but_send_code');
     const verifyButton = document.getElementById('emailVerificationControl_but_verify_code');
 
-    const loadingObserver = new MutationObserver(function(mutations) {
-	    console.log("it goies here")
-      mutations.forEach(function(mutation) {
+    const loadingObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
         if (sendButton.style.display === 'none' && verifyButton.style.display === 'none') {
-	
-	  console.log("it goies here 2")
           mainContainer.style.display = 'none';
           loadingSpinner.style.display = 'inline-block';
         } else {
-	  console.log("it goies here 1")
           mainContainer.style.display = 'block';
-          loadingSpinner.style.display = 'none';	
+          loadingSpinner.style.display = 'none';
         }
       });
     });
     loadingObserver.observe(sendButton, { attributes: true });
     loadingObserver.observe(verifyButton, { attributes: true });
 
+    // Show input label whenever input is displayed
+    const inputObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (sendButton.style.display === 'none') {
+          inputLabel.style.display = 'none';
+          verificationInfo.innerHTML += emailElement;
+          verificationIntro.style.display = '';
+        } else {
+          inputLabel.style.display = '';
+          verificationIntro.style.display = 'none';
+        }
+      });
+    });
+    inputObserver.observe(sendButton, { attributes: true });
+
     // Detect validation success message, then automate continue button click with JS
     const continueButton = document.getElementById('continue');
-	const successMessage = 'E-mail address verified. You can now continue.';
+    const successMessage = 'E-mail address verified. You can now continue.';
 
-    const successObserver = new MutationObserver(function(e) {
-	  const currentMessage = e[0].target.innerHTML;
+    const successObserver = new MutationObserver(function (e) {
+      const currentMessage = e[0].target.innerHTML;
       if (currentMessage.includes(successMessage)) {
         continueButton.click();
       }
     });
     successObserver.observe(verificationInfo, { attributes: true });
-	
-	$(":button").click(function () {
+
+    $(":button").click(function () {
       clearBannerError();
     });
   </script>
