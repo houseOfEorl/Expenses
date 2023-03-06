@@ -1,13 +1,332 @@
 <html>
+
 <head>
-  <title>Knowledge First Financial</title>
+  <title>Embark</title>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://deveducateinc.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
-  <link href="https://localhost/EmailVerification.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    ::-ms-reveal {
+      display: none;
+    }
+
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      height: 100%;
+    }
+
+    body {
+      background-color: #FFFFFF;
+      color: #000000;
+      display: flex;
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+      height: 100%;
+      justify-content: center;
+    }
+
+    input,
+    button {
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+    }
+
+    .container {
+      background-color: #FFFFFF;
+      margin: 0 1.5rem;
+      max-width: 25rem;
+      width: 100%;
+    }
+
+    .content {
+      padding-bottom: 3rem;
+    }
+
+    #backButton {
+      margin: 2rem 0 4.875rem;
+    }
+
+    #headline {
+      color: #1C1463;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 2rem;
+      margin: 0 0 1rem;
+    }
+
+    h2,
+    label,
+    br,
+    .helpLink,
+    .buttons:first-of-type,
+    .error.itemLevel,
+    .error.pageLevel,
+    .simplemodal-container,
+    #continue,
+    #cancel,
+    #readOnlyEmail,
+    #readOnlyEmail_success,
+    #readOnlyEmail_ver_input_label,
+    .verificationErrorText.error {
+      display: none !important;
+    }
+
+    .verificationInfoText {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .emailAddress {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      word-break: break-word;
+    }
+
+    .verificationErrorText.error {
+      background-color: #FFEDE8;
+      border-radius: 0.75rem;
+      color: #000000;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+
+    .verificationErrorText.error span {
+      color: #FA4F00;
+      margin-right: 0.625rem;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    .buttons {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 1.125rem;
+      font-weight: 900;
+      height: 3.5rem;
+      letter-spacing: normal;
+      line-height: 1.25rem;
+      max-width: 15rem;
+      outline: none;
+      text-transform: none;
+      width: 100%;
+    }
+
+    .iconButton {
+      align-items: center;
+      display: flex;
+      height: 2.25rem;
+      justify-content: center;
+      width: 2.25rem;
+    }
+
+    #emailVerificationControl_but_send_code {
+      margin-top: 1rem;
+    }
+
+    #emailVerificationControl_but_verify_code {
+      margin: 3rem 0 0.5rem;
+    }
+
+    #emailVerificationControl_but_send_code,
+    #emailVerificationControl_but_verify_code,
+    .iconButton {
+      background: #594FF0;
+      color: #FFFFFF;
+    }
+
+    #emailVerificationControl_but_send_code:focus,
+    #emailVerificationControl_but_verify_code:focus,
+    .iconButton:focus {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.3), rgba(78, 67, 229, 0.3)), #1C1463;
+    }
+
+    #emailVerificationControl_but_send_code:focus,
+    #emailVerificationControl_but_verify_code:focus {
+      border: 3px solid #C3C0FF;
+    }
+
+    .iconButton:focus {
+      outline: 3px solid #C3C0FF;
+    }
+
+    #emailVerificationControl_but_send_code:hover,
+    #emailVerificationControl_but_verify_code:hover,
+    .iconButton:hover,
+    .iconButtonFilled:active {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.5), rgba(78, 67, 229, 0.5)), #1C1463;
+    }
+
+    #emailVerificationControl_but_send_code:active,
+    #emailVerificationControl_but_verify_code:active {
+      background: #685FFF;
+      outline: none;
+    }
+
+    .iconButton:active {
+      outline: 3px solid #C3C0FF;
+      outline-offset: 3px;
+    }
+
+    #emailVerificationControl_but_send_new_code {
+      background: #594FF0;
+      color: #FFFFFF;
+    }
+
+    #emailVerificationControl_but_send_new_code {
+      background: transparent;
+      color: #594FF0;
+    }
+
+    #emailVerificationControl_but_send_new_code:hover,
+    #emailVerificationControl_but_send_new_code:focus {
+      border: 2px solid #594FF0;
+    }
+
+    #emailVerificationControl_but_send_new_code:active {
+      background: #C3C0FF;
+      color: #1C1463;
+      outline: none;
+    }
+
+    .attr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attrEntry {
+      position: relative;
+    }
+
+    input {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(28, 20, 99, 0.25);
+      border-radius: 0.5rem;
+      color: #1C1463;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 1px;
+      outline: none;
+      padding: 1.2rem 1rem;
+      transition: 0.1s ease-out;
+      width: 100%;
+    }
+
+    #inputLabel {
+      position: absolute;
+      top: calc(100% - 2rem);
+      left: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      transform: translateY(-50%);
+      background-color: white;
+      color: #594FF0;
+      padding: 0 0.5rem;
+      margin: 0 0.5rem;
+      transition: 0.1s ease-out;
+      transform-origin: left top;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    input:focus {
+      border: 2px solid #594FF0;
+      margin: 0 2px 0 0;
+    }
+
+    input:focus+#inputLabel,
+    input:not(:placeholder-shown)+#inputLabel {
+      font-size: 0.875rem;
+      letter-spacing: 0.005em;
+      top: calc(100% - 3.95rem);
+      transform: translateY(-50%) !important;
+    }
+
+    input:not(:focus)::placeholder {
+      opacity: 0;
+    }
+
+    input:disabled,
+    input:read-only {
+      cursor: auto;
+    }
+
+    #simplemodal-overlay {
+      background: transparent !important;
+    }
+
+    #loadingSpinner {
+      animation: loadingSpinner 1s linear infinite;
+      align-self: center;
+      background: linear-gradient(#FFFFFF, #FFFFFF),
+        conic-gradient(from 0.15turn, #FFFFFF, #594FF0);
+      background-clip: content-box, border-box;
+      background-origin: border-box;
+      border: 0.75rem solid transparent;
+      border-radius: 50%;
+      display: none;
+      height: 4rem;
+      width: 4rem;
+    }
+
+    @keyframes loadingSpinner {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .errorAlert {
+      background-color: #FFEDE8;
+      border-radius: 0.75rem;
+      color: #000000;
+      display: none;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+
+    .errorAlert span {
+      color: #FA4F00;
+      margin-right: 0.625rem;
+    }
+  </style>
 
 </head>
 
@@ -30,8 +349,117 @@
   <div id='loadingSpinner' role="progressbar"></div>
 
   <script>
-    console.log("foo11111")
+    function goBack() {
+      history.back();
+    }
+    // Copy and insert email address into verification text
+    const emailInput = document.getElementById('readOnlyEmail');
+    const emailElement = `<b class="emailAddress">${emailInput.value}</b>`;
+    const verificationIntro = document.getElementsByClassName('intro')[0];
+    const verificationInfo = document.getElementById('emailVerificationControl_success_message');
+    verificationIntro.innerHTML += emailElement;
+
+    // Remove placeholders
+    const codeInput = document.getElementById('verificationCode');
+    codeInput.setAttribute('placeholder', " ");
+
+    // // Insert custom input label
+    const inputLabel = document.createElement('span');
+    inputLabel.setAttribute('id', 'inputLabel');
+    inputLabel.innerHTML = 'Security code';
+    codeInput.insertAdjacentElement('afterend', inputLabel);
+
+    // // Show input label whenever input is displayed
+    const inputObserver = new MutationObserver(function (e) {
+      if (e[0].target.style.display === 'none') {
+        inputLabel.style.display = 'none';
+        verificationIntro.style.display = '';
+      } else {
+        inputLabel.style.display = '';
+        verificationInfo.innerHTML += emailElement;
+        verificationIntro.style.display = 'none';
+      }
+    });
+    inputObserver.observe(codeInput, { attributes: true, childList: true })
+
+    // Handle code input error state
+    const inlineError = document.getElementsByClassName('error itemLevel')[2];
+    const inlineErrorCodeObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+        codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.margin = '0 2px 0 0';
+        inputLabel.style.color = '#FA4F00';
+        serverError.style.display = 'flex';
+        serverErrorMessage.innerHTML = inlineError.innerHTML;
+        verificationInfo.style.display = 'none';
+        verificationIntro.style.display = 'none';
+      } else {
+        clearBannerError()
+      }
+    });
+
+    inlineErrorCodeObserver.observe(inlineError, { childList: true });
+
+
+    const bannerCodeError = document.getElementById('emailVerificationControl_error_message');
+    const bannerCodeErrorObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+        codeInput.style.border = '2px solid #FA4F00';
+        codeInput.style.margin = '0 2px 0 0';
+        inputLabel.style.color = '#FA4F00';
+        serverError.style.display = 'flex';
+        serverErrorMessage.innerHTML = bannerCodeError.innerHTML;
+        verificationInfo.style.display = 'none !important';
+        verificationIntro.style.display = 'none !important';
+      } else {
+        clearBannerError();
+      }
+    });
+    bannerCodeErrorObserver.observe(bannerCodeError, { childList: true });
+
+    function clearBannerError() {
+      codeInput.style.border = '';
+      codeInput.style.margin = '';
+      inputLabel.style.color = '';
+      serverError.style.display = 'none';
+      serverErrorMessage.innerHTML = '';
+    }
+
+    // Handle loading state
+    const mainContainer = document.getElementsByClassName('container')[0];
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const sendButton = document.getElementById('emailVerificationControl_but_send_code');
+    const verifyButton = document.getElementById('emailVerificationControl_but_verify_code');
+
+    const loadingObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.target.style.display !== 'none') {
+          mainContainer.style.display = 'block';
+          loadingSpinner.style.display = 'none';
+        } else if (mutation.target.style.display === 'none') {
+          mainContainer.style.display = 'none';
+          loadingSpinner.style.display = 'inline-block';
+        }
+      });
+    });
+    loadingObserver.observe(verifyButton, { attributes: true });
+
+    // Detect validation success message, then automate continue button click with JS
+    const continueButton = document.getElementById('continue');
+    const successMessage = 'E-mail address verified. You can now continue.';
+
+    const successObserver = new MutationObserver(function (e) {
+      const currentMessage = e[0].target.innerHTML;
+      if (currentMessage.includes(successMessage)) {
+        continueButton.click();
+      }
+    });
+    successObserver.observe(verificationInfo, { attributes: true });
+
+    $(":button").click(function () {
+      clearBannerError();
+    });
   </script>
-  <script src="https://localhost/EmailVerification.js"></script>
 </body>
+
 </html>
