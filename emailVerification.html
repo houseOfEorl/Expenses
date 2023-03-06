@@ -53,10 +53,13 @@
 
     // // Show input label whenever input is displayed
     const inputObserver = new MutationObserver(function(e) {
+      console.log('farfar', e[0].target.style.display)
       if (e[0].target.style.display === 'none') {
+	      console.log('farfar1')
         inputLabel.style.display = 'none';
 		verificationIntro.style.display = '';
       } else {
+	      console.log('farfar2')
         inputLabel.style.display = '';
 		verificationInfo.innerHTML += emailElement;
 		verificationIntro.style.display = 'none';
