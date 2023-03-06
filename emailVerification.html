@@ -31,7 +31,7 @@
   <div id='loadingSpinner' role="progressbar"></div>
 
   <script>
-    console.log("bar123459")
+    console.log("bar1234590")
     function goBack() {
       history.back();
     }
@@ -41,6 +41,7 @@
     const verificationIntro = document.getElementsByClassName('intro')[0];
     const verificationInfo = document.getElementById('emailVerificationControl_success_message');
     verificationIntro.innerHTML += emailElement;
+    verificationInfo.innerHTML += emailElement;
 
     // Remove placeholders
     const codeInput = document.getElementById('verificationCode');
@@ -123,7 +124,6 @@
           verificationIntro.style.display = 'none';
         } else {
           inputLabel.style.display = 'none';
-          verificationInfo.innerHTML += emailElement;
           verificationIntro.style.display = ''; 
         }
       });
