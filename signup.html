@@ -6,7 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link href="https://deveducateinc.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="https://deveducateinc.azurewebsites.net/favicon.ico">
+  <link rel="apple-touch-icon" href="https://deveducateinc.azurewebsites.net/icons/favicon-apple.png">
+  <link rel="icon" href="https://deveducateinc.azurewebsites.net/favicon.ico">
 
   <style>
     ::-ms-reveal {
@@ -601,16 +604,16 @@
     // Insert custom sign up agreement text
     const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
     const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
-    const privacyPolicyUrl = '<%= __BASEURL__ %>/documents/Embark_Privacy_Policy_en.pdf';
-    const termsConditionsUrl = '<%= __BASEURL__ %>/documents/Digital_Terms_and_Conditions_en.pdf';
+    const privacyPolicyUrl = 'https://deveducateinc.azurewebsites.net/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = 'https://deveducateinc.azurewebsites.net/documents/Digital_Terms_and_Conditions_en.pdf';
     const signUpAgreement = document.createElement('div');
     signUpAgreement.setAttribute('id', 'signUpAgreement');
     signUpAgreement.innerHTML = `
-      I acknowledge that I have read and agree to the Embark Student Corp.
-      <a href="${termsConditionsUrl}" target="_blank">Digital Terms & Conditions</a>${newTabIcon}
-      and
-      <a href="${privacyPolicyUrl}" target="_blank">Privacy Policy</a>${newTabIcon}
-      
+      I hereby consent to the processing of my personal data that I have provided and I confirm 
+      that I have read and agree to the 
+      <a href="${privacyPolicyUrl}" target="_blank">Embark Student Corp. Privacy Policy</a>${newTabIcon}
+      and the
+      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon}
     `;
     termsCheckbox.insertAdjacentElement('afterend', signUpAgreement);
 
