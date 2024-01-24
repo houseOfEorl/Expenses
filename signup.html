@@ -523,12 +523,9 @@
     const TextBox = document.getElementsByClassName('TextBox')[0];
     const newPasswordInput = document.getElementById('newPassword');
     const Password = document.getElementsByClassName('Password')[0];
-	const firstNameInput = document.getElementById('extension_FirstName');
-	const lastNameInput = document.getElementById('extension_LastName');
-	const phoneNoInput = document.getElementById('extension_PhoneNo');
-	const dobDayInput = document.getElementById('extension_DobDay');
-	const dobMonthInput = document.getElementById('extension_DobMonth');
-	const dobYearInput = document.getElementById('extension_DobYear');
+    const firstNameInput = document.getElementById('extension_FirstName');
+    const lastNameInput = document.getElementById('extension_LastName');
+    const phoneNoInput = document.getElementById('extension_PhoneNo');
 
     emailInput.setAttribute('maxlength', 40);
     // Remove email input autofocus
@@ -544,14 +541,6 @@
 	phoneNoInput.removeAttribute('autofocus');
     phoneNoInput.blur();
 	
-	dobDayInput.removeAttribute('autofocus');
-    dobDayInput.blur();
-	
-	dobMonthInput.removeAttribute('autofocus');
-    dobMonthInput.blur();
-	
-	dobYearInput.removeAttribute('autofocus');
-    dobYearInput.blur();
 	
     const focusFix = document.getElementById('focusFix');
     focusFix.focus();
@@ -582,12 +571,7 @@
 	
 	const phoneNoLabel = document.createElement('span');
     phoneNoLabel.setAttribute('id', 'phoneNoLabel');
-	const dobDayLabel = document.createElement('span');
-    dobDayLabel.setAttribute('id', 'dobDayLabel');
-	const dobMonthLabel = document.createElement('span');
-    lastNameLabel.setAttribute('id', 'dobMonthLabel');
-	const dobYearLabel = document.createElement('span');
-    dobYearLabel.setAttribute('id', 'dobYearLabel');
+
 
     // Insert email clear button
     const emailClear = document.createElement('button');
@@ -688,18 +672,14 @@
 	firstNameLabel.innerHTML = 'First name';
 	lastNameLabel.innerHTML = 'Last name';
 	phoneNoLabel.innerHTML = 'Mobile number';
-	dobDayLabel.innerHTML = 'Day';
-	dobMonthLabel.innerHTML = 'Month';
-	dobYearLabel.innerHTML = 'Year';
+
 
     emailInput.insertAdjacentElement('afterend', emailLabel);
     newPasswordInput.insertAdjacentElement('afterend', newPasswordLabel);
 	firstNameInput.insertAdjacentElement('afterend', firstNameLabel);
 	lastNameInput.insertAdjacentElement('afterend', lastNameLabel);
 	phoneNoInput.insertAdjacentElement('afterend', phoneNoLabel);
-	dobDayInput.insertAdjacentElement('afterend', dobDayLabel);
-	dobMonthInput.insertAdjacentElement('afterend', dobMonthLabel);
-	dobYearInput.insertAdjacentElement('afterend', dobYearLabel);
+
 
     // Skip password requirement text when hitting tab
     const passwordRequirement = document.getElementById('passwordRequirement');
