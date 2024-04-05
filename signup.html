@@ -28,7 +28,424 @@
       </div>
       <div id="api" data-name="SelfAsserted"></div>
     </div>
+    <div id="termsAndConditions"></div>
+      <div class="signIn">
+        Have an account? <a id="signInLink">Sign in</a>
+      </div>
   </div>
-  <script src="http://localhost/SignupResume.js"></script>
+  //<script src="http://localhost/SignupResume.js"></script>
+  function goBack() {
+      history.back();
+    }
+
+    console.log('foo2')
+
+    const firstNameInput = document.getElementById('givenName');
+    const firstNameTextBox = document.getElementsByClassName('TextBox')[0];
+
+    const lastNameInput = document.getElementById('surname');
+    const lastNameTextBox = document.getElementsByClassName('TextBox')[1]
+
+    const phoneNumberInput = document.getElementById('inputPhoneNumber');
+    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[2];
+
+    const emailInput = document.getElementById('email');
+    const emailTextBox = document.getElementsByClassName('TextBox')[3];
+
+    const newPasswordInput = document.getElementById('newPassword');
+    const Password = document.getElementsByClassName('Password')[0];
+
+    emailInput.setAttribute('maxlength', 40);
+    firstNameInput.setAttribute('maxlength', 20);
+    lastNameInput.setAttribute('maxlength', 20);
+
+    // Remove email input autofocus
+    firstNameInput.removeAttribute('autofocus');
+    firstNameInput.blur();
+    const focusFix = document.getElementById('focusFix');
+    focusFix.focus();
+    setTimeout(() => {
+      focusFix.remove();
+      window.scrollTo(0, 0);
+    }, 500);
+
+    // Insert password requirements
+    let buttons = document.getElementsByClassName('Password')[0]
+    const passwordRequirements = document.createElement('div');
+    passwordRequirements.setAttribute('id', 'passwordRequirements');
+    passwordRequirements.setAttribute('class', 'textInfo');
+    passwordRequirements.innerHTML = 
+    `Your password must be a minimum of 8 characters, contain both uppercase and lowercase, and 
+    at least one number and special character (like ! @ # ?).`;
+    buttons.insertAdjacentElement('afterend', passwordRequirements);
+
+    //// ERROR MESSAGES
+
+    // Insert first name input error message
+    const firstNameError = document.createElement('div');
+    firstNameError.setAttribute('id', 'firstNameError');
+    firstNameTextBox.insertAdjacentElement('afterend', firstNameError);
+
+    // Insert last name input error message
+    const lastNameError = document.createElement('div');
+    lastNameError.setAttribute('id', 'lastNameError');
+    lastNameTextBox.insertAdjacentElement('afterend', lastNameError);
+
+    // Insert email input error message
+    const emailError = document.createElement('div');
+    emailError.setAttribute('id', 'emailError');
+    emailTextBox.insertAdjacentElement('afterend', emailError);
+
+    // Insert password input error message
+    const passwordError = document.createElement('div');
+    passwordError.setAttribute('id', 'passwordError');
+    Password.insertAdjacentElement('afterend', passwordError);
+
+    // Insert phone number input error message
+    const phoneNumberError = document.createElement('div');
+    phoneNumberError.setAttribute('id', 'phoneNumberError');
+    phoneNumberTextBox.insertAdjacentElement('afterend', phoneNumberError);
+
+    // Insert custom input field labels
+    const firstNameLabel = document.createElement('span');
+    firstNameLabel.setAttribute('id', 'firstNameLabel');
+
+    const lastNameLabel = document.createElement('span');
+    lastNameLabel.setAttribute('id', 'lastNameLabel');
+
+    const emailLabel = document.createElement('span');
+    emailLabel.setAttribute('id', 'emailLabel');
+    
+    const newPasswordLabel = document.createElement('span');
+    newPasswordLabel.setAttribute('id', 'passwordLabel');
+
+    const phoneNumberLabel = document.createElement('span');
+    phoneNumberLabel.setAttribute('id', 'phoneNumberLabel');
+
+    // Insert password toggle
+    const passwordToggle = document.createElement('button');
+    passwordToggle.setAttribute('class', 'iconButtonOutlined');
+    passwordToggle.setAttribute('id', 'passwordToggle');
+    const visibilityIcon = '<span class="material-icons">visibility</span>';
+    const visibilityOffIcon = '<span class="material-icons">visibility_off</span>';
+    passwordToggle.innerHTML = visibilityIcon;
+
+    passwordToggle.addEventListener("click", function () {
+      const type = newPasswordInput.getAttribute("type") === "password" ? "text" : "password";
+      newPasswordInput.setAttribute("type", type);
+      if (type === 'text') passwordToggle.innerHTML = visibilityOffIcon;
+      else if (type === 'password') passwordToggle.innerHTML = visibilityIcon;
+      passwordToggle.blur();
+    });
+    newPasswordInput.insertAdjacentElement('afterend', passwordToggle);
+
+    // Handle first name input error state
+    const defaultFirstNameError = document.getElementsByClassName('error itemLevel')[0];
+    const firstNameErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        firstNameInput.style.border = '2px solid #FA4F00';
+        firstNameInput.style.margin = '0';
+        firstNameInputErrorIcon = document.createElement('i')
+        firstNameInputErrorIcon.classList.add('material-icons', 'errorIcon')
+        firstNameInputErrorIcon.innerHTML = 'error'
+        firstNameInput.insertAdjacentElement('afterend', firstNameInputErrorIcon);
+        firstNameLabel.setAttribute('id', 'firstNameLabel--error');
+        firstNameError.innerHTML = defaultFirstNameError.innerHTML;
+        firstNameError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        firstNameInput.style.border = '';
+        firstNameInput.style.margin = '';
+        firstNameLabel.setAttribute('id', 'firstNameLabel');
+        firstNameError.innerHTML = '';
+        firstNameError.setAttribute('class', 'inputError');
+      }
+    });
+    firstNameErrorObserver.observe(defaultFirstNameError, { childList: true });
+
+    // Handle last name input error state
+    const defaultLastNameError = document.getElementsByClassName('error itemLevel')[1];
+    const lastNameErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        lastNameInput.style.border = '2px solid #FA4F00';
+        lastNameInput.style.margin = '0';
+        lastNameInputErrorIcon = document.createElement('i')
+        lastNameInputErrorIcon.classList.add('material-icons', 'errorIcon')
+        lastNameInputErrorIcon.innerHTML = 'error'
+        lastNameInput.insertAdjacentElement('afterend', lastNameInputErrorIcon);
+        lastNameLabel.setAttribute('id', 'lastNameLabel--error');
+        lastNameError.innerHTML = defaultLastNameError.innerHTML;
+        lastNameError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        lastNameInput.style.border = '';
+        lastNameInput.style.margin = '';
+        lastNameLabel.setAttribute('id', 'lastNameLabel');
+        lastNameError.innerHTML = '';
+        lastNameError.setAttribute('class', 'inputError');
+      }
+    });
+    lastNameErrorObserver.observe(defaultLastNameError, { childList: true });
+
+    // Handle phone input error state
+    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[2];
+    const phoneNumberErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        phoneNumberInput.style.border = '2px solid #FA4F00';
+        phoneNumberInput.style.margin = '0';
+        phoneNumberInputErrorIcon = document.createElement('i')
+        phoneNumberInputErrorIcon.classList.add('material-icons', 'errorIcon')
+        phoneNumberInputErrorIcon.innerHTML = 'error'
+        phoneNumberInput.insertAdjacentElement('afterend', phoneNumberInputErrorIcon);
+        phoneNumberLabel.setAttribute('id', 'phoneNumberLabel--error');
+        phoneNumberError.innerHTML = defaultPhoneNumberError.innerHTML;
+        phoneNumberError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        phoneNumberInput.style.border = '';
+        phoneNumberInput.style.margin = '';
+        phoneNumberLabel.setAttribute('id', 'phoneNumberLabel');
+        phoneNumberError.innerHTML = '';
+        phoneNumberError.setAttribute('class', 'inputError');
+      }
+    });
+    phoneNumberErrorObserver.observe(defaultPhoneNumberError, { childList: true });
+
+    // Handle email input error state
+    const defaultEmailError = document.getElementsByClassName('error itemLevel')[3];
+
+    const emailObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        emailInput.style.border = '2px solid #FA4F00';
+        emailInput.style.margin = '0';
+        emailInputErrorIcon = document.createElement('i')
+        emailInputErrorIcon.classList.add('material-icons', 'errorIcon')
+        emailInputErrorIcon.innerHTML = 'error'
+        emailInput.insertAdjacentElement('afterend', emailInputErrorIcon);
+        emailLabel.setAttribute('id', 'emailLabel--error');
+        emailError.innerHTML = defaultEmailError.innerHTML;
+        emailError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        emailInput.style.border = '';
+        emailInput.style.margin = '';
+        emailLabel.setAttribute('id', 'emailLabel');
+        emailError.innerHTML = '';
+        emailError.setAttribute('class', 'inputError');
+      }
+    });
+    emailObserver.observe(defaultEmailError, { childList: true });
+
+    // Handle password input error state
+    const defaultPasswordError = document.getElementsByClassName('error itemLevel')[4];
+
+    const passwordObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        newPasswordInput.style.border = '2px solid #FA4F00';
+        newPasswordInput.style.margin = '0';
+        newPasswordLabel.setAttribute('id', 'passwordLabel--error');
+        passwordError.innerHTML = defaultPasswordError.innerHTML;
+        passwordError.setAttribute('class', 'inputError inputError--visible');
+        Password.setAttribute('class', 'Password--error');
+        passwordRequirements.style.display = 'none'
+      } else {
+        newPasswordInput.style.border = '';
+        newPasswordInput.style.margin = '';
+        newPasswordLabel.setAttribute('id', 'passwordLabel');
+        passwordError.innerHTML = '';
+        passwordError.setAttribute('class', 'inputError');
+        Password.setAttribute('class', 'Password');
+        passwordRequirements.style.display = 'block'
+      }
+    });
+    passwordObserver.observe(defaultPasswordError, { childList: true });
+
+    // Handle server error message
+    const claimVerificationServerError = document.getElementById('claimVerificationServerError');
+    const serverError = document.getElementById('serverError');
+    const serverErrorMessage = document.getElementById('serverErrorMessage');
+
+    const serverErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        serverError.style.display = 'flex';
+        serverErrorMessage.innerHTML = claimVerificationServerError.innerHTML;
+      }
+      else {
+        serverError.style.display = 'none';
+        serverErrorMessage.innerHTML = '';
+      }
+    });
+    serverErrorObserver.observe(claimVerificationServerError, { childList: true });
+
+    // Remove placeholders
+    firstNameInput.setAttribute('placeholder', " ");
+    lastNameInput.setAttribute('placeholder', " ");
+    emailInput.setAttribute('placeholder', " ");
+    newPasswordInput.setAttribute('placeholder', " ");
+    phoneNumberInput.setAttribute('placeholder', " ");
+
+    firstNameLabel.innerHTML = 'First name';
+    lastNameLabel.innerHTML = 'Last name';
+    emailLabel.innerHTML = 'Email';
+    newPasswordLabel.innerHTML = 'Create a password';
+    phoneNumberLabel.innerHTML = 'Mobile number';
+
+    firstNameInput.insertAdjacentElement('afterend', firstNameLabel);
+    lastNameInput.insertAdjacentElement('afterend', lastNameLabel);
+    emailInput.insertAdjacentElement('afterend', emailLabel);
+    newPasswordInput.insertAdjacentElement('afterend', newPasswordLabel);
+    phoneNumberInput.insertAdjacentElement('afterend', phoneNumberLabel);
+
+    // Skip password requirement text when hitting tab
+    const passwordRequirement = document.getElementById('passwordRequirements');
+    passwordRequirement.tabIndex = -1;
+
+    // Insert custom sign up agreement text
+    const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
+    const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
+    const termsAndConditionsText = document.getElementById('termsAndConditions');
+    const privacyPolicyUrl = '<%= __BASEURL__ %>/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = '<%= __BASEURL__ %>/documents/Digital_Terms_and_Conditions_en.pdf';
+    const signUpAgreement = document.createElement('div');
+    signUpAgreement.setAttribute('id', 'signUpAgreement');
+    signUpAgreement.innerHTML = `
+      I hereby consent to the processing of my personal data that I have provided and I confirm 
+      that I have read and agree to the 
+      <a href="${privacyPolicyUrl}" target="_blank">Embark Student Corp. Privacy Policy</a>${newTabIcon}
+      and the
+      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon}
+    `;
+    termsCheckbox.insertAdjacentElement('afterend', signUpAgreement); 
+    termsCheckbox.checked = true; // Force checkbox to be checked by default
+    termsAndConditionsText.innerHTML = `
+      By providing your email address, you consent to receive marketing communications from both Embark Student Corp. and Embark Student Foundation. 
+      You acknowledge and agree to Embark Student Corp’s. 
+      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon} and 
+      <a href="${privacyPolicyUrl}" target="_blank">Privacy Policy</a>${newTabIcon}. 
+      You may withdraw consent at any time by opting out.
+    `;
+
+    // Insert custom sign up agreement error
+    const termsError = document.createElement('div');
+    termsError.setAttribute('id', 'termsError');
+    termsError.setAttribute('class', 'errorAlert');
+    termsError.innerHTML = `
+      <span class="material-icons">error</span>
+      <div id="termsErrorMessage">Please accept to continue.</div>
+    `;
+    const checkboxContainer = document.getElementsByClassName('CheckboxMultiSelect')[0];
+    checkboxContainer.insertAdjacentElement('beforeBegin', termsError);
+
+    // Handle sign up agreement error
+    const defaultTermsError = document.getElementsByClassName('error itemLevel')[5];
+
+    const termsErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.innerHTML !== '') {
+        termsError.style.display = 'flex';
+        checkboxContainer.setAttribute('class', 'CheckboxMultiSelect Terms--error');
+        termsCheckbox.classList.add('termsCheckbox--error')
+      } 
+      else {
+        termsError.style.display = 'none';
+        termsError.setAttribute('class', 'inputError');
+        checkboxContainer.setAttribute('class', 'CheckboxMultiSelect');
+      }
+    });
+    termsErrorObserver.observe(defaultTermsError, { attributes: true, childList: true, subtree: true });
+
+    termsCheckbox.addEventListener('change', e => {
+      if(e.target.checked && defaultTermsError.innerHTML !== ''){
+        termsCheckbox.classList.remove('termsCheckbox--error')
+      }
+    });
+
+    // Insert sign in link href
+    const signInLink = document.getElementById('signInLink');
+    signInLink.href = '<%= __BASEURL__ %>/signin';
+
+    // Handle continue button loading state
+    const continueButton = document.getElementById('continue');
+    const continueButtonText = continueButton.innerText;
+    const loadingObserver = new MutationObserver(function(e) {
+      if (e[0].target.id === 'verifying_blurb') {
+        continueButton.innerHTML = `
+          <div class="loading-spinner" role="progressbar">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        `;
+      } else if (e[0].target.id === 'continue') {
+        // Do nothing
+      } else {
+        continueButton.innerHTML = continueButtonText;
+      }
+    });
+    loadingObserver.observe(document, {childList: true, subtree: true});
+
+    const cancelButton = document.getElementById('cancel');
+    cancelButton.style.display='none';
+    const historyBackCancelBtn = document.createElement('button');
+    historyBackCancelBtn.setAttribute('id', 'historyBackCancelBtn');
+    historyBackCancelBtn.setAttribute('formnovalidate', '')
+    historyBackCancelBtn.setAttribute('aria-label', 'Cancel')
+    historyBackCancelBtn.innerHTML = 'Cancel';
+    historyBackCancelBtn.onclick = function() {
+      goBack();
+    };
+    continueButton.insertAdjacentElement('afterend', historyBackCancelBtn);
+
+    // Check query string for email, if it's there make email input field readonly
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let emailInvite = params.emailInvite;
+    if(emailInvite && emailInvite != 'null') {
+      emailInput.readOnly = true;
+      emailInput.disabled = true;
+      emailClear.remove();
+    }
+
+    //Formart phone
+    const isNumericInput = (event) => {
+      const key = event.keyCode;
+      return ((key >= 48 && key <= 57) || // Allow number line
+        (key >= 96 && key <= 105) // Allow number pad
+      );
+    };
+
+    const isModifierKey = (event) => {
+      const key = event.keyCode;
+      return (event.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
+        (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
+        (key > 36 && key < 41) || // Allow left, up, right, down
+        (
+          // Allow Ctrl/Command + A,C,V,X,Z
+          (event.ctrlKey === true || event.metaKey === true) &&
+          (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)
+        )
+    };
+
+    const enforceFormat = (event) => {
+      // Input must be of a valid number format or a modifier key, and not longer than ten digits
+      if (!isNumericInput(event) && !isModifierKey(event)) {
+        event.preventDefault();
+      }
+    };
+
+    const formatToPhone = (event) => {
+      if (isModifierKey(event)) { return; }
+
+      const input = event.target.value.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
+      const areaCode = input.substring(0, 3);
+      const middle = input.substring(3, 6);
+      const last = input.substring(6, 10);
+
+      if (input.length > 6) { event.target.value = `(${areaCode}) ${middle}-${last}`; }
+      else if (input.length > 3) { event.target.value = `(${areaCode}) ${middle}`; }
+      else if (input.length > 0) { event.target.value = `(${areaCode}`; }
+    };
+
+    phoneNumberInput.addEventListener('keydown', enforceFormat);
+    phoneNumberInput.addEventListener('keyup', formatToPhone);
 </body>
 </html>
