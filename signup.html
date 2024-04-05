@@ -16,23 +16,41 @@
 <body>
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
   <div class="container">
-    <div class="content">
-      <img src="https://devsecure.embarkcorp.ca/src/assets/icons/embark_en.svg" alt="Home">
-      <h1 id="headline">
-        Create your account
-      </h1>
-      <p id="containerTitle">Tell us a bit about yourself.</p>
-      <div id="serverError" class="errorAlert">
-        <span class="material-icons">error</span>
-        <div id="serverErrorMessage"></div>
+    <img
+      class="backgroundImageLeft"
+      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_left.svg"
+      alt="background_shape_1"
+    >
+    <img
+      class="backgroundImageRight"
+      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_right.svg"
+      alt="background_shape_2"
+    >
+    <div class="formContainer">
+      <div class="content">
+        <div class="logoContainer">
+          <img
+            data-tenant-branding-logo="true"
+            src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+            alt="Embark"
+          >
+        </div>
+        <h1 id="headline">
+          Create your account
+        </h1>
+        <p class='subHeader'>Sign up to create your Embark account and start your financial journey today! Explore our range of products, including opening an RESP and access to resources and guidance along the way.</p>
+        <div id="serverError" class="errorAlert">
+          <span class="material-icons">error</span>
+          <div id="serverErrorMessage"></div>
+        </div>
+        <div id="api" data-name="SelfAsserted"></div>
       </div>
-      <div id="api" data-name="SelfAsserted"></div>
       <div id="termsAndConditions"></div>
       <div class="signIn">
         Have an account? <a id="signInLink">Sign in</a>
       </div>
     </div>
-  </div>
+   </div>
   <script src="http://localhost/SignupResume.js"></script>
 </body>
 </html>
