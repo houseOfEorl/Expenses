@@ -9,8 +9,52 @@
   <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
   <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
-  <link rel="icon" href="https://devsecure.embarkcorp.cat/favicon.ico">
-  
+  <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i) {
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<%= __GTMALLPRODUATID__ %>');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13222589"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'DC-13222589');
+  </script>
+  <!-- End of global snippet: Please do not remove -->
+  <!-- Pinterest Tag -->
+  <script>
+    !function(e){
+      if(!window.pintrk){
+        window.pintrk = function () {
+          window.pintrk.queue.push(Array.prototype.slice.call(arguments))
+        };
+        var n=window.pintrk;n.queue=[],n.version="3.0";
+        var t=document.createElement("script");t.async=!0,t.src=e;
+        var r=document.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(t,r)
+      }
+    }("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2612798461565', {em: '<user_email_address>'});
+    pintrk('page');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt=""
+      src="https://ct.pinterest.com/v3/?event=init&tid=2612798461565&pd[em]=<hashed_email_address>&noscript=1" />
+  </noscript>
+  <!-- end Pinterest Tag -->
   <style>
     ::-ms-reveal {
       display: none;
@@ -572,30 +616,46 @@
 <body>
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
   <div class="container">
-    <div class="content">
-      <img src="https://deveducateinctest.azurewebsites.net/src/assets/icons/embark_en.svg" alt="Home">
-      <h1 id="headline">
-        Create your account
-      </h1>
-      <p id="containerTitle">Tell us a bit about yourself.</p>
-      <div id="serverError" class="errorAlert">
-        <span class="material-icons">error</span>
-        <div id="serverErrorMessage"></div>
+    <img
+      class="backgroundImageLeft"
+      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_left.svg"
+      alt="background_shape_1"
+    >
+    <img
+      class="backgroundImageRight"
+      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_right.svg"
+      alt="background_shape_2"
+    >
+    <div class="formContainer">
+      <div class="content">
+        <div class="logoContainer">
+          <img
+            data-tenant-branding-logo="true"
+            src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+            alt="Embark"
+          >       
+        </div>
+        <h1 id="headline">
+          Create your account
+        </h1>
+        <p class='subHeader'>Sign up to create your Embark account and start your financial journey today! Explore our range of products, including opening an RESP and access to resources and guidance along the way.</p>
+        <div id="serverError" class="errorAlert">
+          <span class="material-icons">error</span>
+          <div id="serverErrorMessage"></div>
+        </div>
+        <div id="api" data-name="SelfAsserted"></div>
       </div>
-      <div id="api" data-name="SelfAsserted"></div>
-    </div>
-    <div id="termsAndConditions"></div>
+      <div id="termsAndConditions"></div>
       <div class="signIn">
         Have an account? <a id="signInLink">Sign in</a>
       </div>
-  </div>
-  //<script src="http://localhost/SignupResume.js"></script>
+    </div>
+   </div>
+
   <script>
-  function goBack() {
+    function goBack() {
       history.back();
     }
-
-    console.log('foo2')
 
     const firstNameInput = document.getElementById('givenName');
     const firstNameTextBox = document.getElementsByClassName('TextBox')[0];
@@ -857,8 +917,8 @@
     const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
     const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
     const termsAndConditionsText = document.getElementById('termsAndConditions');
-    const privacyPolicyUrl = '<%= __BASEURL__ %>/documents/Embark_Privacy_Policy_en.pdf';
-    const termsConditionsUrl = '<%= __BASEURL__ %>/documents/Digital_Terms_and_Conditions_en.pdf';
+    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
     const signUpAgreement = document.createElement('div');
     signUpAgreement.setAttribute('id', 'signUpAgreement');
     signUpAgreement.innerHTML = `
@@ -914,7 +974,7 @@
 
     // Insert sign in link href
     const signInLink = document.getElementById('signInLink');
-    signInLink.href = '<%= __BASEURL__ %>/signin';
+    signInLink.href = 'https://devsecure.embarkcorp.ca/signin';
 
     // Handle continue button loading state
     const continueButton = document.getElementById('continue');
@@ -1005,5 +1065,54 @@
     phoneNumberInput.addEventListener('keydown', enforceFormat);
     phoneNumberInput.addEventListener('keyup', formatToPhone);
   </script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GTMALLPRODUATID__ %>" height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {
+      if(f.fbq)return;
+      n=f.fbq=function(){
+        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }
+    (window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '569865215232570');
+    fbq('track', 'DigitalPortalStart');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+  <!-- Pinterest Tag -->
+  <script>
+    pintrk('track', 'search');
+  </script>
+  <!-- end Pinterest Tag -->
+  <!-- Google Pixel Code-->
+  <script>
+    gtag('event', 'conversion', {
+      'allow_custom_scripts': true,
+      'send_to': 'DC-13222589/portstrt/embar0+standard'
+    });
+  </script>
+  <noscript>
+    <img src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?" width="1" height="1" alt=""/>
+  </noscript>
+  <!-- End Google Pixel Code -->
 </body>
 </html>
