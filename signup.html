@@ -6,11 +6,611 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://deveducateinctest.azurewebsites.net/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="https://deveducateinctest.azurewebsites.net/favicon.ico">
-  <link rel="apple-touch-icon" href="https://deveducateinctest.azurewebsites.net/icons/favicon-apple.png">
-  <link rel="icon" href="https://deveducateinctest.azurewebsites.net/favicon.ico">
-  <link href="http://localhost/SignupResume.css" rel="stylesheet" type="text/css" />
+  <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
+  <link rel="icon" href="https://devsecure.embarkcorp.cat/favicon.ico">
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i) {
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<%= __GTMALLPRODUATID__ %>');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13222589"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'DC-13222589');
+  </script>
+  <!-- End of global snippet: Please do not remove -->
+  <!-- Pinterest Tag -->
+  <script>
+    !function(e){
+      if(!window.pintrk){
+        window.pintrk = function () {
+          window.pintrk.queue.push(Array.prototype.slice.call(arguments))
+        };
+        var n=window.pintrk;n.queue=[],n.version="3.0";
+        var t=document.createElement("script");t.async=!0,t.src=e;
+        var r=document.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(t,r)
+      }
+    }("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2612798461565', {em: '<user_email_address>'});
+    pintrk('page');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt=""
+      src="https://ct.pinterest.com/v3/?event=init&tid=2612798461565&pd[em]=<hashed_email_address>&noscript=1" />
+  </noscript>
+  <!-- end Pinterest Tag -->
+  <style>
+    ::-ms-reveal {
+      display: none;
+    }
+
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    *, *::after, *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      background-color: #f3eeff;
+      color: #000000;
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+      height: fit-content;
+      padding: 6rem
+    }
+
+    input, button {
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+    }
+
+    .formContainer {
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      padding: 0 4rem;
+      max-width: 50rem;
+      z-index: 1;
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: #f3eeff;
+    }
+
+    .logoContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 4rem 0rem 3rem;
+    }
+
+    .subHeader {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 0 1.5rem;
+      line-height: 1.5rem;
+    }
+
+    .backgroundImageLeft {
+      position: fixed;
+      left: 0;
+      top: 38rem;
+    }
+
+    .backgroundImageRight {
+      position: fixed;
+      right: 0;
+      top: 22rem;
+    }
+
+    .content {
+      flex-grow: 1;
+    }
+
+    #containerTitle {
+		  margin-bottom: 1rem;
+		  font-weight: 700;
+		  font-size: 0.875rem;
+		  line-height: 1rem;
+		  letter-spacing: 0.005em;
+		  color: #000000;
+	  }
+
+    #backButton {
+      margin: 2rem 0 4.875rem;
+    }
+
+    .exitBtnContainer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #headline {
+      color: #1C1463;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 2rem;
+      margin: 0 0 1rem;
+      text-align: center;
+    }
+
+    #description {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      margin: 0 0 2rem;
+    }
+
+    h2, label, .intro, .helpLink, .buttons:first-child, 
+    .error.itemLevel, .error.pageLevel, .verifying-modal {
+      display: none !important;
+    }
+
+    a {
+      color: #594FF0;
+      border-bottom: 1px solid #594FF0;
+      font-weight: 900;
+      letter-spacing: 0.005em;
+      outline: none;
+      text-decoration: none;
+    }
+
+    a:hover, a:focus {
+      color: #3A31A9;
+      border-bottom: 1px dashed #3A31A9;
+    }
+
+    a:visited {
+      color: #5954A8;
+      border-bottom: 1px solid #5954A8;
+    }
+
+    .attr {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+      margin: 0 1.5rem 1.5rem;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    .TextBox {
+      height: 4rem;
+    }
+
+    #passwordRequirements {
+      margin-left: .125rem;
+    }
+
+    .TextBox, #passwordRequirements {
+      margin-bottom: 1.5rem;
+    }
+
+    #passwordRequirements, .phoneNumberText {
+      font-size: .75rem;
+    }
+
+    .phoneNumberIcon {
+      color: #594FF0;
+      margin-right: .25rem;
+      transform: scale(.75);
+    }
+
+    .phoneNumberTextContainer {
+      background-color: #f3f3f7;
+      padding: 0.75rem 0.5rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .attrEntry {
+      position: relative;
+    }
+    
+    .CheckboxMultiSelect > .attrEntry {
+	    display: grid;
+      grid-template-columns: 1em auto;
+      gap: 0.5em;
+    }
+
+    .termsCheckbox--error {
+      appearance: none;
+      outline: 2px solid #FA4F00;
+      border-radius: .25rem;
+    }
+
+    .attrEntry > input:not([type="checkbox"]) {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(28, 20, 99, 0.25);
+      border-radius: 0.5rem;
+      color: #1C1463;
+      -webkit-text-fill-color: #1C1463;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 1px;
+      outline: none;
+      padding: 1.2rem 3.25rem 1.2rem 1rem;
+      transition: 0.1s ease-out;
+      width: 100%;
+    }
+
+    .attrEntry > span {
+      position: absolute;
+      top: calc(100% - 1.9rem);
+      left: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      transform: translateY(-50%);
+      background-color: white;
+      color: #594FF0;
+      padding: 0 0.5rem;
+      margin: 0 0.5rem;
+      transition: 0.1s ease-out;
+      transform-origin: left top;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .attrEntry > input:-webkit-autofill,
+    .attrEntry > input:-webkit-autofill:hover,
+    .attrEntry > input:-webkit-autofill:focus,
+    .attrEntry > input:-webkit-autofill:active{
+		  -webkit-box-shadow: 0 0 0 62.5rem #FFFFFF inset;
+      background-color: #FFFFFF !important;
+      background-clip: content-box !important;
+	  }
+
+    .attrEntry > input:not([type="checkbox"]):focus,
+    .attrEntry > input:not([type="checkbox"]):hover
+    {
+      border: 2px solid #594FF0;
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    .attrEntry > input:focus + span,
+    .attrEntry > input:hover + span,
+    .attrEntry > input:not(:placeholder-shown) + span,
+    .attrEntry > input:not(:placeholder-shown) + i + span {
+      font-size: 0.875rem;
+      letter-spacing: 0.005em;
+      top: calc(100% - 3.85rem);
+      transform: translateY(-50%) !important;
+    }
+
+    .attrEntry > input:not(:focus)::placeholder {
+      opacity: 0;
+    }
+
+    .attrEntry > #new-password-field-label:not(:focus) {
+      transform: translateY(-50%);
+    }
+
+    .errorIcon,
+    #emailClear,
+    #passwordToggle {
+      cursor: pointer;
+      pointer-events: all;
+      position: absolute;
+      vertical-align: auto;
+      top: calc(100% - 3rem);
+      left: calc(100% - 2.85rem);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #594FF0;
+      background-color: transparent;
+      user-select: none;
+    }
+
+    .errorIcon {
+      top: calc(100% - 2.75rem);
+    }
+    
+    .errorIcon,
+    #firstNameLabel--error,
+    #lastNameLabel--error,
+    #emailLabel--error,
+    #passwordLabel--error,
+    #phoneNumberLabel--error {
+      color: #FA4F00;
+    }
+
+    #passwordRequirements {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .newTabIcon  {
+      color: #594FF0;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    input[type="checkbox"] {
+      accent-color: #594FF0;
+      cursor: pointer;
+      height: 1.5rem;
+      margin: 0 0.75rem 0 0.25rem !important;
+      width: 1.5rem;
+    }
+
+    input[type="checkbox"]:focus {
+      outline: none;
+    }
+    
+    #signUpAgreement{
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.25rem;
+    }
+
+    .buttons {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 1.125rem;
+      font-weight: 900;
+      height: 3.5rem;
+      letter-spacing: normal;
+      line-height: 1.25rem;
+      max-width: 15rem;
+      outline: none;
+      text-transform: none;
+      width: 100%;
+    }
+
+    .iconButtonFilled, 
+    .iconButtonOutlined {
+      align-items: center;
+      display: flex;
+      height: 2.25rem;
+      justify-content: center;
+      width: 2.25rem;
+    }
+
+    #continue, .Password {
+      margin-bottom: 0.5rem;
+    }
+
+    .Password--error, .Terms--error {
+      margin-bottom: 1.5rem;
+    }
+    
+    #continue, 
+    .iconButtonFilled {
+      background: #594FF0;
+      color: #FFFFFF;
+    }
+
+    #continue:focus, 
+    .iconButtonFilled:focus {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.3), rgba(78, 67, 229, 0.3)), #1C1463;
+    }
+
+    #continue:focus {
+      border: 3px solid #C3C0FF;
+    }
+
+    .iconButtonFilled:focus {
+      outline: 3px solid #C3C0FF;
+    }
+
+    #continue:hover, 
+    .iconButtonFilled:hover, 
+    .iconButtonFilled:active {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.5), rgba(78, 67, 229, 0.5)), #1C1463;
+    }
+
+    #continue:active {
+      background: #685FFF;
+      outline: none;
+    }
+
+    .iconButtonFilled:active {
+      border: none;
+    }
+
+    .iconButtonFilled:active,
+    .iconButtonOutlined:active {
+      outline: 3px solid #C3C0FF;
+      outline-offset: 3px;
+    }
+
+    #historyBackCancelBtn,
+    .iconButtonOutlined {
+      background: transparent;
+      color: #594FF0;
+    }
+
+    #historyBackCancelBtn:hover,
+    #historyBackCancelBtn:focus,
+    .iconButtonOutlined:hover,
+    .iconButtonOutlined:focus {
+      border: 2px solid #594FF0;
+    }
+
+    #historyBackCancelBtn:active {
+      background: #C3C0FF;
+      color: #1C1463;
+      outline: none;
+    }
+
+    #true_option {
+      margin-top: -1.5rem;
+      font-weight: 300;
+    }
+
+    .errorAlert {
+      background-color: #ffede8;
+      border-radius: 0.75rem;
+      color: #000000;
+      display: none;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin: 0 1.5rem 1.5rem;
+      padding: 1rem;
+    }
+
+    .errorAlert span {
+      color: #FA4F00;
+      margin-right: 0.625rem;
+    }
+
+    .inputError {
+      color: #FA4F00;
+      display: none;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.25rem;
+      margin: 0;
+    }
+
+    .inputError--visible {
+      display: block;
+      margin: -1rem 0 1.5rem;
+    }
+
+    .signIn {
+      border-top: 1px solid rgba(28, 20, 99, 0.25);
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin-top: 1rem;
+      padding: 1.25rem 0 3rem;
+      text-align: start;
+    }
+
+    #simplemodal-overlay {
+      background: transparent !important;
+    }
+
+    .simplemodal-container {
+      display: none !important;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      height: 1rem;
+      margin-top: 0.25rem;
+      position: relative;
+      width: 1rem;
+    }
+
+    .loading-spinner div {
+      animation: loading-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border: 1.5px solid #FFFFFF;
+      border-radius: 50%;
+      border-color: #FFFFFF transparent transparent transparent;
+      box-sizing: border-box;
+      display: block;
+      height: 1rem;
+      margin: 0 auto;
+      position: absolute;
+      width: 1rem;
+    }
+
+    #termsAndConditions {
+      font-size: 0.75rem;
+      margin-top: 3rem;
+      line-height: 1rem;
+    }
+    
+    .CheckboxMultiSelect {
+      display: none;
+    }
+
+    .loading-spinner div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .loading-spinner div:nth-child(2) {
+      animation-delay: -0.375s;
+    }
+    .loading-spinner div:nth-child(3) {
+      animation-delay: -0.30s;
+    }
+    .loading-spinner div:nth-child(4) {
+      animation-delay: -0.225s;
+    }
+    .loading-spinner div:nth-child(5) {
+      animation-delay: -0.15s;
+    }
+    .loading-spinner div:nth-child(6) {
+      animation-delay: -0.075s;
+    }
+
+    @keyframes loading-spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media screen and (max-width: 50em) {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
+      }
+      
+      .container {
+        padding: 0;
+      }
+
+      .formContainer {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: none;
+      }
+
+      .backgroundImageRight,
+      .backgroundImageLeft {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
