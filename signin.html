@@ -1,0 +1,672 @@
+<html>
+<head>
+  <title>Embark</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <link rel="apple-touch-icon" href="<%= __BASEURL__ %>/icons/favicon-apple.png">
+  <link rel="icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i) {
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<%= __GOOGLE_ANALYTICS_ID__ %>');
+  </script>
+  <!-- End Google Tag Manager -->
+  <style>
+    ::-ms-reveal {
+      display: none;
+    }
+
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    *, *::after, *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      background-color: #f3eeff;
+      color: #000000;
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+      height: fit-content;
+      padding: 5rem;
+    }
+
+    input, button {
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+    }
+
+    #errorBanner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      align-items: center;
+      background-color: #FFEDE8;
+      display: none;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      min-height: 3.5rem;
+      padding: 1.125rem;
+      width: 100%;
+    }
+
+    #errorBanner span {
+      color: #FA4F00;
+      margin-right: 0.625rem;
+    }
+
+    .formContainer {
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 4rem 3rem;
+      width: 50rem;
+      max-width: 50rem;
+      z-index: 1;
+    }
+
+    #api > div.heading,
+    #api > div.heading > h1[role="heading"] {
+      display: none !important;
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: #f3eeff;
+    }
+
+    .logoContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 4rem 0rem 3rem;
+    }
+
+    .subHeader {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 0 1.5rem;
+      line-height: 1.5rem;
+    }
+
+    .backgroundImageLeft {
+      position: fixed;
+      left: 0;
+      top: 38rem;
+    }
+
+    .backgroundImageRight {
+      position: fixed;
+      right: 0;
+      top: 8.875rem;
+    }
+
+    .content {
+      flex-grow: 1;
+    }
+
+    #companyLogo {
+      margin: 2rem;
+      text-align: center;
+    }
+
+    #headline {
+      color: #1C1463;
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -0.0225em;
+      line-height: 2.5rem;
+      margin: 0 0 1.5rem;
+    }
+
+    h2, label, .divider, .error.itemLevel, .error.pageLevel {
+      display: none !important;
+    }
+
+    a {
+      color: #594FF0;
+      border-bottom: 1px solid #594FF0;
+      font-weight: 900;
+      letter-spacing: 0.005em;
+      line-height: 1.5rem;
+      outline: none;
+      text-decoration: none;
+    }
+
+    a:hover, a:focus {
+      color: #3A31A9;
+      border-bottom: 1px dashed #3A31A9;
+    }
+
+    a:visited {
+      color: #5954A8;
+      border-bottom: 1px solid #5954A8;
+    }
+
+    .entry {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .entry-item {
+      margin-bottom: 1rem;
+      position: relative;
+      height: 3.75rem;
+    }
+
+    .entry-item > input {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(28, 20, 99, 0.25);
+      border-radius: 0.5rem;
+      color: #1C1463;
+      -webkit-text-fill-color: #1C1463;
+      font-size: 1rem;
+      font-weight: 500;
+      outline: none;
+      padding: 1.2rem 3.25rem 1.2rem 1rem;
+      transition: 0.1s ease-out;
+      width: 100%;
+    }
+
+    .entry-item > input:-webkit-autofill,
+    .entry-item > input:-webkit-autofill:hover,
+    .entry-item > input:-webkit-autofill:focus,
+    .entry-item > input:-webkit-autofill:active{
+		  -webkit-box-shadow: 0 0 0 62.5rem #FFFFFF inset;
+      background-color: #FFFFFF !important;
+      background-clip: content-box !important;
+      top:calc(100% - 1.8rem);
+	  }
+
+    .entry-item > span {
+      position: absolute;
+      top: calc(100% - 1.8rem);
+      left: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      transform: translateY(-50%);
+      background-color: white;
+      color: #594FF0;
+      padding: 0 0.5rem;
+      margin: 0 0.5rem;
+      transition: 0.1s ease-out;
+      transform-origin: left top;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .entry-item > input:focus,
+    .entry-item > input:hover {
+      border: 2px solid #594FF0;
+      margin: -1px;
+      padding-left: 1rem;
+    }
+
+    .entry-item > input:focus + span,
+    .entry-item > input:hover + span,
+    .entry-item > input:not(:placeholder-shown) + span {
+      font-size: 0.875rem;
+      letter-spacing: 0.005em;
+      top: calc(100% - 3.75rem);
+      transform: translateY(-50%) !important;
+    }
+
+    .entry-item > input:not(:focus)::placeholder,
+    .entry-item > input:not(:hover)::placeholder {
+      opacity: 0;
+    }
+
+    .entry-item > #password-field-label:not(:focus),
+    .entry-item > #password-field-label:not(:hover) {
+      transform: translateY(-50%);
+    }
+
+    #emailClear,
+    #passwordToggle {
+      cursor: pointer;
+      pointer-events: all;
+      position: absolute;
+      vertical-align: auto;
+      top: calc(100% - 3rem);
+      left: calc(100% - 2.85rem);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #594FF0;
+      background-color: transparent;
+      user-select: none;
+    }
+
+    #emailLabel--error,
+    #passwordLabel--error {
+      color: #FA4F00;
+    }
+
+    .inputError {
+      color: #FA4F00;
+      display: none;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.25rem;
+      margin: 0;
+    }
+
+    .inputError--visible {
+      display: block;
+      margin: -0.5rem 0.25rem 1.5rem;
+    }
+
+    .buttons {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 1.125rem;
+      font-weight: 900;
+      height: 3.5rem;
+      letter-spacing: normal;
+      line-height: 1.25rem;
+      max-width: 15rem;
+      outline: none;
+      text-transform: none;
+      width: 100%;
+    }
+
+    #next {
+      background: #594FF0;
+      color: #FFFFFF;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    #next:hover {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.5), rgba(78, 67, 229, 0.5)), #1C1463;
+    }
+
+    #next:focus {
+      background: linear-gradient(0, rgba(78, 67, 229, 0.3), rgba(78, 67, 229, 0.3)), #1C1463;
+      border: 3px solid #C3C0FF;
+    }
+
+    #next:active {
+      background: #685FFF;
+      outline: none;
+    }
+
+    .iconButton {
+      align-items: center;
+      display: flex;
+      height: 2.25rem;
+      justify-content: center;
+      width: 2.25rem;
+    }
+
+    .iconButton:active {
+      outline: 3px solid #C3C0FF;
+      outline-offset: 3px;
+    }
+
+    #cancel {
+      margin-bottom: 3rem;
+    }
+
+    #cancel, .iconButton {
+      background: transparent;
+      color: #594FF0;
+    }
+
+    #cancel:hover, 
+    #cancel:focus,
+    .iconButton:hover, 
+    .iconButton:focus {
+      border: 2px solid #594FF0;
+    }
+
+    #cancel:active {
+      background: #C3C0FF;
+      color: #1C1463;
+      outline: none;
+    }
+
+    .border {
+      border: 0;
+      border-top: 1px solid;
+      border-color: rgba(28, 20, 99, 0.25);
+      margin-bottom: 1.25rem;
+    }
+
+    #forgotPassword {
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .create p {
+      font-weight: 700;
+    }
+
+    #forgotPassword, .create {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .footer {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      padding: 9.125rem 1.5rem 3rem;
+    }
+
+    .footer__links, .footer__copyright {
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1rem;
+    }
+
+    .footer__links {
+      align-items: center;
+      color: #594FF0;
+      display: flex;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer__links a {
+      border-bottom: none;
+    }
+
+    .footer__links__divider {
+      margin: 0 0.5rem;
+    }
+
+    .footer__copyright {
+      color: #8E9192;
+    }
+
+    @media screen and (max-width: 50em) {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
+      }
+
+      #errorBanner {
+        position: static;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .formContainer {
+        padding: 0 2rem;
+        width: 100%;
+        max-width: none;
+      }
+
+      #headline {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+
+      .backgroundImageRight,
+      .backgroundImageLeft {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
+  <div id="errorBanner" role="alert">
+    <span class="material-icons">error</span>
+    <div id="serverErrorMessage"></div>
+  </div>
+  <div class="container">
+    <img
+      class="backgroundImageLeft"
+      src="<%= __BASEURL__ %>/templates/assets/images/bg_image_left.svg"
+      alt="background_shape_1"
+    >
+    <img
+      class="backgroundImageRight"
+      src="<%= __BASEURL__ %>/templates/assets/images/bg_image_right.svg"
+      alt="background_shape_2"
+    >
+    <div class="formContainer">
+      <div class="content">
+        <div id="companyLogo">
+          <img
+            data-tenant-branding-logo="true"
+            src="<%= __BASEURL__ %>/templates/assets/logo/embark_violet.svg"
+            alt="Embark"
+          >
+        </div>
+        <h1 id="headline">
+          Let’s sign in
+        </h1>
+        <div id="api" data-name="Unified"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const emailInput = document.getElementById('signInName');
+    const passwordInput = document.getElementById('password');
+    const nextButton = document.getElementById('next');
+
+    function goBack() {
+      history.back();
+    }
+
+    // Remove email input autofocus
+    emailInput.removeAttribute('autofocus');
+    emailInput.blur();
+    const focusFix = document.getElementById('focusFix');
+    focusFix.focus();
+    setTimeout(() => {
+      focusFix.remove();
+    }, 500);
+
+    // Insert email input error message
+    const emailError = document.createElement('div');
+    emailError.setAttribute('id', 'emailError');
+
+    const emailInputContainer = document.getElementsByClassName('entry-item')[0];
+    emailInputContainer.insertAdjacentElement('afterend', emailError);
+
+    // Insert password input error message
+    const passwordError = document.createElement('div');
+    passwordError.setAttribute('id', 'passwordError');
+
+    const passwordInputContainer = document.getElementsByClassName('entry-item')[1];
+    passwordInputContainer.insertAdjacentElement('afterend', passwordError);
+
+    // Insert email clear button
+    const emailClear = document.createElement('button');
+    emailClear.setAttribute('class', 'iconButton');
+    emailClear.setAttribute('id', 'emailClear');
+    emailClear.innerHTML = '<span class="material-icons">clear</span>'
+    emailClear.addEventListener('click', function() {
+      emailInput.value = '';
+    });
+    emailInput.insertAdjacentElement('afterend', emailClear);
+
+    // Insert password toggle
+    const passwordToggle = document.createElement('button');
+    passwordToggle.setAttribute('class', 'iconButton');
+    passwordToggle.setAttribute('id', 'passwordToggle');
+    const visibilityIcon = '<span class="material-icons">visibility</span>';
+    const visibilityOffIcon = '<span class="material-icons">visibility_off</span>';
+    passwordToggle.innerHTML = visibilityIcon;
+
+    passwordToggle.addEventListener("click", function () {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+      if (type === 'text') passwordToggle.innerHTML = visibilityOffIcon;
+      else if (type === 'password') passwordToggle.innerHTML = visibilityIcon;
+    });
+    passwordInput.insertAdjacentElement('afterend', passwordToggle);
+
+    // Remove placeholders
+    emailInput.setAttribute('placeholder', " ");
+    passwordInput.setAttribute('placeholder', " ");
+
+    // Insert custom email label
+    const emailLabel = document.createElement('span');
+    emailLabel.setAttribute('id', 'emailLabel');
+    emailLabel.innerHTML = 'Email';
+    emailInput.insertAdjacentElement('afterend', emailLabel);
+
+    // Insert custom password label
+    const passwordLabel = document.createElement('span');
+    passwordLabel.setAttribute('id', 'passwordLabel');
+    passwordLabel.innerHTML = 'Password';
+    passwordInput.insertAdjacentElement('afterend', passwordLabel);
+
+    // Insert cancel button
+    const cancelButton = document.createElement('button');
+    cancelButton.setAttribute('id', 'cancel');
+    cancelButton.innerHTML = 'Cancel';
+    cancelButton.onclick = function() {
+      goBack();
+    };
+    nextButton.insertAdjacentElement('afterend', cancelButton);
+
+    // Handle server error message
+    const defaultServerError = document.getElementsByClassName('error pageLevel')[0];
+    const errorBanner = document.getElementById('errorBanner');
+    const serverErrorMessage = document.getElementById('serverErrorMessage');
+
+    const serverErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.getAttribute('aria-hidden') === "false") {
+        errorBanner.style.display = 'flex';
+        serverErrorMessage.innerHTML = defaultServerError.innerHTML;
+      }
+      else {
+        errorBanner.style.display = 'none';
+        serverErrorMessage.innerHTML = '';
+      }
+    });
+    serverErrorObserver.observe(defaultServerError, { attributes: true });
+
+    // Handle email input error state
+    const defaultEmailError = document.getElementsByClassName('error itemLevel')[0];
+    let hasEmailError = false;
+    let hasPasswordError = false;
+
+    const emailErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.getAttribute('aria-hidden') === 'false') {
+        emailInput.style.border = '2px solid #FA4F00';
+        emailInput.style.margin = '-1px';
+        emailLabel.setAttribute('id', 'emailLabel--error');
+        emailError.innerHTML = defaultEmailError.innerHTML;
+        emailError.setAttribute('class', 'inputError inputError--visible');
+        hasEmailError = true;
+      } else {
+        emailInput.style.borderColor = '';
+        emailInput.style.boxShadow = '';
+        emailLabel.setAttribute('id', 'emailLabel');
+        emailError.innerHTML = '';
+        emailError.setAttribute('class', 'inputError');
+        hasEmailError = false;
+      }
+      handleEmailAndPasswordError();
+    });
+    emailErrorObserver.observe(defaultEmailError, { attributes: true });
+
+    emailInput.addEventListener('input', function() {
+      if (defaultEmailError.getAttribute('aria-hidden') === 'false') {
+        defaultEmailError.setAttribute('aria-hidden', 'true');
+        hasEmailError = false;
+      }
+    });
+
+    // Handle password input error state
+    const defaultPasswordError = document.getElementsByClassName('error itemLevel')[1];
+
+    const passwordErrorObserver = new MutationObserver(function(e) {
+      if (e[0].target.getAttribute('aria-hidden') === 'false') {
+        passwordInput.style.border = '2px solid #FA4F00';
+        passwordInput.style.margin = '-1px';
+        passwordLabel.setAttribute('id', 'passwordLabel--error');
+        passwordError.innerHTML = defaultPasswordError.innerHTML;
+        passwordError.setAttribute('class', 'inputError inputError--visible');
+        hasPasswordError = true;
+      } else {
+        passwordInput.style.borderColor = '';
+        passwordInput.style.boxShadow = '';
+        passwordLabel.setAttribute('id', 'passwordLabel');
+        passwordError.innerHTML = '';
+        passwordError.setAttribute('class', 'inputError');
+        hasPasswordError = false;
+      }
+      handleEmailAndPasswordError();
+    });
+    passwordErrorObserver.observe(defaultPasswordError, { attributes: true });
+
+    passwordInput.addEventListener('input', function() {
+      if (defaultPasswordError.getAttribute('aria-hidden') === 'false') {
+        defaultPasswordError.setAttribute('aria-hidden', 'true');
+        hasPasswordError = false;
+      }
+    });
+
+    // Insert border
+    const border = document.createElement('hr');
+    border.setAttribute('class', 'border');
+
+    const forgotPassword = document.getElementById('forgotPassword');
+    forgotPassword.insertAdjacentElement('beforeBegin', border);
+
+    // Handle showing the invalid email and password error in the banner
+    function handleEmailAndPasswordError() {
+      if (hasEmailError && hasPasswordError) {
+        errorBanner.style.display = 'flex';
+        serverErrorMessage.innerHTML = 'Please enter your email and password.';
+      } else {
+        errorBanner.style.display = 'none';
+        serverErrorMessage.innerHTML = '';
+      }
+    }
+
+    //Hide signup link
+    const signupLink = document.getElementsByClassName('create')[0];
+    signupLink.style.display = 'none'
+    
+  </script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GOOGLE_ANALYTICS_ID__ %>" height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
