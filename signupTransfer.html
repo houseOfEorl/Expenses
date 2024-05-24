@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
-  <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
-  <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <link rel="apple-touch-icon" href="<%= __BASEURL__ %>/icons/favicon-apple.png">
+  <link rel="icon" href="<%= __BASEURL__ %>/favicon.ico">
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i) {
@@ -493,7 +493,7 @@
     }
 
     #continue::after {
-      content: url('https://devsecure.embarkcorp.ca/templates/assets/images/padlock-white.svg');
+      content: url('<%= __BASEURL__ %>/templates/assets/images/padlock-white.svg');
       margin-left: .5rem;
     }
 
@@ -772,23 +772,23 @@
       <div class="leftLogoContainer">
         <img
           data-tenant-branding-logo="true"
-          src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_white.svg"
+          src="<%= __BASEURL__ %>/templates/assets/logo/embark_white.svg"
           alt="Embark"
         >
       </div>
       <div class="leftTextContainer">
-        <div class="leftHeader">Your child’s tomorrow starts today</div>
-        <div class='leftBodyText'>Secure your child's educational journey and take a proactive step towards their bright future.</div>
+        <div class="leftHeader">Activate your account</div>
+        <div class='leftBodyText'>Get digital access to your Knowledge First Financial plan(s) by signing up!</div>
       </div>
       <div class="leftImageContainer">
         <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/stripe.svg"
+          src="<%= __BASEURL__ %>/templates/assets/images/stripe.svg"
           alt="Stripe behind baby"
           class="leftDesignLine"
         >
         <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/baby.svg"
-          alt="baby"
+          src="https://raw.githubusercontent.com/houseOfEorl/Expenses/4f03b65c413e7cd1299ee129726cd7d4b2f062f6/locker.svg"
+          alt="locker"
           class="leftDesignBaby"
         >
       </div>
@@ -799,12 +799,12 @@
           <div class="rightLogoContainer">
             <img
               data-tenant-branding-logo="true"
-              src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+              src="<%= __BASEURL__ %>/templates/assets/logo/embark_violet.svg"
               alt="Embark"
             >
           </div>
           <h1 id="headline">
-            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/padlock.svg"
+            <img src="<%= __BASEURL__ %>/templates/assets/images/padlock.svg"
             alt="padlock" 
             class="formHeaderIcon"
             />
@@ -1082,8 +1082,8 @@
     const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
     const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
     const termsAndConditionsText = document.getElementById('termsAndConditions');
-    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
-    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
+    const privacyPolicyUrl = '<%= __BASEURL__ %>/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = '<%= __BASEURL__ %>/documents/Digital_Terms_and_Conditions_en.pdf';
     const signUpAgreement = document.createElement('div');
     signUpAgreement.setAttribute('id', 'signUpAgreement');
     signUpAgreement.innerHTML = `
@@ -1139,7 +1139,7 @@
 
     // Insert sign in link href
     const signInLink = document.getElementById('signInLink');
-    signInLink.href = 'https://devsecure.embarkcorp.ca/signin';
+    signInLink.href = '<%= __BASEURL__ %>/signin';
 
     // Handle continue button loading state
     const continueButton = document.getElementById('continue');
