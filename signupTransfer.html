@@ -816,7 +816,6 @@
           </div>
           <div id="api" data-name="SelfAsserted"></div>
         </div>
-        <div id="termsAndConditions"></div>
         <div class="signIn">
           Have an account? <a id="signInLink">Sign in</a>
         </div>
@@ -1077,65 +1076,6 @@
     // Skip password requirement text when hitting tab
     const passwordRequirement = document.getElementById('passwordRequirements');
     passwordRequirement.tabIndex = -1;
-
-    // Insert custom sign up agreement text
-    const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
-    const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
-    const termsAndConditionsText = document.getElementById('termsAndConditions');
-    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
-    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
-    const signUpAgreement = document.createElement('div');
-    signUpAgreement.setAttribute('id', 'signUpAgreement');
-    signUpAgreement.innerHTML = `
-      I hereby consent to the processing of my personal data that I have provided and I confirm 
-      that I have read and agree to the 
-      <a href="${privacyPolicyUrl}" target="_blank">Embark Student Corp. Privacy Policy</a>${newTabIcon}
-      and the
-      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon}
-    `;
-    termsCheckbox.insertAdjacentElement('afterend', signUpAgreement); 
-    termsCheckbox.checked = true; // Force checkbox to be checked by default
-    termsAndConditionsText.innerHTML = `
-      By providing your email address, you consent to receive marketing communications from both Embark Student Corp. and Embark Student Foundation. 
-      You acknowledge and agree to Embark Student Corp’s. 
-      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon} and 
-      <a href="${privacyPolicyUrl}" target="_blank">Privacy Policy</a>${newTabIcon}. 
-      You may withdraw consent at any time by opting out. All your data is secure using SHA-256 encryption.
-    `;
-
-    // Insert custom sign up agreement error
-    const termsError = document.createElement('div');
-    termsError.setAttribute('id', 'termsError');
-    termsError.setAttribute('class', 'errorAlert');
-    termsError.innerHTML = `
-      <span class="material-icons">error</span>
-      <div id="termsErrorMessage">Please accept to continue.</div>
-    `;
-    const checkboxContainer = document.getElementsByClassName('CheckboxMultiSelect')[0];
-    checkboxContainer.insertAdjacentElement('beforeBegin', termsError);
-
-    // Handle sign up agreement error
-    const defaultTermsError = document.getElementsByClassName('error itemLevel')[3];
-
-    const termsErrorObserver = new MutationObserver(function(e) {
-      if (e[0].target.innerHTML !== '') {
-        termsError.style.display = 'flex';
-        checkboxContainer.setAttribute('class', 'CheckboxMultiSelect Terms--error');
-        termsCheckbox.classList.add('termsCheckbox--error')
-      }
-      else {
-        termsError.style.display = 'none';
-        termsError.setAttribute('class', 'inputError');
-        checkboxContainer.setAttribute('class', 'CheckboxMultiSelect');
-      }
-    });
-    termsErrorObserver.observe(defaultTermsError, { attributes: true, childList: true, subtree: true });
-
-    termsCheckbox.addEventListener('change', e => {
-      if(e.target.checked && defaultTermsError.innerHTML !== ''){
-        termsCheckbox.classList.remove('termsCheckbox--error')
-      }
-    });
 
     // Insert sign in link href
     const signInLink = document.getElementById('signInLink');
