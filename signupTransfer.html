@@ -24,14 +24,14 @@
   </script>
   <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13222589"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= __GOOGLE_ANALYTICS_ID__ %>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-    gtag('config', 'DC-13222589');
+    gtag('config', '<%= __GOOGLE_ANALYTICS_ID__ %>');
 </script>
   <!-- End of global snippet: Please do not remove -->
   <!-- Pinterest Tag -->
@@ -106,7 +106,6 @@
       justify-content: center;
       min-height: 100%;
     }
-
     .leftContent {
       flex: .6;
       background-color: #594FF0;
@@ -117,7 +116,7 @@
     }
 
     .leftLogoContainer {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       left: 2rem;
     }
@@ -125,12 +124,15 @@
     .leftImageContainer {
       position: absolute;
       width: 100%;
+      z-index: 0;
     }
 
     .leftTextContainer {
-      margin-top: 10rem;
+      position: fixed;
+      margin-top: 8rem;
       margin-left: 10%;
       max-width: 27rem;
+      z-index: 1;
     }
 
     .leftHeader {
@@ -153,10 +155,10 @@
     }
 
     .leftDesignLine {
-      max-width: 105rem;
-      width: 115%;
+      max-width: 95rem;
+      width: 110%;
       position: fixed;
-      bottom: -18rem;
+      bottom: -14rem;
       left: 0;
       opacity: 1;
       transition: left .5s ease-in-out;
@@ -168,10 +170,12 @@
       width: max(40%, 25rem);
       max-width: 40rem;
       position: fixed;
+      left: 15%;
       bottom: 0rem;
       opacity: 1;
       transition: opacity .5s ease-in-out;
       transition: left .5s ease-in-out;
+      transition: width .5s ease-in-out;
     }
 
     .rightContent {
@@ -197,7 +201,6 @@
       padding: 0 1.5rem;
       line-height: 1.5rem;
     }
-
     .content {
       flex-grow: 1;
       max-width: 50rem;
@@ -415,6 +418,8 @@
     }
 
     .errorIcon,
+    #firstNameLabel--error,
+    #lastNameLabel--error,
     #emailLabel--error,
     #passwordLabel--error,
     #phoneNumberLabel--error {
@@ -596,13 +601,13 @@
     }
 
     .signIn {
-    border-top: 1px solid rgba(28, 20, 99, 0.25);
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: start;
-    max-width: 50rem;
-    margin: 1.5rem 1.5rem 4rem;
-    padding-top: 1rem;
+      border-top: 1px solid rgba(28, 20, 99, 0.25);
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-align: start;
+      max-width: 50rem;
+      margin: 1.5rem 1.5rem 4rem;
+      padding-top: 1rem;
     }
 
     #simplemodal-overlay {
@@ -673,45 +678,43 @@
       }
     }
 
-    @media screen and (min-width: 80em) {
-      .leftDesignLine {
-        left: -35rem;
-        bottom: -12rem;
-        transition: left .5s ease-in-out;
-        transition: bottom .5s ease-in-out;
+    @media screen and (max-width: 50em) {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
       }
 
-      .leftDesignBaby {
-        left: 15%;
+      .container {
+        padding: 0;
+      }
+
+      .formContainer {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: none;
+      }
+
+      .leftImageContainer {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: 64em) and (max-height: 40em) {
+      .leftDesignLine, .leftDesignBaby {
+        bottom: -200%;
+        opacity: 0;
       }
 
       .leftTextContainer {
-        max-width: 25rem ease-in-out;
-      }
+        position: fixed;
+        transition: margin-left .5s ease-in-out;
+        margin-left: 8%;
     }
 
-
-    @media screen and (min-width: 110em) {
-      .leftDesignBaby {
-        left: 25%;
-      }
+    .leftLogoContainer {
+        position: fixed;
     }
-
-
-
-    @media screen and (max-width: 80em) {
-      .leftDesignBaby {
-        left: 10%;
-      }
-
-      .leftDesignLine {
-        bottom: -12rem;
-      }
-
-      .rightContent {
-        flex: .55;
-      }
-    }
+  }
 
     @media screen and (max-width: 64em) {
       .leftContent {
@@ -729,37 +732,57 @@
       }
     }
 
-    @media screen and (min-width: 64em) and (max-height: 50em) {
-      .leftDesignBaby {
-        left: 200%;
-        opacity: 0;
+    @media screen and (min-width: 80em) and (min-height: 40em) {
+      .leftDesignLine {
+        left: -25rem;
+        bottom: -12rem;
+        transition: left .5s ease-in-out;
+        transition: bottom .5s ease-in-out;
       }
 
-      .leftDesignLine {
-        bottom: -200%;
-        opacity: 0;
+      .leftTextContainer {
+        max-width: 25rem;
       }
     }
 
-    @media screen and (max-width: 50em) {
-      body {
-        background-color: #FFFFFF;
-        padding: 0;
+    @media screen and (min-width: 64em) and (max-width: 80em) {
+      .rightContent {
+        flex: .55;
+      }
+    }
+
+    @media screen and (min-width: 90em) and (max-height: 50em) {
+      .leftDesignLine {
+        max-width: 75rem;
+      }
+    }
+
+    @media screen and (min-width: 90em) and (min-height: 50em) {
+      .leftTextContainer {
+        max-width: 45rem;
       }
 
-      .container {
-        padding: 0;
+      .leftHeader {
+        font-size: 3rem;
+        line-height: 4rem;
       }
-
-      .formContainer {
-        padding: 0 1rem;
-        width: 100%;
-        max-width: none;
+      .leftBodyText {
+        font-size: 1.5rem;
+        line-height: 2rem;
       }
+    }
 
-      .backgroundImageRight,
-      .backgroundImageLeft {
-        display: none;
+    @media screen and (min-width: 90em) and (min-height: 50em) and (max-height: 62.5em) {
+      .leftDesignBaby {
+        max-width: 30rem;
+        transition: width .5s ease-in-out;
+      }
+    }
+
+    @media screen and (min-height: 40em) and (max-height: 50em) {
+      .leftDesignBaby {
+        width: max(48vh, 15rem);
+        left: 20%
       }
     }
   </style>
@@ -788,7 +811,7 @@
         >
         <img
           src="https://raw.githubusercontent.com/houseOfEorl/Expenses/master/locker.svg"
-          alt="locker"
+          alt="baby"
           class="leftDesignBaby"
         >
       </div>
@@ -808,7 +831,7 @@
             alt="padlock" 
             class="formHeaderIcon"
             />
-            Sign Up
+            Sign up
           </h1>
           <div id="serverError" class="errorAlert">
             <span class="material-icons">error</span>
@@ -816,6 +839,7 @@
           </div>
           <div id="api" data-name="SelfAsserted"></div>
         </div>
+        <div id="termsAndConditions"></div>
         <div class="signIn">
           Have an account? <a id="signInLink">Sign in</a>
         </div>
@@ -848,6 +872,7 @@
     const Password = document.getElementsByClassName('Password')[0];
 
     emailInput.setAttribute('maxlength', 40);
+    phoneNumberInput.setAttribute('maxlength', 14);
 
     // Remove email input autofocus
     const focusFix = document.getElementById('focusFix');
@@ -868,8 +893,6 @@
     buttons.insertAdjacentElement('afterend', passwordRequirements);
 
     //// ERROR MESSAGES
-
-
     // Insert email input error message
     const emailError = document.createElement('div');
     emailError.setAttribute('id', 'emailError');
@@ -965,6 +988,17 @@
 
     // Handle email input error state
     const defaultEmailError = document.getElementsByClassName('error itemLevel')[0];
+    const emailRegEx = new RegExp(emailInput.getAttribute('pattern')) || new RegExp("^[a-zA-Z0-9.!#$%&'^_`{}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+    function emailValidation(e) {
+      const email = e.target.value;
+      if (emailRegEx.test(email)) {
+        emailError.innerHTML = '';
+        defaultEmailError.innerHTML = '';
+      }
+    }
+
+    emailInput.addEventListener('input', emailValidation);
+
     const emailObserver = new MutationObserver(function(e) {
       const previousEmailInputErrorIcon = document.getElementById('emailInputErrorIcon');
       if (e[0].target.innerHTML !== '') {
@@ -1077,6 +1111,19 @@
     const passwordRequirement = document.getElementById('passwordRequirements');
     passwordRequirement.tabIndex = -1;
 
+    // Insert custom sign up agreement text
+    const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
+    const termsAndConditionsText = document.getElementById('termsAndConditions');
+    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
+    termsAndConditionsText.innerHTML = `
+      By providing your email address, you consent to receive marketing communications from both Embark Student Corp. and Embark Student Foundation. 
+      You acknowledge and agree to Embark Student Corp’s. 
+      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon} and 
+      <a href="${privacyPolicyUrl}" target="_blank">Privacy Policy</a>${newTabIcon}. 
+      You may withdraw consent at any time by opting out. All your data is secure using SHA-256 encryption.
+    `;
+
     // Insert sign in link href
     const signInLink = document.getElementById('signInLink');
     signInLink.href = 'https://devsecure.embarkcorp.ca/signin';
@@ -1128,146 +1175,33 @@
     }
 
     //Formart phone
-    const isNumericInput = (event) => {
-      const key = event.keyCode;
-      return ((key >= 48 && key <= 57) || // Allow number line
-        (key >= 96 && key <= 105) // Allow number pad
-      );
-    };
+    const formatToPhone = (phoneNo) => {
+      let formattedNo;
+      const phoneDigits = phoneNo.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
+      const areaCode = phoneDigits.substring(0, 3);
+      const middle = phoneDigits.substring(3, 6);
+      const last = phoneDigits.substring(6, 10);
 
-    const isModifierKey = (event) => {
-      const key = event.keyCode;
-      return (event.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
-        (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
-        (key > 36 && key < 41) || // Allow left, up, right, down
-        (
-          // Allow Ctrl/Command + A,C,V,X,Z
-          (event.ctrlKey === true || event.metaKey === true) &&
-          (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)
-        )
+      if (phoneDigits.length > 6) { formattedNo = `(${areaCode}) ${middle}-${last}`; }
+      else if (phoneDigits.length > 3) { formattedNo = `(${areaCode}) ${middle}`; }
+      else if (phoneDigits.length > 0) { formattedNo = `(${areaCode}`; }
+
+      return formattedNo;
     };
 
     const enforceFormat = (event) => {
-      // Input must be of a valid number format or a modifier key, and not longer than ten digits
-      if (!isNumericInput(event) && !isModifierKey(event)) {
-        event.preventDefault();
-      }
+      let input = event.target.value;
+      input = input.replace(/[^\d()\-]/g, ''); // allow only digits (, ), -
+      input = input.replace(/([\(\)\-])\1+/g, '$1');
+      input = input.length <= 14 ? input : input.substring(0, 14);
+      input = formatToPhone(input);
+      event.target.value = input || '';
     };
 
-    const formatToPhone = (event) => {
-      if (isModifierKey(event)) { return; }
-
-      const input = event.target.value.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
-      const areaCode = input.substring(0, 3);
-      const middle = input.substring(3, 6);
-      const last = input.substring(6, 10);
-
-      if (input.length > 6) { event.target.value = `(${areaCode}) ${middle}-${last}`; }
-      else if (input.length > 3) { event.target.value = `(${areaCode}) ${middle}`; }
-      else if (input.length > 0) { event.target.value = `(${areaCode}`; }
-    };
-
-    phoneNumberInput.addEventListener('keydown', enforceFormat);
-    phoneNumberInput.addEventListener('keyup', formatToPhone);
-
-    // Add Google Analytics Event Listeners //
-
-    const formFields = [
-      { 'id':'inputPhoneNumber', 'field': 'phoneNumber' },
-      { 'id':'email', 'field': 'email' },
-      { 'id':'newPassword', 'field': 'password' },
-    ]
-
-    const inputButtons = [
-      { 'id':'continue', 'button': 'createAccount' },
-      { 'id':'historyBackCancelBtn', 'button': 'cancel' },
-    ]
-
-    function addGoogleAnalyticsInputEvent(field, interaction, key = null) {
-      gtag('event', 'sign_up_form_input_interaction', {
-        field,
-        interaction,
-        ...key ? { key } : {}
-      });
-    }
-
-    function addGoogleAnalyticsButtonEvent(button, action = null) {
-      gtag('event', 'sign_up_form_button_press', {
-        button,
-        ...action ? { action } : {}
-      });
-    }
-
-    formFields.forEach((formField) => {
-      const { id, field }  = formField || {}
-      const inputElement = document.getElementById(id)
-      inputElement.addEventListener('focus', addGoogleAnalyticsInputEvent(field, 'focus'))
-      inputElement.addEventListener('blur', addGoogleAnalyticsInputEvent(field, 'blur'))
-      inputElement.addEventListener('change', addGoogleAnalyticsInputEvent(field, 'change'))
-      inputElement.addEventListener('keydown', (e) => addGoogleAnalyticsInputEvent(field, 'keydown', e.key))
-    })
-
-    inputButtons.forEach((inputButton) => {
-      const { id, button } = inputButton || {}
-      const buttonElement = document.getElementById(id)
-      buttonElement.addEventListener('click', addGoogleAnalyticsButtonEvent(button, 'click'))
-      buttonElement.addEventListener('mouseenter', addGoogleAnalyticsButtonEvent(button, 'mouse-enter'))
-      buttonElement.addEventListener('mouseleave', addGoogleAnalyticsButtonEvent(button, 'mouse-leave'))
-    })
-
+    phoneNumberInput.addEventListener('input', enforceFormat);
+    
     const signInLinkElement = document.getElementById('signInLink')
-    signInLinkElement.addEventListener('click', () => gtag('event', 'sign_up_form_link_press'))
-
 
   </script>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GOOGLE_ANALYTICS_ID__ %>" height="0" width="0" style="display:none;visibility:hidden">
-    </iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {
-      if(f.fbq)return;
-      n=f.fbq=function(){
-        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;
-      n.push=n;
-      n.loaded=!0;
-      n.version='2.0';
-      n.queue=[];
-      t=b.createElement(e);
-      t.async=!0;
-      t.src=v;
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }
-    (window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '569865215232570');
-    fbq('track', 'DigitalPortalStart');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-  <!-- Pinterest Tag -->
-  <script>
-    pintrk('track', 'search');
-  </script>
-  <!-- end Pinterest Tag -->
-  <!-- Google Pixel Code-->
-  <script>
-    gtag('event', 'conversion', {
-      'allow_custom_scripts': true,
-      'send_to': 'DC-13222589/portstrt/embar0+standard'
-    });
-  </script>
-  <noscript>
-    <img src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?" width="1" height="1" alt=""/>
-  </noscript>
-  <!-- End Google Pixel Code -->
 </body>
 </html>
