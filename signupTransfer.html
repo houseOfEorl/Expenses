@@ -838,11 +838,11 @@
       history.back();
     };
 
-    const phoneNumberInput = document.getElementById('inputPhoneNumber');
-    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[0];
-
     const emailInput = document.getElementById('email');
-    const emailTextBox = document.getElementsByClassName('TextBox')[1];
+    const emailTextBox = document.getElementsByClassName('TextBox')[0];
+
+    const phoneNumberInput = document.getElementById('inputPhoneNumber');
+    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[1];
 
     const newPasswordInput = document.getElementById('newPassword');
     const Password = document.getElementsByClassName('Password')[0];
@@ -931,7 +931,7 @@
     }
 
     // Handle phone input error state
-    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[0];
+    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[1];
     const phoneNumberErrorObserver = new MutationObserver(function(e) {
       const previousPhoneNumberInputErrorIcon = document.getElementById('phoneNumberInputErrorIcon');
       if (e[0].target.innerHTML !== '') {
@@ -964,7 +964,7 @@
     phoneNumberErrorObserver.observe(defaultPhoneNumberError, { childList: true });
 
     // Handle email input error state
-    const defaultEmailError = document.getElementsByClassName('error itemLevel')[1];
+    const defaultEmailError = document.getElementsByClassName('error itemLevel')[0];
     const emailObserver = new MutationObserver(function(e) {
       const previousEmailInputErrorIcon = document.getElementById('emailInputErrorIcon');
       if (e[0].target.innerHTML !== '') {
