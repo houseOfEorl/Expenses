@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
-  <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
-  <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <link rel="apple-touch-icon" href="<%= __BASEURL__ %>/icons/favicon-apple.png">
+  <link rel="icon" href="<%= __BASEURL__ %>/favicon.ico">
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i) {
@@ -24,14 +24,14 @@
   </script>
   <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= __GOOGLE_ANALYTICS_ID__ %>"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13222589"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-    gtag('config', '<%= __GOOGLE_ANALYTICS_ID__ %>');
+    gtag('config', 'DC-13222589');
 </script>
   <!-- End of global snippet: Please do not remove -->
   <!-- Pinterest Tag -->
@@ -106,6 +106,7 @@
       justify-content: center;
       min-height: 100%;
     }
+
     .leftContent {
       flex: .6;
       background-color: #594FF0;
@@ -116,7 +117,7 @@
     }
 
     .leftLogoContainer {
-      position: fixed;
+      position: absolute;
       top: 1rem;
       left: 2rem;
     }
@@ -124,15 +125,12 @@
     .leftImageContainer {
       position: absolute;
       width: 100%;
-      z-index: 0;
     }
 
     .leftTextContainer {
-      position: fixed;
-      margin-top: 8rem;
+      margin-top: 10rem;
       margin-left: 10%;
       max-width: 27rem;
-      z-index: 1;
     }
 
     .leftHeader {
@@ -155,10 +153,10 @@
     }
 
     .leftDesignLine {
-      max-width: 95rem;
-      width: 110%;
+      max-width: 105rem;
+      width: 115%;
       position: fixed;
-      bottom: -14rem;
+      bottom: -18rem;
       left: 0;
       opacity: 1;
       transition: left .5s ease-in-out;
@@ -170,12 +168,10 @@
       width: max(40%, 25rem);
       max-width: 40rem;
       position: fixed;
-      left: 15%;
       bottom: 0rem;
       opacity: 1;
       transition: opacity .5s ease-in-out;
       transition: left .5s ease-in-out;
-      transition: width .5s ease-in-out;
     }
 
     .rightContent {
@@ -201,6 +197,7 @@
       padding: 0 1.5rem;
       line-height: 1.5rem;
     }
+
     .content {
       flex-grow: 1;
       max-width: 50rem;
@@ -418,8 +415,6 @@
     }
 
     .errorIcon,
-    #firstNameLabel--error,
-    #lastNameLabel--error,
     #emailLabel--error,
     #passwordLabel--error,
     #phoneNumberLabel--error {
@@ -498,7 +493,7 @@
     }
 
     #continue::after {
-      content: url('https://devsecure.embarkcorp.ca/templates/assets/images/padlock-white.svg');
+      content: url('<%= __BASEURL__ %>/templates/assets/images/padlock-white.svg');
       margin-left: .5rem;
     }
 
@@ -601,13 +596,13 @@
     }
 
     .signIn {
-      border-top: 1px solid rgba(28, 20, 99, 0.25);
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-      text-align: start;
-      max-width: 50rem;
-      margin: 1.5rem 1.5rem 4rem;
-      padding-top: 1rem;
+    border-top: 1px solid rgba(28, 20, 99, 0.25);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: start;
+    max-width: 50rem;
+    margin: 1.5rem 1.5rem 4rem;
+    padding-top: 1rem;
     }
 
     #simplemodal-overlay {
@@ -678,43 +673,45 @@
       }
     }
 
-    @media screen and (max-width: 50em) {
-      body {
-        background-color: #FFFFFF;
-        padding: 0;
+    @media screen and (min-width: 80em) {
+      .leftDesignLine {
+        left: -35rem;
+        bottom: -12rem;
+        transition: left .5s ease-in-out;
+        transition: bottom .5s ease-in-out;
       }
 
-      .container {
-        padding: 0;
-      }
-
-      .formContainer {
-        padding: 0 1rem;
-        width: 100%;
-        max-width: none;
-      }
-
-      .leftImageContainer {
-        display: none;
-      }
-    }
-
-    @media screen and (min-width: 64em) and (max-height: 40em) {
-      .leftDesignLine, .leftDesignBaby {
-        bottom: -200%;
-        opacity: 0;
+      .leftDesignBaby {
+        left: 15%;
       }
 
       .leftTextContainer {
-        position: fixed;
-        transition: margin-left .5s ease-in-out;
-        margin-left: 8%;
+        max-width: 25rem ease-in-out;
+      }
     }
 
-    .leftLogoContainer {
-        position: fixed;
+
+    @media screen and (min-width: 110em) {
+      .leftDesignBaby {
+        left: 25%;
+      }
     }
-  }
+
+
+
+    @media screen and (max-width: 80em) {
+      .leftDesignBaby {
+        left: 10%;
+      }
+
+      .leftDesignLine {
+        bottom: -12rem;
+      }
+
+      .rightContent {
+        flex: .55;
+      }
+    }
 
     @media screen and (max-width: 64em) {
       .leftContent {
@@ -732,57 +729,37 @@
       }
     }
 
-    @media screen and (min-width: 80em) and (min-height: 40em) {
-      .leftDesignLine {
-        left: -25rem;
-        bottom: -12rem;
-        transition: left .5s ease-in-out;
-        transition: bottom .5s ease-in-out;
-      }
-
-      .leftTextContainer {
-        max-width: 25rem;
-      }
-    }
-
-    @media screen and (min-width: 64em) and (max-width: 80em) {
-      .rightContent {
-        flex: .55;
-      }
-    }
-
-    @media screen and (min-width: 90em) and (max-height: 50em) {
-      .leftDesignLine {
-        max-width: 75rem;
-      }
-    }
-
-    @media screen and (min-width: 90em) and (min-height: 50em) {
-      .leftTextContainer {
-        max-width: 45rem;
-      }
-
-      .leftHeader {
-        font-size: 3rem;
-        line-height: 4rem;
-      }
-      .leftBodyText {
-        font-size: 1.5rem;
-        line-height: 2rem;
-      }
-    }
-
-    @media screen and (min-width: 90em) and (min-height: 50em) and (max-height: 62.5em) {
+    @media screen and (min-width: 64em) and (max-height: 50em) {
       .leftDesignBaby {
-        max-width: 30rem;
-        transition: width .5s ease-in-out;
+        left: 200%;
+        opacity: 0;
+      }
+
+      .leftDesignLine {
+        bottom: -200%;
+        opacity: 0;
       }
     }
 
-    @media screen and (min-height: 40em) and (max-height: 50em) {
-      .leftDesignBaby {
-        width: max(48vh, 15rem);
-        left: 20%
+    @media screen and (max-width: 50em) {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .formContainer {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: none;
+      }
+
+      .backgroundImageRight,
+      .backgroundImageLeft {
+        display: none;
       }
     }
   </style>
@@ -795,23 +772,23 @@
       <div class="leftLogoContainer">
         <img
           data-tenant-branding-logo="true"
-          src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_white.svg"
+          src="<%= __BASEURL__ %>/templates/assets/logo/embark_white.svg"
           alt="Embark"
         >
       </div>
       <div class="leftTextContainer">
-        <div class="leftHeader">Activate your account</div>
-        <div class='leftBodyText'>Get digital access to your Knowledge First Financial plan(s) by signing up!</div>
+        <div class="leftHeader">ACTIVEZ VOTRE COMPTE NUMÉRIQUE</div>
+        <div class='leftBodyText'>Merci d’avoir choisi Embark et d’avoir transféré vos régimes! Commencez le processus d’activation en vous inscrivant.</div>
       </div>
       <div class="leftImageContainer">
         <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/stripe.svg"
+          src="<%= __BASEURL__ %>/templates/assets/images/stripe.svg"
           alt="Stripe behind baby"
           class="leftDesignLine"
         >
         <img
-          src="https://raw.githubusercontent.com/houseOfEorl/Expenses/master/locker.svg"
-          alt="baby"
+          src="https://raw.githubusercontent.com/houseOfEorl/Expenses/4f03b65c413e7cd1299ee129726cd7d4b2f062f6/locker.svg"
+          alt="locker"
           class="leftDesignBaby"
         >
       </div>
@@ -822,16 +799,16 @@
           <div class="rightLogoContainer">
             <img
               data-tenant-branding-logo="true"
-              src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+              src="<%= __BASEURL__ %>/templates/assets/logo/embark_violet.svg"
               alt="Embark"
             >
           </div>
           <h1 id="headline">
-            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/padlock.svg"
+            <img src="<%= __BASEURL__ %>/templates/assets/images/padlock.svg"
             alt="padlock" 
             class="formHeaderIcon"
             />
-            Sign up
+            Je m’inscris
           </h1>
           <div id="serverError" class="errorAlert">
             <span class="material-icons">error</span>
@@ -839,9 +816,8 @@
           </div>
           <div id="api" data-name="SelfAsserted"></div>
         </div>
-        <div id="termsAndConditions"></div>
         <div class="signIn">
-          Have an account? <a id="signInLink">Sign in</a>
+          Vous avez déjà un compte? <a id="signInLink">Connectez-vous</a>
         </div>
       </div>
     </div>
@@ -849,7 +825,7 @@
 
   <script>
 
-    function convertToSentenceCase(sentence) {
+function convertToSentenceCase(sentence) {
       if (!sentence || typeof sentence !== 'string') return '';
       const lowercase = sentence.trim().toLowerCase();
       const endsWithPeriod = lowercase.endsWith('.');
@@ -862,17 +838,48 @@
       history.back();
     };
 
-    const emailInput = document.getElementById('email');
-    const emailTextBox = document.getElementsByClassName('TextBox')[0];
+    // Add Analytics Event Listeners //
+
+    const googleAnalyticsCategory = 'Digital Access'
+
+    const formButtons = [
+      { 'id':'continue', 'button': 'createAccount', googleAnalyticsLabel: 'ACTVN - Create account',
+        googleAnalyticsActions: {
+          'click': 'ACTVN - Create account'  
+        }
+      }
+    ]
+
+    function sendGoogleAnalyticsOnMount(event, label) {
+      gtag('event', event, { category: googleAnalyticsCategory, label });
+    }
+
+    function sendGoogleAnalyticsInputEvent(event, label) {
+      gtag('event', event, { category: googleAnalyticsCategory, label });
+    }
+
+    formButtons.forEach((formButton) => {
+      const { id, button, googleAnalyticsActions, googleAnalyticsLabel  } = formButton || {}
+      const buttonElement = document.getElementById(id)
+      const eventTypes = ['click']
+      eventTypes.forEach((eventType) => {
+        buttonElement.addEventListener(eventType, () => sendGoogleAnalyticsInputEvent(googleAnalyticsActions[eventType], googleAnalyticsLabel))
+      })
+    })
+
+    // Send GA event on mount
+    document.addEventListener('DOMContentLoaded', () => sendGoogleAnalyticsOnMount('ACTVN-Signup', 'ACTVN-Signup'))
 
     const phoneNumberInput = document.getElementById('inputPhoneNumber');
-    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[1];
+    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[0];
+
+    const emailInput = document.getElementById('email');
+    const emailTextBox = document.getElementsByClassName('TextBox')[1];
 
     const newPasswordInput = document.getElementById('newPassword');
     const Password = document.getElementsByClassName('Password')[0];
 
     emailInput.setAttribute('maxlength', 40);
-    phoneNumberInput.setAttribute('maxlength', 14);
 
     // Remove email input autofocus
     const focusFix = document.getElementById('focusFix');
@@ -888,11 +895,13 @@
     passwordRequirements.setAttribute('id', 'passwordRequirements');
     passwordRequirements.setAttribute('class', 'textInfo');
     passwordRequirements.innerHTML = 
-    `Your password must be a minimum of 8 characters, contain both uppercase and lowercase, and 
-    at least one number and special character (like ! @ # ?).`;
+    `Votre mot de passe doit comporter au moins 8 caractères, contenir des majuscules et des minuscules, et
+    au moins un chiffre et un caractère spécial (comme ! @ # ?).`;
     buttons.insertAdjacentElement('afterend', passwordRequirements);
 
     //// ERROR MESSAGES
+
+
     // Insert email input error message
     const emailError = document.createElement('div');
     emailError.setAttribute('id', 'emailError');
@@ -937,7 +946,7 @@
 
     // Display error banner for multiple input fiield errors
 
-    function checkForMultipleErrors() {
+      function checkForMultipleErrors() {
       const itemLevelErrorElements = Array.from(document.getElementsByClassName('error itemLevel'))
       const serverError = document.getElementById('serverError');
       const hasMultipleItemLevelErrorMessages = itemLevelErrorElements && itemLevelErrorElements.filter((errorElement) => {
@@ -946,15 +955,14 @@
 
       if (serverError.style.display = 'none' && hasMultipleItemLevelErrorMessages) {
         serverError.style.display = 'flex';
-        const serverErrorMessage = document.getElementById('serverErrorMessage');
-        return serverErrorMessage.innerHTML = 'Please enter all details to continue.'
+        return serverError.innerHTML = 'Veuillez saisir tous les détails pour continuer.'
       }
 
       return false
     }
 
     // Handle phone input error state
-    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[1];
+    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[0];
     const phoneNumberErrorObserver = new MutationObserver(function(e) {
       const previousPhoneNumberInputErrorIcon = document.getElementById('phoneNumberInputErrorIcon');
       if (e[0].target.innerHTML !== '') {
@@ -987,7 +995,7 @@
     phoneNumberErrorObserver.observe(defaultPhoneNumberError, { childList: true });
 
     // Handle email input error state
-    const defaultEmailError = document.getElementsByClassName('error itemLevel')[0];
+    const defaultEmailError = document.getElementsByClassName('error itemLevel')[1];
     const emailRegEx = new RegExp(emailInput.getAttribute('pattern')) || new RegExp("^[a-zA-Z0-9.!#$%&'^_`{}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
     function emailValidation(e) {
       const email = e.target.value;
@@ -1099,9 +1107,9 @@
     newPasswordInput.setAttribute('placeholder', " ");
     phoneNumberInput.setAttribute('placeholder', " ");
 
-    emailLabel.innerHTML = 'Email';
-    newPasswordLabel.innerHTML = 'Create a password';
-    phoneNumberLabel.innerHTML = 'Mobile number';
+    emailLabel.innerHTML = 'Courriel';
+    newPasswordLabel.innerHTML = 'Créer un mot de passe';
+    phoneNumberLabel.innerHTML = 'Numéro de téléphone';
 
     emailInput.insertAdjacentElement('afterend', emailLabel);
     newPasswordInput.insertAdjacentElement('afterend', newPasswordLabel);
@@ -1111,22 +1119,9 @@
     const passwordRequirement = document.getElementById('passwordRequirements');
     passwordRequirement.tabIndex = -1;
 
-    // Insert custom sign up agreement text
-    const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
-    const termsAndConditionsText = document.getElementById('termsAndConditions');
-    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
-    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
-    termsAndConditionsText.innerHTML = `
-      By providing your email address, you consent to receive marketing communications from both Embark Student Corp. and Embark Student Foundation. 
-      You acknowledge and agree to Embark Student Corp’s. 
-      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon} and 
-      <a href="${privacyPolicyUrl}" target="_blank">Privacy Policy</a>${newTabIcon}. 
-      You may withdraw consent at any time by opting out. All your data is secure using SHA-256 encryption.
-    `;
-
     // Insert sign in link href
     const signInLink = document.getElementById('signInLink');
-    signInLink.href = 'https://devsecure.embarkcorp.ca/signin';
+    signInLink.href = '<%= __BASEURL__ %>/signin?locale=fr-CA';
 
     // Handle continue button loading state
     const continueButton = document.getElementById('continue');
@@ -1157,7 +1152,7 @@
     historyBackCancelBtn.setAttribute('id', 'historyBackCancelBtn');
     historyBackCancelBtn.setAttribute('formnovalidate', '')
     historyBackCancelBtn.setAttribute('aria-label', 'Cancel')
-    historyBackCancelBtn.innerHTML = 'Cancel';
+    historyBackCancelBtn.innerHTML = 'Annuler';
     historyBackCancelBtn.onclick = function() {
       goBack();
     };
@@ -1199,9 +1194,103 @@
     };
 
     phoneNumberInput.addEventListener('input', enforceFormat);
+
+    const formFields = [
+      { 'id':'inputPhoneNumber', 'field': 'phoneNumber' },
+      { 'id':'email', 'field': 'email' },
+      { 'id':'newPassword', 'field': 'password' },
+    ]
+
+    const inputButtons = [
+      { 'id':'continue', 'button': 'createAccount' },
+      { 'id':'historyBackCancelBtn', 'button': 'cancel' },
+    ]
+
+    function addGoogleAnalyticsInputEvent(field, interaction, key = null) {
+      gtag('event', 'sign_up_form_input_interaction', {
+        field,
+        interaction,
+        ...key ? { key } : {}
+      });
+    }
+
+    function addGoogleAnalyticsButtonEvent(button, action = null) {
+      gtag('event', 'sign_up_form_button_press', {
+        button,
+        ...action ? { action } : {}
+      });
+    }
+
+    formFields.forEach((formField) => {
+      const { id, field }  = formField || {}
+      const inputElement = document.getElementById(id)
+      inputElement.addEventListener('focus', addGoogleAnalyticsInputEvent(field, 'focus'))
+      inputElement.addEventListener('blur', addGoogleAnalyticsInputEvent(field, 'blur'))
+      inputElement.addEventListener('change', addGoogleAnalyticsInputEvent(field, 'change'))
+      inputElement.addEventListener('keydown', (e) => addGoogleAnalyticsInputEvent(field, 'keydown', e.key))
+    })
+
+    inputButtons.forEach((inputButton) => {
+      const { id, button } = inputButton || {}
+      const buttonElement = document.getElementById(id)
+      buttonElement.addEventListener('click', addGoogleAnalyticsButtonEvent(button, 'click'))
+      buttonElement.addEventListener('mouseenter', addGoogleAnalyticsButtonEvent(button, 'mouse-enter'))
+      buttonElement.addEventListener('mouseleave', addGoogleAnalyticsButtonEvent(button, 'mouse-leave'))
+    })
     
     const signInLinkElement = document.getElementById('signInLink')
+    signInLinkElement.addEventListener('click', () => gtag('event', 'sign_up_form_link_press'))
+
 
   </script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GOOGLE_ANALYTICS_ID__ %>" height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {
+      if(f.fbq)return;
+      n=f.fbq=function(){
+        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }
+    (window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '569865215232570');
+    fbq('track', 'DigitalPortalStart');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+  <!-- Pinterest Tag -->
+  <script>
+    pintrk('track', 'search');
+  </script>
+  <!-- end Pinterest Tag -->
+  <!-- Google Pixel Code-->
+  <script>
+    gtag('event', 'conversion', {
+      'allow_custom_scripts': true,
+      'send_to': 'DC-13222589/portstrt/embar0+standard'
+    });
+  </script>
+  <noscript>
+    <img src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?" width="1" height="1" alt=""/>
+  </noscript>
+  <!-- End Google Pixel Code -->
 </body>
 </html>
