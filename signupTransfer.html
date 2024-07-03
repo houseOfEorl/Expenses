@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <title>Embark</title>
 
@@ -10,44 +11,45 @@
   <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
   <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
   <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <%= __VWO__ %>
   <!-- Google Tag Manager -->
   <script>
-    (function(w,d,s,l,i) {
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','<%= __GOOGLE_ANALYTICS_ID__ %>');
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', '<%= __GOOGLE_ANALYTICS_ID__ %>');
   </script>
   <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13222589"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){
+    function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
     gtag('config', 'DC-13222589');
-</script>
+  </script>
   <!-- End of global snippet: Please do not remove -->
   <!-- Pinterest Tag -->
   <script>
-    !function(e){
-      if(!window.pintrk){
+    !function (e) {
+      if (!window.pintrk) {
         window.pintrk = function () {
           window.pintrk.queue.push(Array.prototype.slice.call(arguments))
         };
-        var n=window.pintrk;n.queue=[],n.version="3.0";
-        var t=document.createElement("script");t.async=!0,t.src=e;
-        var r=document.getElementsByTagName("script")[0];
-        r.parentNode.insertBefore(t,r)
+        var n = window.pintrk; n.queue = [], n.version = "3.0";
+        var t = document.createElement("script"); t.async = !0, t.src = e;
+        var r = document.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(t, r)
       }
     }("https://s.pinimg.com/ct/core.js");
-    pintrk('load', '2612798461565', {em: '<user_email_address>'});
+    pintrk('load', '2612798461565', { em: '<user_email_address>' });
     pintrk('page');
   </script>
   <noscript>
@@ -68,171 +70,95 @@
       right: 0;
     }
 
-    *, *::after, *::before {
+    *,
+    *::after,
+    *::before {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body, html {
+    body,
+    html {
       height: 100%;
     }
 
     body {
-      color: #000000;
-      font-family: 'Motiva Sans', 'Verdana', sans-serif;
-    }
-
-    input, button {
-      font-family: 'Motiva Sans', 'Verdana', sans-serif;
-    }
-
-    .formContainer {
       background-color: #FFFFFF;
+      color: #000000;
       display: flex;
-      flex-direction: column;
-      padding: 0 1rem;
-      z-index: 1;
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
+      height: 100%;
+      justify-content: center;
     }
 
-    #api > div.heading,
-    #api > div.heading > h1[role="heading"] {
-      display: none !important;
+    input,
+    button {
+      font-family: 'Motiva Sans', 'Verdana', sans-serif;
     }
 
     .container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      min-height: 100%;
-    }
-
-    .leftContent {
-      flex: .6;
-      background-color: #594FF0;
-      position: relative;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      display: flex;
-    }
-
-    .leftLogoContainer {
-      position: absolute;
-      top: 1rem;
-      left: 2rem;
-    }
-
-    .leftImageContainer {
-      position: absolute;
-      width: 100%;
-    }
-
-    .leftTextContainer {
-      margin-top: 10rem;
-      margin-left: 10%;
-      max-width: 27rem;
-    }
-
-    .leftHeader {
-      color: #FFFFFF;
-      font-size: 2.25rem;
-      font-family: 'Motiva Sans', 'Verdana', sans-serif;
-      font-weight: 700;
-      line-height: 40px;
-      word-wrap: break-word;
-      margin-bottom: 1rem;
-    }
-
-    .leftBodyText {
-      color: #FFFFFF;
-      font-size: 1rem;
-      font-family: 'Motiva Sans', 'Verdana', sans-serif;
-      font-weight: 400;
-      line-height: 24px;
-      word-wrap: break-word
-    }
-
-    .leftDesignLine {
-      max-width: 105rem;
-      width: 115%;
-      position: fixed;
-      bottom: -18rem;
-      left: 0;
-      opacity: 1;
-      transition: left .5s ease-in-out;
-      transition: bottom .5s ease-in-out;
-      transition: opacity .5s ease-in-out;
-    }
-
-    .leftDesignBaby {
-      width: max(40%, 25rem);
-      max-width: 40rem;
-      position: fixed;
-      bottom: 0rem;
-      opacity: 1;
-      transition: opacity .5s ease-in-out;
-      transition: left .5s ease-in-out;
-    }
-
-    .rightContent {
-      flex: 0.4;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      transition: flex .5s;
       background-color: #FFFFFF;
-    }
-
-    .rightLogoContainer {
-      display: none;
-    }
-
-    .formHeaderIcon {
-      margin-right: 0.5rem;
-    }
-
-    .subHeader {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 0 1.5rem;
-      line-height: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0 1.5rem;
+      max-width: 40rem;
     }
 
     .content {
       flex-grow: 1;
-      max-width: 50rem;
     }
 
+    .banner {
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+
     #containerTitle {
-		  margin-bottom: 1rem;
-		  font-weight: 700;
-		  font-size: 0.875rem;
-		  line-height: 1rem;
-		  letter-spacing: 0.005em;
-		  color: #000000;
-	  }
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      line-height: 1rem;
+      letter-spacing: 0.005em;
+      color: #000000;
+      text-align: center;
+    }
 
     #backButton {
       margin: 2rem 0 4.875rem;
     }
 
-    .exitBtnContainer {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-    }
-
     #headline {
       color: #1C1463;
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 900;
       letter-spacing: -0.01em;
       line-height: 2rem;
+      margin: 0 0 1rem;
       text-align: center;
+    }
+
+    #containerSubTitle {
+      margin-bottom: 1rem;
+      font-family: Motiva Sans, Verdana, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      line-height: 1.5rem;
+    }
+
+    #phoneCard {
+      display: -ms-flexbox;
       display: flex;
-      justify-content: center;
+      -ms-flex-align: center;
       align-items: center;
-      margin-top: 6rem;
+      padding: .25rem 1rem;
+      gap: .5rem;
+      height: 4.5rem;
+      background: linear-gradient(0deg, rgba(28, 20, 99, .05), rgba(28, 20, 99, .05)), #fff;
+      border-radius: .75rem;
+      margin-bottom: 2rem;
     }
 
     #description {
@@ -241,8 +167,14 @@
       margin: 0 0 2rem;
     }
 
-    h2, label, .intro, .helpLink, .buttons:first-child, 
-    .error.itemLevel, .error.pageLevel, .verifying-modal {
+    h2,
+    label,
+    .intro,
+    .helpLink,
+    .buttons:first-child,
+    .error.itemLevel,
+    .error.pageLevel,
+    .verifying-modal {
       display: none !important;
     }
 
@@ -251,11 +183,13 @@
       border-bottom: 1px solid #594FF0;
       font-weight: 900;
       letter-spacing: 0.005em;
+      line-height: 1.5rem;
       outline: none;
       text-decoration: none;
     }
 
-    a:hover, a:focus {
+    a:hover,
+    a:focus {
       color: #3A31A9;
       border-bottom: 1px dashed #3A31A9;
     }
@@ -268,8 +202,7 @@
     .attr {
       display: flex;
       flex-direction: column;
-      margin-bottom: 1.5rem;
-      margin: 0 1.5rem 1.5rem;
+      margin-bottom: 3rem;
     }
 
     ul {
@@ -278,33 +211,6 @@
 
     .TextBox,
     .Password {
-      height: 4rem;
-    }
-
-    #passwordRequirements {
-      margin-left: .125rem;
-    }
-
-    .TextBox, #passwordRequirements {
-      margin-bottom: 1rem;
-    }
-
-    #passwordRequirements, .phoneNumberText {
-      font-size: .75rem;
-    }
-
-    .phoneNumberIcon {
-      color: #594FF0;
-      margin-right: .25rem;
-      transform: scale(.75);
-    }
-
-    .phoneNumberTextContainer {
-      background-color: #f3f3f7;
-      padding: 0.75rem 0.5rem;
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: flex-start;
       margin-bottom: 1.5rem;
     }
 
@@ -312,19 +218,13 @@
       position: relative;
     }
 
-    .CheckboxMultiSelect > .attrEntry {
-	    display: grid;
+    .CheckboxMultiSelect>.attrEntry {
+      display: grid;
       grid-template-columns: 1em auto;
       gap: 0.5em;
     }
 
-    .termsCheckbox--error {
-      appearance: none;
-      outline: 2px solid #FA4F00;
-      border-radius: .25rem;
-    }
-
-    .attrEntry > input:not([type="checkbox"]) {
+    .attrEntry>input:not([type="checkbox"]) {
       background-color: #FFFFFF;
       border: 1px solid rgba(28, 20, 99, 0.25);
       border-radius: 0.5rem;
@@ -339,7 +239,7 @@
       width: 100%;
     }
 
-    .attrEntry > span {
+    .attrEntry>span {
       position: absolute;
       top: calc(100% - 1.9rem);
       left: 0;
@@ -357,43 +257,37 @@
       z-index: 1;
     }
 
-    .attrEntry > input:-webkit-autofill,
-    .attrEntry > input:-webkit-autofill:hover,
-    .attrEntry > input:-webkit-autofill:focus,
-    .attrEntry > input:-webkit-autofill:active {
-		  -webkit-box-shadow: 0 0 0 62.5rem #FFFFFF inset;
+    .attrEntry>input:-webkit-autofill,
+    .attrEntry>input:-webkit-autofill:hover,
+    .attrEntry>input:-webkit-autofill:focus,
+    .attrEntry>input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 62.5rem #FFFFFF inset;
       background-color: #FFFFFF !important;
       background-clip: content-box !important;
-	  }
+    }
 
-    .attrEntry > input:not([type="checkbox"]):focus,
-    .attrEntry > input:not([type="checkbox"]):hover {
+    .attrEntry>input:not([type="checkbox"]):focus {
       border: 2px solid #594FF0;
       margin: 0;
       padding-left: 1rem;
     }
 
-    .attrEntry > input:focus + span,
-    .attrEntry > input:hover + span,
-    .attrEntry > input:focus + i + span,
-    .attrEntry > input:hover + i + span,
-    .attrEntry > input:not(:placeholder-shown) + span,
-    .attrEntry > input:not(:placeholder-shown) + i + span {
+    .attrEntry>input:focus+span,
+    .attrEntry>input:not(:placeholder-shown)+span {
       font-size: 0.875rem;
       letter-spacing: 0.005em;
       top: calc(100% - 3.85rem);
       transform: translateY(-50%) !important;
     }
 
-    .attrEntry > input:not(:focus)::placeholder {
+    .attrEntry>input:not(:focus)::placeholder {
       opacity: 0;
     }
 
-    .attrEntry > #new-password-field-label:not(:focus) {
+    .attrEntry>#new-password-field-label:not(:focus) {
       transform: translateY(-50%);
     }
 
-    .errorIcon,
     #emailClear,
     #passwordToggle {
       cursor: pointer;
@@ -409,24 +303,24 @@
       user-select: none;
     }
 
-    .errorIcon {
-      pointer-events: none;
-      top: calc(100% - 2.75rem);
-    }
-
-    .errorIcon,
     #emailLabel--error,
     #passwordLabel--error,
-    #phoneNumberLabel--error {
+    #firstNameLabel--error,
+    #lastNameLabel--error,
+    #phoneNoLabel--error {
       color: #FA4F00;
     }
 
-    #passwordRequirements {
+    #passwordRequirement {
       font-size: 0.875rem;
       line-height: 1.25rem;
     }
 
-    .newTabIcon  {
+    #passwordRequirement {
+      margin: -1rem 0 1.5rem;
+    }
+
+    .newTabIcon {
       color: #594FF0;
       font-size: 1rem;
       vertical-align: middle;
@@ -446,7 +340,7 @@
 
     #signUpAgreement {
       margin-left: 0.5rem;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       line-height: 1.25rem;
     }
 
@@ -455,7 +349,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-bottom: 1.5rem;
     }
 
     button {
@@ -482,23 +375,8 @@
       width: 2.25rem;
     }
 
-    #continue, .Password {
-      margin-bottom: 0.5rem;
-    }
-
     #continue {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #continue::after {
-      content: url('https://devsecure.embarkcorp.ca/templates/assets/images/padlock-white.svg');
-      margin-left: .5rem;
-    }
-
-    .Password--error, .Terms--error {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
     #continue,
@@ -541,20 +419,20 @@
       outline-offset: 3px;
     }
 
-    #historyBackCancelBtn,
+    #cancel,
     .iconButtonOutlined {
       background: transparent;
       color: #594FF0;
     }
 
-    #historyBackCancelBtn:hover,
-    #historyBackCancelBtn:focus,
+    #cancel:hover,
+    #cancel:focus,
     .iconButtonOutlined:hover,
     .iconButtonOutlined:focus {
       border: 2px solid #594FF0;
     }
 
-    #historyBackCancelBtn:active {
+    #cancel:active {
       background: #C3C0FF;
       color: #1C1463;
       outline: none;
@@ -566,13 +444,13 @@
     }
 
     .errorAlert {
-      background-color: #ffede8;
+      background-color: #FFEDE8;
       border-radius: 0.75rem;
       color: #000000;
       display: none;
       font-size: 0.875rem;
       line-height: 1.25rem;
-      margin: 1.5rem 1.5rem .5rem;
+      margin-bottom: 1.5rem;
       padding: 1rem;
     }
 
@@ -596,13 +474,13 @@
     }
 
     .signIn {
-    border-top: 1px solid rgba(28, 20, 99, 0.25);
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: start;
-    max-width: 50rem;
-    margin: 1.5rem 1.5rem 4rem;
-    padding-top: 1rem;
+      border-top: 1px solid rgba(28, 20, 99, 0.25);
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.25rem;
+      margin-top: 3rem;
+      padding: 1.25rem 0 3rem;
+      text-align: start;
     }
 
     #simplemodal-overlay {
@@ -634,32 +512,26 @@
       width: 1rem;
     }
 
-    #termsAndConditions {
-      font-size: 0.75rem;
-      margin:0 1.5rem;
-      max-width: 50rem;
-      line-height: 1rem;
-    }
-
-    .CheckboxMultiSelect {
-      display: none;
-    }
-
     .loading-spinner div:nth-child(1) {
       animation-delay: -0.45s;
     }
+
     .loading-spinner div:nth-child(2) {
       animation-delay: -0.375s;
     }
+
     .loading-spinner div:nth-child(3) {
       animation-delay: -0.30s;
     }
+
     .loading-spinner div:nth-child(4) {
       animation-delay: -0.225s;
     }
+
     .loading-spinner div:nth-child(5) {
       animation-delay: -0.15s;
     }
+
     .loading-spinner div:nth-child(6) {
       animation-delay: -0.075s;
     }
@@ -668,98 +540,9 @@
       0% {
         transform: rotate(0deg);
       }
+
       100% {
         transform: rotate(360deg);
-      }
-    }
-
-    @media screen and (min-width: 80em) {
-      .leftDesignLine {
-        left: -35rem;
-        bottom: -12rem;
-        transition: left .5s ease-in-out;
-        transition: bottom .5s ease-in-out;
-      }
-
-      .leftDesignBaby {
-        left: 15%;
-      }
-
-      .leftTextContainer {
-        max-width: 25rem ease-in-out;
-      }
-    }
-
-
-    @media screen and (min-width: 110em) {
-      .leftDesignBaby {
-        left: 25%;
-      }
-    }
-
-
-
-    @media screen and (max-width: 80em) {
-      .leftDesignBaby {
-        left: 10%;
-      }
-
-      .leftDesignLine {
-        bottom: -12rem;
-      }
-
-      .rightContent {
-        flex: .55;
-      }
-    }
-
-    @media screen and (max-width: 64em) {
-      .leftContent {
-        display: none;
-        flex: none;
-      }
-      .rightContent {
-        flex: 1;
-      }
-      .rightLogoContainer {
-        display: flex;
-        position: absolute;
-        left: 2rem;
-        top: 1rem;
-      }
-    }
-
-    @media screen and (min-width: 64em) and (max-height: 50em) {
-      .leftDesignBaby {
-        left: 200%;
-        opacity: 0;
-      }
-
-      .leftDesignLine {
-        bottom: -200%;
-        opacity: 0;
-      }
-    }
-
-    @media screen and (max-width: 50em) {
-      body {
-        background-color: #FFFFFF;
-        padding: 0;
-      }
-
-      .container {
-        padding: 0;
-      }
-
-      .formContainer {
-        padding: 0 1rem;
-        width: 100%;
-        max-width: none;
-      }
-
-      .backgroundImageRight,
-      .backgroundImageLeft {
-        display: none;
       }
     }
   </style>
@@ -768,120 +551,63 @@
 <body>
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
   <div class="container">
-    <div class="leftContent">
-      <div class="leftLogoContainer">
-        <img
-          data-tenant-branding-logo="true"
-          src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_white.svg"
-          alt="Embark"
-        >
+    <div class="content">
+      <div class="banner">
+        <img src="https://devsecure.embarkcorp.ca/src/assets/icons/embark_en.svg" alt="Home">
       </div>
-      <div class="leftTextContainer">
-        <div class="leftHeader">ACTIVEZ VOTRE COMPTE NUMÉRIQUE</div>
-        <div class='leftBodyText'>Merci d’avoir choisi Embark et d’avoir transféré vos régimes! Commencez le processus d’activation en vous inscrivant.</div>
+      <h1 id="headline">
+        Create your account
+      </h1>
+      <p id="containerTitle">Tell us a bit about yourself.</p>
+      <div id="serverError" class="errorAlert">
+        <span class="material-icons">error</span>
+        <div id="serverErrorMessage"></div>
       </div>
-      <div class="leftImageContainer">
-        <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/stripe.svg"
-          alt="Stripe behind baby"
-          class="leftDesignLine"
-        >
-        <img
-          src="https://raw.githubusercontent.com/houseOfEorl/Expenses/4f03b65c413e7cd1299ee129726cd7d4b2f062f6/locker.svg"
-          alt="locker"
-          class="leftDesignBaby"
-        >
-      </div>
+      <div id="api" data-name="SelfAsserted"></div>
     </div>
-    <div class="rightContent">
-      <div class="formContainer">
-        <div class="content">
-          <div class="rightLogoContainer">
-            <img
-              data-tenant-branding-logo="true"
-              src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
-              alt="Embark"
-            >
-          </div>
-          <h1 id="headline">
-            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/padlock.svg"
-            alt="padlock" 
-            class="formHeaderIcon"
-            />
-            Je m’inscris
-          </h1>
-          <div id="serverError" class="errorAlert">
-            <span class="material-icons">error</span>
-            <div id="serverErrorMessage"></div>
-          </div>
-          <div id="api" data-name="SelfAsserted"></div>
-        </div>
-        <div class="signIn">
-          Vous avez déjà un compte? <a id="signInLink">Connectez-vous</a>
-        </div>
-      </div>
-    </div>
-   </div>
+  </div>
 
   <script>
-
-function convertToSentenceCase(sentence) {
-      if (!sentence || typeof sentence !== 'string') return '';
-      const lowercase = sentence.trim().toLowerCase();
-      const endsWithPeriod = lowercase.endsWith('.');
-      const capitalizeFirstLetter = lowercase.charAt(0).toUpperCase() + lowercase.slice(1);
-      const finalSentence = endsWithPeriod ? capitalizeFirstLetter.replace(/\s+(\.)/g, '$1') : capitalizeFirstLetter;
-      return finalSentence || '';
-    };
-
     function goBack() {
       history.back();
-    };
-
-    // Add Analytics Event Listeners //
-
-    const googleAnalyticsCategory = 'Digital Access'
-
-    const formButtons = [
-      { 'id':'continue', 'button': 'createAccount', googleAnalyticsLabel: 'ACTVN - Create account',
-        googleAnalyticsActions: {
-          'click': 'ACTVN - Create account'  
-        }
-      }
-    ]
-
-    function sendGoogleAnalyticsOnMount(event, label) {
-      gtag('event', event, { category: googleAnalyticsCategory, label });
     }
 
-    function sendGoogleAnalyticsInputEvent(event, label) {
-      gtag('event', event, { category: googleAnalyticsCategory, label });
-    }
-
-    formButtons.forEach((formButton) => {
-      const { id, button, googleAnalyticsActions, googleAnalyticsLabel  } = formButton || {}
-      const buttonElement = document.getElementById(id)
-      const eventTypes = ['click']
-      eventTypes.forEach((eventType) => {
-        buttonElement.addEventListener(eventType, () => sendGoogleAnalyticsInputEvent(googleAnalyticsActions[eventType], googleAnalyticsLabel))
-      })
-    })
-
-    // Send GA event on mount
-    document.addEventListener('DOMContentLoaded', () => sendGoogleAnalyticsOnMount('ACTVN-Signup', 'ACTVN-Signup'))
-
-    const phoneNumberInput = document.getElementById('inputPhoneNumber');
-    const phoneNumberTextBox = document.getElementsByClassName('TextBox')[0];
+    const inputEmptyErrorMessage = 'This information is required.';
 
     const emailInput = document.getElementById('email');
-    const emailTextBox = document.getElementsByClassName('TextBox')[1];
+    const emailTextBox = document.getElementsByClassName('TextBox')[3];
+    emailInput.setAttribute('maxlength', 40);
 
     const newPasswordInput = document.getElementById('newPassword');
     const Password = document.getElementsByClassName('Password')[0];
 
-    emailInput.setAttribute('maxlength', 40);
+    const firstNameInput = document.getElementById('extension_FirstName');
+    const firstNameTextBox = document.getElementsByClassName('TextBox')[0];
+    firstNameInput.setAttribute('maxlength', 20);
+
+    const lastNameInput = document.getElementById('extension_LastName');
+    const lastNameTextBox = document.getElementsByClassName('TextBox')[1];
+    lastNameInput.setAttribute('maxlength', 20);
+
+    const phoneNoInput = document.getElementById('extension_PhoneNo');
+    const phoneNoTextBox = document.getElementsByClassName('TextBox')[3];
+
+
 
     // Remove email input autofocus
+    emailInput.removeAttribute('autofocus');
+    emailInput.blur();
+
+    firstNameInput.removeAttribute('autofocus');
+    firstNameInput.blur();
+
+    lastNameInput.removeAttribute('autofocus');
+    lastNameInput.blur();
+
+    phoneNoInput.removeAttribute('autofocus');
+    phoneNoInput.blur();
+
+
     const focusFix = document.getElementById('focusFix');
     focusFix.focus();
     setTimeout(() => {
@@ -889,18 +615,15 @@ function convertToSentenceCase(sentence) {
       window.scrollTo(0, 0);
     }, 500);
 
-    // Insert password requirements
-    let buttons = document.getElementsByClassName('Password')[0]
-    const passwordRequirements = document.createElement('div');
-    passwordRequirements.setAttribute('id', 'passwordRequirements');
-    passwordRequirements.setAttribute('class', 'textInfo');
-    passwordRequirements.innerHTML = 
-    `Votre mot de passe doit comporter au moins 8 caractères, contenir des majuscules et des minuscules, et
-    au moins un chiffre et un caractère spécial (comme ! @ # ?).`;
-    buttons.insertAdjacentElement('afterend', passwordRequirements);
+    // Insert first name input error message
+    const firstNameError = document.createElement('div');
+    firstNameError.setAttribute('id', 'firstNameError');
+    firstNameTextBox.insertAdjacentElement('afterend', firstNameError);
 
-    //// ERROR MESSAGES
-
+    // Insert last name input error message
+    const lastNameError = document.createElement('div');
+    lastNameError.setAttribute('id', 'lastNameError');
+    lastNameTextBox.insertAdjacentElement('afterend', lastNameError);
 
     // Insert email input error message
     const emailError = document.createElement('div');
@@ -912,20 +635,43 @@ function convertToSentenceCase(sentence) {
     passwordError.setAttribute('id', 'passwordError');
     Password.insertAdjacentElement('afterend', passwordError);
 
-    // Insert phone number input error message
-    const phoneNumberError = document.createElement('div');
-    phoneNumberError.setAttribute('id', 'phoneNumberError');
-    phoneNumberTextBox.insertAdjacentElement('afterend', phoneNumberError);
+    // Insert password requirements
+    const passwordRequirementsText = document.createElement('div');
+    passwordRequirementsText.setAttribute('id', 'passwordRequirementsText');
+    passwordRequirementsText.setAttribute('class', 'textInfo');
+    passwordRequirementsText.innerHTML = ` Your password must be a minimum of 8 characters, contain both uppercase and lowercase, and at least one number and special character (like ! @ # ?).`;
+    passwordError.insertAdjacentElement('afterend', passwordRequirementsText);
+
+    // Insert phone input error message
+    const phoneNoError = document.createElement('div');
+    phoneNoError.setAttribute('id', 'phoneNoError');
+    phoneNoTextBox.insertAdjacentElement('afterend', phoneNoError);
+
+    phoneNoError.insertAdjacentElement('afterend', phoneNoTextBox);
 
     // Insert custom input field labels
     const emailLabel = document.createElement('span');
     emailLabel.setAttribute('id', 'emailLabel');
-
     const newPasswordLabel = document.createElement('span');
     newPasswordLabel.setAttribute('id', 'passwordLabel');
+    const firstNameLabel = document.createElement('span');
+    firstNameLabel.setAttribute('id', 'firstNameLabel');
+    const lastNameLabel = document.createElement('span');
+    lastNameLabel.setAttribute('id', 'lastNameLabel');
+    const phoneNoLabel = document.createElement('span');
+    phoneNoLabel.setAttribute('id', 'phoneNoLabel');
 
-    const phoneNumberLabel = document.createElement('span');
-    phoneNumberLabel.setAttribute('id', 'phoneNumberLabel');
+
+    // Insert email clear button
+    // const emailClear = document.createElement('button');
+    // emailClear.setAttribute('class', 'iconButtonOutlined');
+    // emailClear.setAttribute('id', 'emailClear');
+    // emailClear.innerHTML = '<span class="material-icons">clear</span>'
+    // emailClear.addEventListener('click', function() {
+    // emailInput.value = '';
+    // emailClear.blur();
+    // });
+    // emailInput.insertAdjacentElement('afterend', emailClear);
 
     // Insert password toggle
     const passwordToggle = document.createElement('button');
@@ -944,156 +690,115 @@ function convertToSentenceCase(sentence) {
     });
     newPasswordInput.insertAdjacentElement('afterend', passwordToggle);
 
-    // Display error banner for multiple input fiield errors
-
-      function checkForMultipleErrors() {
-      const itemLevelErrorElements = Array.from(document.getElementsByClassName('error itemLevel'))
-      const serverError = document.getElementById('serverError');
-      const hasMultipleItemLevelErrorMessages = itemLevelErrorElements && itemLevelErrorElements.filter((errorElement) => {
-        return errorElement.innerHTML !== ''
-      }).length > 1
-
-      if (serverError.style.display = 'none' && hasMultipleItemLevelErrorMessages) {
-        serverError.style.display = 'flex';
-        return serverError.innerHTML = 'Veuillez saisir tous les détails pour continuer.'
-      }
-
-      return false
-    }
-
-    // Handle phone input error state
-    const defaultPhoneNumberError = document.getElementsByClassName('error itemLevel')[0];
-    const phoneNumberErrorObserver = new MutationObserver(function(e) {
-      const previousPhoneNumberInputErrorIcon = document.getElementById('phoneNumberInputErrorIcon');
-      if (e[0].target.innerHTML !== '') {
-        phoneNumberInput.style.border = '2px solid #FA4F00';
-        phoneNumberInput.style.margin = '0';
-
-        if (!previousPhoneNumberInputErrorIcon) {
-          phoneNumberInputErrorIcon = document.createElement('i');
-          phoneNumberInputErrorIcon.setAttribute("id", "phoneNumberInputErrorIcon");
-          phoneNumberInputErrorIcon.classList.add('material-icons', 'errorIcon');
-          phoneNumberInputErrorIcon.innerHTML = 'error';
-          phoneNumberInput.insertAdjacentElement('afterend', phoneNumberInputErrorIcon);
-          phoneNumberLabel.setAttribute('id', 'phoneNumberLabel--error');
-          phoneNumberError.setAttribute('class', 'inputError inputError--visible');
-        }
-
-        phoneNumberError.innerHTML = convertToSentenceCase(defaultPhoneNumberError.innerHTML);
-        checkForMultipleErrors();
-
-      } else {
-        phoneNumberInput.style.border = '';
-        phoneNumberInput.style.margin = '';
-        phoneNumberLabel.setAttribute('id', 'phoneNumberLabel');
-        phoneNumberError.innerHTML = '';
-        phoneNumberError.setAttribute('class', 'inputError');
-
-        if (previousPhoneNumberInputErrorIcon) previousPhoneNumberInputErrorIcon.remove();
-      }
-    });
-    phoneNumberErrorObserver.observe(defaultPhoneNumberError, { childList: true });
-
     // Handle email input error state
-    const defaultEmailError = document.getElementsByClassName('error itemLevel')[1];
-    const emailRegEx = new RegExp(emailInput.getAttribute('pattern')) || new RegExp("^[a-zA-Z0-9.!#$%&'^_`{}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
-    function emailValidation(e) {
-      const email = e.target.value;
-      if (emailRegEx.test(email)) {
-        emailError.innerHTML = '';
-        defaultEmailError.innerHTML = '';
-      }
-    }
-
-    emailInput.addEventListener('input', emailValidation);
-
-    const emailObserver = new MutationObserver(function(e) {
-      const previousEmailInputErrorIcon = document.getElementById('emailInputErrorIcon');
+    const defaultEmailError = document.getElementsByClassName('error itemLevel')[3];
+    const emailObserver = new MutationObserver(function (e) {
       if (e[0].target.innerHTML !== '') {
         emailInput.style.border = '2px solid #FA4F00';
         emailInput.style.margin = '0';
-
-        if (!previousEmailInputErrorIcon) {
-          emailInputErrorIcon = document.createElement('i');
-          emailInputErrorIcon.setAttribute("id", "emailInputErrorIcon");
-          emailInputErrorIcon.classList.add('material-icons', 'errorIcon');
-          emailInputErrorIcon.innerHTML = 'error';
-          emailInput.insertAdjacentElement('afterend', emailInputErrorIcon);
-          emailLabel.setAttribute('id', 'emailLabel--error');
-          emailError.setAttribute('class', 'inputError inputError--visible');
-        }
-
-        emailError.innerHTML = convertToSentenceCase(defaultEmailError.innerHTML);
-        checkForMultipleErrors();
-
+        emailLabel.setAttribute('id', 'emailLabel--error');
+        emailError.innerHTML = defaultEmailError.innerHTML === inputEmptyErrorMessage ? 'Please enter your email.' : defaultEmailError.innerHTML;
+        emailError.setAttribute('class', 'inputError inputError--visible');
       } else {
         emailInput.style.border = '';
         emailInput.style.margin = '';
         emailLabel.setAttribute('id', 'emailLabel');
         emailError.innerHTML = '';
         emailError.setAttribute('class', 'inputError');
-
-        if (previousEmailInputErrorIcon) previousEmailInputErrorIcon.remove();
       }
     });
     emailObserver.observe(defaultEmailError, { childList: true });
 
     // Handle password input error state
-    const defaultPasswordError = document.getElementsByClassName('error itemLevel')[2];
-    const passwordObserver = new MutationObserver(function(e) {
-      const previousPasswordInputErrorIcon = document.getElementById('passwordInputErrorIcon');
+    const defaultPasswordError = document.getElementsByClassName('error itemLevel')[4];
+    const passwordObserver = new MutationObserver(function (e) {
       if (e[0].target.innerHTML !== '') {
         newPasswordInput.style.border = '2px solid #FA4F00';
         newPasswordInput.style.margin = '0';
-
-        if (newPasswordInput.value.trim() === '') {
-          if (previousPasswordInputErrorIcon) previousPasswordInputErrorIcon.style.display = 'block';
-          passwordToggle.style.display = 'none';
-
-          if (!previousPasswordInputErrorIcon) {
-            passwordInputErrorIcon = document.createElement('i');
-            passwordInputErrorIcon.setAttribute('id', 'passwordInputErrorIcon');
-            passwordInputErrorIcon.classList.add('material-icons', 'errorIcon');
-            passwordInputErrorIcon.innerHTML = 'error';
-            newPasswordInput.insertAdjacentElement('afterend', passwordInputErrorIcon);
-          }
-        } else {
-          if (previousPasswordInputErrorIcon) previousPasswordInputErrorIcon.style.display = 'none';
-          passwordToggle.style.display = 'block';
-        }
-
         newPasswordLabel.setAttribute('id', 'passwordLabel--error');
-        passwordError.innerHTML = convertToSentenceCase(defaultPasswordError.innerHTML);
+        passwordError.innerHTML = defaultPasswordError.innerHTML === inputEmptyErrorMessage ? 'Please enter your password.' : defaultPasswordError.innerHTML;
         passwordError.setAttribute('class', 'inputError inputError--visible');
-        Password.setAttribute('class', 'Password--error');
-        passwordRequirements.style.display = 'none';
-
-        checkForMultipleErrors();
       } else {
-
-        if (previousPasswordInputErrorIcon) previousPasswordInputErrorIcon.remove();
-        passwordToggle.style.display = 'block';
-
         newPasswordInput.style.border = '';
         newPasswordInput.style.margin = '';
         newPasswordLabel.setAttribute('id', 'passwordLabel');
         passwordError.innerHTML = '';
         passwordError.setAttribute('class', 'inputError');
-        Password.setAttribute('class', 'Password');
-        passwordRequirements.style.display = 'block';
       }
     });
     passwordObserver.observe(defaultPasswordError, { childList: true });
+
+
+    // Handle first name input error state
+    const defaultFirstNameError = document.getElementsByClassName('error itemLevel')[0];
+    const firstNameObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+        firstNameInput.style.margin = '0';
+        firstNameInput.style.border = '2px solid #FA4F00';
+        firstNameLabel.setAttribute('id', 'firstNameLabel--error');
+        firstNameError.innerHTML = defaultFirstNameError.innerHTML === inputEmptyErrorMessage ? 'Please enter your first name.' : defaultFirstNameError.innerHTML;
+        firstNameError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        firstNameInput.style.border = '';
+        firstNameInput.style.margin = '';
+        firstNameLabel.setAttribute('id', 'firstNameLabel');
+        firstNameError.innerHTML = '';
+        firstNameError.setAttribute('class', 'inputError');
+      }
+    });
+    firstNameObserver.observe(defaultFirstNameError, { childList: true });
+
+
+    // Handle last name input error state
+    const defaultLastNameError = document.getElementsByClassName('error itemLevel')[1];
+    const lastNameObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+        lastNameInput.style.margin = '0';
+        lastNameInput.style.border = '2px solid #FA4F00';
+        lastNameLabel.setAttribute('id', 'lastNameLabel--error');
+        lastNameError.innerHTML = defaultLastNameError.innerHTML === inputEmptyErrorMessage ? 'Please enter your last name.' : defaultLastNameError.innerHTML;
+        lastNameError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        lastNameInput.style.border = '';
+        lastNameInput.style.margin = '';
+        lastNameLabel.setAttribute('id', 'lastNameLabel');
+        lastNameError.innerHTML = '';
+        lastNameError.setAttribute('class', 'inputError');
+      }
+    });
+    lastNameObserver.observe(defaultLastNameError, { childList: true });
+
+    // Handle phone no input error state
+    const defaultPhoneNoError = document.getElementsByClassName('error itemLevel')[3];
+    const phoneNoObserver = new MutationObserver(function (e) {
+      if (e[0].target.innerHTML !== '') {
+        phoneNoInput.style.margin = '0';
+        phoneNoInput.style.border = '2px solid #FA4F00';
+        phoneNoLabel.setAttribute('id', 'phoneNoLabel--error');
+        phoneNoError.innerHTML = defaultPhoneNoError.innerHTML === inputEmptyErrorMessage ? 'Please enter your mobile number.' : defaultPhoneNoError.innerHTML;
+        phoneNoError.setAttribute('class', 'inputError inputError--visible');
+      } else {
+        phoneNoInput.style.border = '';
+        phoneNoInput.style.margin = '';
+        phoneNoLabel.setAttribute('id', 'phoneNoLabel');
+        phoneNoError.innerHTML = '';
+        phoneNoError.setAttribute('class', 'inputError');
+      }
+    });
+    phoneNoObserver.observe(defaultPhoneNoError, { childList: true });
 
     // Handle server error message
     const claimVerificationServerError = document.getElementById('claimVerificationServerError');
     const serverError = document.getElementById('serverError');
     const serverErrorMessage = document.getElementById('serverErrorMessage');
 
-    const serverErrorObserver = new MutationObserver(function(e) {
+    const serverErrorObserver = new MutationObserver(function (e) {
+      console.log('MutationObserver')
       if (e[0].target.innerHTML !== '') {
         serverError.style.display = 'flex';
         serverErrorMessage.innerHTML = claimVerificationServerError.innerHTML;
+        console.log('went',claimVerificationServerError.innerHTML)
+        document.getElementsByClassName('error itemLevel')[3].innerHTML = claimVerificationServerError.innerHTML;
       }
       else {
         serverError.style.display = 'none';
@@ -1105,28 +810,78 @@ function convertToSentenceCase(sentence) {
     // Remove placeholders
     emailInput.setAttribute('placeholder', " ");
     newPasswordInput.setAttribute('placeholder', " ");
-    phoneNumberInput.setAttribute('placeholder', " ");
+    firstNameInput.setAttribute('placeholder', " ");
+    lastNameInput.setAttribute('placeholder', " ");
+    phoneNoInput.setAttribute('placeholder', " ");
 
-    emailLabel.innerHTML = 'Courriel';
-    newPasswordLabel.innerHTML = 'Créer un mot de passe';
-    phoneNumberLabel.innerHTML = 'Numéro de téléphone';
+
+    emailLabel.innerHTML = 'Email';
+    newPasswordLabel.innerHTML = 'Create a password';
+    firstNameLabel.innerHTML = 'First name';
+    lastNameLabel.innerHTML = 'Last name';
+    phoneNoLabel.innerHTML = 'Mobile number';
+
 
     emailInput.insertAdjacentElement('afterend', emailLabel);
     newPasswordInput.insertAdjacentElement('afterend', newPasswordLabel);
-    phoneNumberInput.insertAdjacentElement('afterend', phoneNumberLabel);
+    firstNameInput.insertAdjacentElement('afterend', firstNameLabel);
+    lastNameInput.insertAdjacentElement('afterend', lastNameLabel);
+    phoneNoInput.insertAdjacentElement('afterend', phoneNoLabel);
+
 
     // Skip password requirement text when hitting tab
-    const passwordRequirement = document.getElementById('passwordRequirements');
+    const passwordRequirement = document.getElementById('passwordRequirement');
     passwordRequirement.tabIndex = -1;
 
+
+    // Insert custom sign up agreement text
+    const newTabIcon = '<span class="material-icons newTabIcon">open_in_new</span>';
+    const termsCheckbox = document.getElementById('extension_TermsOfUseConsented_TermsOfUseConsent');
+    const privacyPolicyUrl = 'https://devsecure.embarkcorp.ca/documents/Embark_Privacy_Policy_en.pdf';
+    const termsConditionsUrl = 'https://devsecure.embarkcorp.ca/documents/Digital_Terms_and_Conditions_en.pdf';
+    const signUpAgreement = document.createElement('div');
+    signUpAgreement.setAttribute('id', 'signUpAgreement');
+    signUpAgreement.innerHTML = `
+      I hereby consent to the processing of my personal data that I have provided and I confirm 
+      that I have read and agree to the 
+      <a href="${privacyPolicyUrl}" target="_blank">Embark Student Corp. Privacy Policy</a>${newTabIcon}
+      and the
+      <a href="${termsConditionsUrl}" target="_blank">Digital Terms and Conditions</a>${newTabIcon}
+    `;
+    termsCheckbox.insertAdjacentElement('afterend', signUpAgreement);
+
+    // Insert custom sign up agreement error
+    const termsError = document.createElement('div');
+    termsError.setAttribute('id', 'termsError');
+    termsError.setAttribute('class', 'errorAlert');
+    termsError.innerHTML = `
+      <span class="material-icons">error</span>
+      Please accept to continue.
+    `;
+    const checkboxContainer = document.getElementsByClassName('CheckboxMultiSelect')[0];
+    checkboxContainer.insertAdjacentElement('beforebegin', termsError);
+
+    // Handle sign up agreement error
+    const defaultTermsError = termsCheckbox.previousSibling;
+
+    const termsErrorObserver = new MutationObserver(function (e) {
+      const isErrorHidden = e[0].target.getAttribute('aria-hidden');
+      if (isErrorHidden === "false") {
+        termsError.style.display = 'flex';
+      } else {
+        termsError.style.display = 'none';
+      }
+    });
+    termsErrorObserver.observe(defaultTermsError, { attributes: true, childList: true, subtree: true });
+
     // Insert sign in link href
-    const signInLink = document.getElementById('signInLink');
-    signInLink.href = 'https://devsecure.embarkcorp.ca/signin?locale=fr-CA';
+    // const signInLink = document.getElementById('signInLink');
+    // signInLink.href = 'https://devsecure.embarkcorp.ca/signin';
 
     // Handle continue button loading state
     const continueButton = document.getElementById('continue');
     const continueButtonText = continueButton.innerText;
-    const loadingObserver = new MutationObserver(function(e) {
+    const loadingObserver = new MutationObserver(function (e) {
       if (e[0].target.id === 'verifying_blurb') {
         continueButton.innerHTML = `
           <div class="loading-spinner" role="progressbar">
@@ -1144,136 +899,95 @@ function convertToSentenceCase(sentence) {
         continueButton.innerHTML = continueButtonText;
       }
     });
-    loadingObserver.observe(document, {childList: true, subtree: true});
-
-    const cancelButton = document.getElementById('cancel');
-    cancelButton.style.display='none';
-    const historyBackCancelBtn = document.createElement('button');
-    historyBackCancelBtn.setAttribute('id', 'historyBackCancelBtn');
-    historyBackCancelBtn.setAttribute('formnovalidate', '')
-    historyBackCancelBtn.setAttribute('aria-label', 'Cancel')
-    historyBackCancelBtn.innerHTML = 'Annuler';
-    historyBackCancelBtn.onclick = function() {
-      goBack();
-    };
-    continueButton.insertAdjacentElement('afterend', historyBackCancelBtn);
+    loadingObserver.observe(document, { childList: true, subtree: true });
 
     // Check query string for email, if it's there make email input field readonly
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
     let emailInvite = params.emailInvite;
-    if(emailInvite && emailInvite != 'null') {
+    if (emailInvite && emailInvite != 'null') {
       emailInput.readOnly = true;
       emailInput.disabled = true;
       emailClear.remove();
     }
 
+
     //Formart phone
-    const formatToPhone = (phoneNo) => {
-      let formattedNo;
-      const phoneDigits = phoneNo.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
-      const areaCode = phoneDigits.substring(0, 3);
-      const middle = phoneDigits.substring(3, 6);
-      const last = phoneDigits.substring(6, 10);
+    const isNumericInput = (event) => {
+      const key = event.keyCode;
+      return ((key >= 48 && key <= 57) || // Allow number line
+        (key >= 96 && key <= 105) // Allow number pad
+      );
+    };
 
-      if (phoneDigits.length > 6) { formattedNo = `(${areaCode}) ${middle}-${last}`; }
-      else if (phoneDigits.length > 3) { formattedNo = `(${areaCode}) ${middle}`; }
-      else if (phoneDigits.length > 0) { formattedNo = `(${areaCode}`; }
-
-      return formattedNo;
+    const isModifierKey = (event) => {
+      const key = event.keyCode;
+      return (event.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
+        (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
+        (key > 36 && key < 41) || // Allow left, up, right, down
+        (
+          // Allow Ctrl/Command + A,C,V,X,Z
+          (event.ctrlKey === true || event.metaKey === true) &&
+          (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)
+        )
     };
 
     const enforceFormat = (event) => {
-      let input = event.target.value;
-      input = input.replace(/[^\d()\-]/g, ''); // allow only digits (, ), -
-      input = input.replace(/([\(\)\-])\1+/g, '$1');
-      input = input.length <= 14 ? input : input.substring(0, 14);
-      input = formatToPhone(input);
-      event.target.value = input || '';
+      // Input must be of a valid number format or a modifier key, and not longer than ten digits
+      if (!isNumericInput(event) && !isModifierKey(event)) {
+        event.preventDefault();
+      }
     };
 
-    phoneNumberInput.addEventListener('input', enforceFormat);
+    const formatToPhone = (event) => {
+      if (isModifierKey(event)) { return; }
 
-    const formFields = [
-      { 'id':'inputPhoneNumber', 'field': 'phoneNumber' },
-      { 'id':'email', 'field': 'email' },
-      { 'id':'newPassword', 'field': 'password' },
-    ]
+      const input = event.target.value.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
+      const areaCode = input.substring(0, 3);
+      const middle = input.substring(3, 6);
+      const last = input.substring(6, 10);
 
-    const inputButtons = [
-      { 'id':'continue', 'button': 'createAccount' },
-      { 'id':'historyBackCancelBtn', 'button': 'cancel' },
-    ]
+      if (input.length > 6) { event.target.value = `(${areaCode}) ${middle}-${last}`; }
+      else if (input.length > 3) { event.target.value = `(${areaCode}) ${middle}`; }
+      else if (input.length > 0) { event.target.value = `(${areaCode}`; }
+    };
 
-    function addGoogleAnalyticsInputEvent(field, interaction, key = null) {
-      gtag('event', 'sign_up_form_input_interaction', {
-        field,
-        interaction,
-        ...key ? { key } : {}
-      });
-    }
-
-    function addGoogleAnalyticsButtonEvent(button, action = null) {
-      gtag('event', 'sign_up_form_button_press', {
-        button,
-        ...action ? { action } : {}
-      });
-    }
-
-    formFields.forEach((formField) => {
-      const { id, field }  = formField || {}
-      const inputElement = document.getElementById(id)
-      inputElement.addEventListener('focus', addGoogleAnalyticsInputEvent(field, 'focus'))
-      inputElement.addEventListener('blur', addGoogleAnalyticsInputEvent(field, 'blur'))
-      inputElement.addEventListener('change', addGoogleAnalyticsInputEvent(field, 'change'))
-      inputElement.addEventListener('keydown', (e) => addGoogleAnalyticsInputEvent(field, 'keydown', e.key))
-    })
-
-    inputButtons.forEach((inputButton) => {
-      const { id, button } = inputButton || {}
-      const buttonElement = document.getElementById(id)
-      buttonElement.addEventListener('click', addGoogleAnalyticsButtonEvent(button, 'click'))
-      buttonElement.addEventListener('mouseenter', addGoogleAnalyticsButtonEvent(button, 'mouse-enter'))
-      buttonElement.addEventListener('mouseleave', addGoogleAnalyticsButtonEvent(button, 'mouse-leave'))
-    })
-    
-    const signInLinkElement = document.getElementById('signInLink')
-    signInLinkElement.addEventListener('click', () => gtag('event', 'sign_up_form_link_press'))
-
-
+    phoneNoInput.addEventListener('keydown', enforceFormat);
+    phoneNoInput.addEventListener('keyup', formatToPhone);
   </script>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GOOGLE_ANALYTICS_ID__ %>" height="0" width="0" style="display:none;visibility:hidden">
+    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GOOGLE_ANALYTICS_ID__ %>" height="0" width="0"
+      style="display:none;visibility:hidden">
     </iframe>
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- Meta Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {
-      if(f.fbq)return;
-      n=f.fbq=function(){
-        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;
-      n.push=n;
-      n.loaded=!0;
-      n.version='2.0';
-      n.queue=[];
-      t=b.createElement(e);
-      t.async=!0;
-      t.src=v;
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
     }
-    (window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+      (window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '569865215232570');
     fbq('track', 'DigitalPortalStart');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1"/>
+      src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1" />
   </noscript>
   <!-- End Meta Pixel Code -->
   <!-- Pinterest Tag -->
@@ -1289,8 +1003,11 @@ function convertToSentenceCase(sentence) {
     });
   </script>
   <noscript>
-    <img src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?" width="1" height="1" alt=""/>
+    <img
+      src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?"
+      width="1" height="1" alt="" />
   </noscript>
   <!-- End Google Pixel Code -->
 </body>
+
 </html>
