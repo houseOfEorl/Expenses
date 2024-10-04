@@ -16,38 +16,58 @@
 <body>
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
   <div class="container">
-    <img
-      class="backgroundImageLeft"
-      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_left.svg"
-      alt="background_shape_1"
-    >
-    <img
-      class="backgroundImageRight"
-      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_right.svg"
-      alt="background_shape_2"
-    >
-    <div class="formContainer">
-      <div class="content">
-        <div class="logoContainer">
-          <img
-            data-tenant-branding-logo="true"
-            src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
-            alt="Embark"
-          >
-        </div>
-        <h1 id="headline">
-          Create your account
-        </h1>
-        <p class='subHeader'>Sign up to create your Embark account and start your financial journey today! Explore our range of products, including opening an RESP and access to resources and guidance along the way.</p>
-        <div id="serverError" class="errorAlert">
-          <span class="material-icons">error</span>
-          <div id="serverErrorMessage"></div>
-        </div>
-        <div id="api" data-name="SelfAsserted"></div>
+    <div class="leftContent">
+      <div class="leftLogoContainer">
+        <img
+          data-tenant-branding-logo="true"
+          src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_white.svg"
+          alt="Embark"
+        >
       </div>
-      <div id="termsAndConditions"></div>
-      <div class="signIn">
-        Have an account? <a id="signInLink">Sign in</a>
+      <div class="leftTextContainer">
+        <div class="leftHeader">Your child’s tomorrow starts today</div>
+        <div class='leftBodyText'>Secure your child's educational journey and take a proactive step towards their bright future.</div>
+      </div>
+      <div class="leftImageContainer">
+        <img
+          src="https://devsecure.embarkcorp.ca/templates/assets/images/stripe.svg"
+          alt="Stripe behind baby"
+          class="leftDesignLine"
+        >
+        <img
+          src="https://devsecure.embarkcorp.ca/templates/assets/images/baby.svg"
+          alt="baby"
+          class="leftDesignBaby"
+        >
+      </div>
+    </div>
+    <div class="rightContent">
+      <div class="formContainer">
+        <div class="content">
+          <div class="rightLogoContainer">
+            <img
+              data-tenant-branding-logo="true"
+              src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+              alt="Embark"
+            >
+          </div>
+          <h1 id="headline">
+            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/padlock.svg"
+            alt="padlock" 
+            class="formHeaderIcon"
+            />
+            Sign up
+          </h1>
+          <div id="serverError" class="errorAlert">
+            <span class="material-icons">error</span>
+            <div id="serverErrorMessage"></div>
+          </div>
+          <div id="api" data-name="SelfAsserted"></div>
+        </div>
+        <div id="termsAndConditions"></div>
+        <div class="signIn">
+          Have an account? <a id="signInLink">Sign in</a>
+        </div>
       </div>
     </div>
    </div>
