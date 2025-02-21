@@ -1,0 +1,97 @@
+<html>
+<head>
+  <title>Embark</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="<%= __BASEURL__ %>/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <link rel="apple-touch-icon" href="<%= __BASEURL__ %>/icons/favicon-apple.png">
+  <link rel="icon" href="<%= __BASEURL__ %>/favicon.ico">
+  <link href="http://localhost/signupEnstream.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
+  <div class="container">
+    <div class="leftContent">
+      <div class="leftLogoContainer">
+        <img
+          data-tenant-branding-logo="true"
+          src="<%= __BASEURL__ %>/templates/assets/logo/embark_white.svg"
+          alt="Embark"
+        >
+      </div>
+      <div class="leftTextContainer">
+        <div class="leftHeader">Activate your account</div>
+        <div class='leftBodyText'>Get digital access to your Knowledge First Financial plan(s) by signing up!</div>
+      </div>
+      <div class="leftImageContainer">
+        <img
+          src="<%= __BASEURL__ %>/templates/assets/images/stripe.svg"
+          alt="Stripe behind locker"
+          class="leftDesignLine"
+        >
+        <img
+          src="<%= __BASEURL__ %>/templates/assets/images/locker.svg"
+          alt="locker"
+          class="leftDesignLocker"
+        >
+      </div>
+    </div>
+    <div class="rightContent">
+      <div class="formContainer">
+        <div class="content">
+          <div class="rightLogoContainer">
+            <img
+              data-tenant-branding-logo="true"
+              src="<%= __BASEURL__ %>/templates/assets/logo/embark_violet.svg"
+              alt="Embark"
+            >
+          </div>
+          <h1 id="headline">
+            <img src="<%= __BASEURL__ %>/templates/assets/images/padlock.svg"
+            alt="padlock" 
+            class="formHeaderIcon"
+            />
+            Sign up
+          </h1>
+          <div id="serverError" class="errorAlert">
+            <span class="material-icons">error</span>
+            <div id="serverErrorMessage"></div>
+          </div>
+          <div id="api" data-name="SelfAsserted"></div>
+          <div id="phoneBannerHolder" class = "phoneBannerHolder">
+            <div id="phoneBanner" class="phoneBannerContainer">
+              <img src="<%= __BASEURL__ %>/templates/assets/images/polygon.svg" />
+              <div class="phoneBannerConent">
+                <div>
+                  <img src="<%= __BASEURL__ %>/templates/assets/images/phone.svg" />
+                </div>
+                <div>
+                  <span class="phoneBannerText1">Is this the right mobile number?</span>
+                  <span class="phoneBannerText2">
+                    We’ll send a text message with a code to this number for security and login verification.
+                  </span>
+                </div>
+                <div>
+                  <button class="iconCloseButton" id="phoneBannerCloseButton"><img
+                      src="<%= __BASEURL__ %>/templates/assets/images/close.svg" /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="termsAndConditions"></div>
+        <div class="signIn">
+          Have an account? <a id="signInLink">Sign in</a>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  <script src="http://localhost/signupEnstream.js"></script>
+</body>
+</html>
