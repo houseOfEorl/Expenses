@@ -1,75 +1,78 @@
 <html>
 
 <head>
-  <title>Embark</title>
+    <title>Embark</title>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
-  <link href="https://devsecure.embarkcorp.ca/templates/assets/styles/PasswordReset.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
-  <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
-  <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
-  <link href="http://localhost/smsVerification.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://devsecure.embarkcorp.ca/templates/assets/styles/PasswordReset.css" rel="stylesheet"
+        type="text/css" />
+    <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+    <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
+    <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+    <link href="http://localhost/smsVerification.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <div class="container">
-    <div class="content sms-verify-container">
-      <button id="backButton" class="iconButton sms-verify-back" onclick="goBack()">
-        <span class="material-icons">close</span>
-      </button>
-      <div class="pageTitle">
-        Active your digital account
-      </div>
-      <div id="verifyMobileNumber">
-        <h1 id="headline">
-          Verify your mobile number
-        </h1>
-        <div class="textInfo">
-          We’ll send a 6-digit code to your mobile number for verification.
-        </div>
-      </div
-      <div id="verifySecurityCode">
-        <h1 id="headline">
-          Enter security code
-        </h1>
-        <div class="textInfo">
-          We've sent a 6-digit security code to:  {phone}
-        </div>
-      </div
-      <div id="serverError" class="errorAlert">
-        <span class="material-icons">error</span>
-        <div id="serverErrorMessage"></div>
-      </div>
-      <div id="api" data-name="SelfAsserted" role="main"></div>
-      <div id="phoneBannerHolder" class = "phoneBannerHolder">
-            <div id="phoneBanner" class="phoneBannerContainer">
-              <img src="https://devsecure.embarkcorp.ca/templates/assets/images/polygon.svg" />
-              <div class="phoneBannerConent">
-                <div>
-                  <img src="https://devsecure.embarkcorp.ca/templates/assets/images/phone.svg" />
-                </div>
-                <div>
-                  <span class="phoneBannerText1">Is this the right mobile number?</span>
-                  <span class="phoneBannerText2">
-                    We’ll send a text message with a code to this number for security and login verification.
-                  </span>
-                </div>
-                <div>
-                  <button class="iconCloseButton" id="phoneBannerCloseButton"><img
-                      src="https://devsecure.embarkcorp.ca/templates/assets/images/close.svg" /></button>
-                </div>
-              </div>
+    <div class="container">
+        <div class="content sms-verify-container">
+            <button id="backButton" class="iconButton sms-verify-back" onclick="goBack()">
+                <span class="material-icons">close</span>
+            </button>
+            <div class="pageTitle">
+                Active your digital account
             </div>
-          </div>
+            <div id="verifyMobileNumber">
+                <h1 id="headline">
+                    Verify your mobile number
+                </h1>
+                <div class="textInfo">
+                    We’ll send a 6-digit code to your mobile number for verification.
+                </div>
+            </div>
+            <div id="verifySecurityCode">
+                <h1 id="headline">
+                    Enter security code
+                </h1>
+                <div class="textInfo">
+                    We've sent a 6-digit security code to: {phone}
+                </div>
+            </div>
+            <div id="serverError" class="errorAlert">
+                <span class="material-icons">error</span>
+                <div id="serverErrorMessage"></div>
+            </div>
+            <div id="api" data-name="SelfAsserted" role="main"></div>
+            <div id="phoneBannerHolder" class="phoneBannerHolder">
+                <div id="phoneBanner" class="phoneBannerContainer">
+                    <img src="https://devsecure.embarkcorp.ca/templates/assets/images/polygon.svg" />
+                    <div class="phoneBannerConent">
+                        <div>
+                            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/phone.svg" />
+                        </div>
+                        <div>
+                            <span class="phoneBannerText1">Is this the right mobile number?</span>
+                            <span class="phoneBannerText2">
+                                We’ll send a text message with a code to this number for security and login
+                                verification.
+                            </span>
+                        </div>
+                        <div>
+                            <button class="iconCloseButton" id="phoneBannerCloseButton"><img
+                                    src="https://devsecure.embarkcorp.ca/templates/assets/images/close.svg" /></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div id='loadingSpinner' role="progressbar"></div>
+    <div id='loadingSpinner' role="progressbar"></div>
 
-  <script src="http://localhost/smsVerification.js"></script>
+    <script src="http://localhost/smsVerification.js"></script>
 </body>
 
 </html>
