@@ -17,69 +17,105 @@
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
   <div class="container">
     <div class="leftContent">
-      <div class="leftLogoContainer">
-        <img
-          data-tenant-branding-logo="true"
-          src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_white.svg"
-          alt="Embark"
-        >
-      </div>
-      <div class="leftTextContainer">
-        <div class="leftHeader">Your child’s tomorrow starts today</div>
-        <div class='leftBodyText'>Secure your child's educational journey and take a proactive step towards their bright future.</div>
-      </div>
-      <div class="leftImageContainer">
-        <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/stripe.svg"
-          alt="Stripe behind baby"
-          class="leftDesignLine"
-        >
-        <img
-          src="https://devsecure.embarkcorp.ca/templates/assets/images/baby.svg"
-          alt="baby"
-          class="leftDesignBaby"
-        >
+      <div class="heroLoadingSpinner" role="progressbar"></div>
+      <div class="heroContent">
+        <div class="leftLogoContainer">
+          <img data-tenant-branding-logo="true" src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"alt="Embark">
+        </div>
+        <div class="leftTextContainer">
+          <div class="leftHeader">A trusted leader in education savings</div>
+            <div class="leftListContainer">
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">60</div>
+                <div class="leftBodyText">
+                  years of specialized experience in education saving and planning
+                </div>
+              </div>
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">60,000+</div>
+                <div class="leftBodyText">
+                  students supported every year
+                </div>
+              </div>
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">$6.4 billion</div>
+                <div class="leftBodyText">
+                  Assets Under Management (AUM)
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="leftImageContainer">
+          <img src="https://devsecure.embarkcorp.ca/templates/assets/images/students.jpg" alt="Students walking on campus" class="leftDesignHero">
+        </div>
       </div>
     </div>
     <div class="rightContent">
       <div class="formContainer">
         <div class="content">
           <div class="rightLogoContainer">
-            <img
-              data-tenant-branding-logo="true"
-              src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
-              alt="Embark"
-            >
+            <img data-tenant-branding-logo="true" src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
+              alt="Embark">
           </div>
+          <div class="mobileLoadingSpinner" role="progressbar"></div>
           <div id="serverError" class="errorAlert">
             <span class="material-icons">error</span>
             <div id="serverErrorMessage"></div>
           </div>
-          <div class="actionsBanner">
-            <div class="actionsBannerContainer"></div>
-            <div class="actionsBannerStripe"></div>
-            <div style="width: 23px; height: 28px; left: 29.50px; top: 24px; position: absolute;"><img src="https://devsecure.embarkcorp.ca/templates/assets/images/person.svg" alt="person" class="formHeaderIcon"></div>
-            <div style="left: 72.50px; top: 19px; position: absolute"><span class="actionsBannerTitles">Adding a child to an existing plan?<br/></span><span class="actionsBannerTitles"> <a id="signInLink" href="<%= __BASEURL__ %>/signin">Log in</a></span></div>
-            
-            <div style="left: 72.50px; top: 79px; position: absolute"><span class="actionsBannerTitles">Did you receive an activation email?<br/></span><span class="actionsBannerTitles"> <a id="activateAccountLink" href="https://devsecure.embarkcorp.ca/digital-access">Activate your account</a></span></div>
-            <div style="width: 33.92px; height: 31.50px; left: 24.50px; top: 80px; position: absolute">
-              <img src="https://devsecure.embarkcorp.ca/templates/assets/images/checked.svg" alt="checked" class="formHeaderIcon">
+          <div id="actionsBanner" class="actionsBanner">
+            <div class="actionsContentRow">
+              <img
+                class="actionsContentRowImg"
+                alt="checked"
+                src="https://devsecure.embarkcorp.ca/templates/assets/images/checked.svg"
+              >
+              <div class='actionsContentRowText'>
+                <span class="actionsBannerRowTextTitle">
+                  Have you activated your account yet?
+                </span>
+                <a
+                  id="activateAccountLink"
+                  href="https://devsecure.embarkcorp.ca/digital-access"
+                >
+                  Activate your account
+                </a>
+              </div>
             </div>
           </div>
           <h1 id="headline">
             <img src="https://devsecure.embarkcorp.ca/templates/assets/images/timer.svg"
-            alt="Open an RESP in 8 minutes" 
+            alt="timer"
             class="formHeaderIcon"
             />
             Open an RESP in 8 minutes
           </h1>
           <div id="api" data-name="SelfAsserted"></div>
+          <div id="phoneBannerHolder" class="phoneBannerHolder">
+            <div id="phoneBanner" class="phoneBannerContainer">
+              <img src="https://devsecure.embarkcorp.ca/templates/assets/images/polygon.svg" />
+              <div class="phoneBannerConent">
+                <div>
+                  <img src="https://devsecure.embarkcorp.ca/templates/assets/images/phone.svg" />
+                </div>
+                <div>
+                  <span class="phoneBannerText1">Is this the right mobile number?</span>
+                  <span class="phoneBannerText2">
+                    We’ll send a text message with a code to this number for security and login verification.
+                  </span>
+                </div>
+                <div>
+                  <button class="iconCloseButton" id="phoneBannerCloseButton"><img
+                      src="https://devsecure.embarkcorp.ca/templates/assets/images/close.svg" /></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div id="termsAndConditions"></div>
-        <pre><code class="language-json" id="code"></code></pre>
       </div>
     </div>
-   </div>
+  </div>
   <script src="http://localhost/Signup.js"></script>
 </body>
 </html>
+
