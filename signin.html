@@ -26,22 +26,43 @@
 
 <body>
   <div id="focusFix" tabindex="0" autofocus="autofocus"></div>
-  <div id="errorBanner" role="alert">
-    <span class="material-icons">error</span>
-    <div id="serverErrorMessage"></div>
-  </div>
   <div class="container">
-    <img
-      class="backgroundImageLeft"
-      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_left.svg"
-      alt="background_shape_1"
-    >
-    <img
-      class="backgroundImageRight"
-      src="https://devsecure.embarkcorp.ca/templates/assets/images/bg_image_right.svg"
-      alt="background_shape_2"
-    >
-    <div class="formContainer">
+    <div id="heroLoadingSpinner" class="heroLoadingSpinner" role="progressbar"></div>
+    <div class="leftContent">
+      <div class="heroContent">
+        <div class="leftLogoContainer">
+          <img data-tenant-branding-logo="true" src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"alt="Embark">
+        </div>
+        <div class="leftTextContainer">
+          <div class="leftHeader">A trusted leader in education savings</div>
+            <div class="leftListContainer">
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">60</div>
+                <div class="leftBodyText">
+                  years of specialized experience in education saving and planning
+                </div>
+              </div>
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">60,000+</div>
+                <div class="leftBodyText">
+                  students supported every year
+                </div>
+              </div>
+              <div class="leftBodyContainer">
+                <div class="leftSubheader">$6.4 billion</div>
+                <div class="leftBodyText">
+                  Assets Under Management (AUM)
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="leftImageContainer">
+          <img src="https://devsecure.embarkcorp.ca/templates/assets/images/students.jpg" alt="Students walking on campus" class="leftDesignHero">
+        </div>
+      </div>
+    </div>
+    <div class="rightContent">
+      <div class="formContainer">
       <div class="content">
         <div id="companyLogo">
           <img
@@ -50,17 +71,21 @@
             alt="Embark"
           >
         </div>
-        <div class="actionsBanner">
+        <div id="errorBanner" class="errorAlert">
+          <span class="material-icons">error</span>
+          <div id="serverErrorMessage"></div>
+        </div>
+        <div id="actionsBanner" class="actionsBanner">
           <div class="actionsBannerContainer"></div>
           <div class="actionsBannerStripe"></div>
           <div style="width: 23px; height: 28px; left: 29.50px; top: 24px; position: absolute;"><img src="https://devsecure.embarkcorp.ca/templates/assets/images/checked.svg" alt="checked" class="formHeaderIcon"></div>
-          <div style="left: 72.50px; top: 19px; position: absolute"><span class="actionsBannerTitles">Did you receive an activation email?<br/></span><span class="actionsBannerTitles"> <a id="activateAccountLink" href="https://devsecure.embarkcorp.ca/digital-access">Activate your account</a></span></div>
+          <div style="left: 72.50px; top: 19px; position: absolute"><span class="actionsBannerTitles">Have you activated your account yet?<br/></span><span class="actionsBannerTitles"> <a id="activateAccountLink" href="https://devsecure.embarkcorp.ca/digital-access">Activate your account</a></span></div>
         </div>
         <h1 id="headline">
           Let’s log in
         </h1>
         <div id="api" data-name="Unified"></div>
-        <div class="signup">
+        <div class="signup" id="signupLinkContainer">
           Don't have an account? <a id="signupLink" href="https://devsecure.embarkcorp.ca/signup">Sign up</a>
         </div>
       </div>
