@@ -1,63 +1,18 @@
 <html>
-
 <head>
   <title>Embark</title>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" data-preload="true" />
-  <link href="http://localhost:8080/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" data-preload="true" />
-  <link rel="shortcut icon" href="http://localhost:8080/favicon.ico">
-  <link rel="apple-touch-icon" href="http://localhost:8080/icons/favicon-apple.png">
-  <link rel="icon" href="http://localhost:8080/favicon.ico">
-  <link href="http://localhost/templates/assets/styles/signup.css" rel="stylesheet" type="text/css" data-preload="true" />
-  <%= __VWO__ %>
-  <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', '<%= __GTMALLPRODUATID__ %>');
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= __GOOGLE_ANALYTICS_ID__ %>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', '<%= __GOOGLE_ANALYTICS_ID__ %>');
-    </script>
-    <!-- End of global snippet: Please do not remove -->
-    <!-- Pinterest Tag -->
-    <script>
-      !function (e) {
-        if (!window.pintrk) {
-          window.pintrk = function () {
-            window.pintrk.queue.push(Array.prototype.slice.call(arguments))
-          };
-          var n = window.pintrk; n.queue = [], n.version = "3.0";
-          var t = document.createElement("script"); t.async = !0, t.src = e;
-          var r = document.getElementsByTagName("script")[0];
-          r.parentNode.insertBefore(t, r)
-        }
-      }("https://s.pinimg.com/ct/core.js");
-      pintrk('load', '2612798461565', { em: '<user_email_address>' });
-      pintrk('page');
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none;" alt=""
-        src="https://ct.pinterest.com/v3/?event=init&tid=2612798461565&pd[em]=<hashed_email_address>&noscript=1" />
-    </noscript>
-    <!-- end Pinterest Tag -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://devsecure.embarkcorp.ca/templates/assets/hco_fonts/hco_fonts.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  <link rel="apple-touch-icon" href="https://devsecure.embarkcorp.ca/icons/favicon-apple.png">
+  <link rel="icon" href="https://devsecure.embarkcorp.ca/favicon.ico">
+  
+  <link href="http://localhost/Signup.css" rel="stylesheet" type="text/css" />
+  <script src="https://devsecure.embarkcorp.ca/templates/assets/scripts/authPageHero.js" id="page-content-script" data-api-url="https://devsecure.embarkcorp.ca"></script>
 </head>
 
 <body>
@@ -67,7 +22,7 @@
       <div class="heroLoadingSpinner" role="progressbar"></div>
       <div class="heroContent">
         <div class="leftLogoContainer">
-          <img data-tenant-branding-logo="true" src="http://localhost:8080/templates/assets/logo/embark_violet.svg"alt="Embark">
+          <img data-tenant-branding-logo="true" src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"alt="Embark">
         </div>
         <div class="leftTextContainer">
           <div class="leftHeader">A trusted leader in education savings</div>
@@ -93,7 +48,7 @@
           </div>
         </div>
         <div class="leftImageContainer">
-          <img src="http://localhost:8080/templates/assets/images/students.jpg" alt="Students walking on campus" class="leftDesignHero">
+          <img src="https://devsecure.embarkcorp.ca/templates/assets/images/students.jpg" alt="Students walking on campus" class="leftDesignHero">
         </div>
       </div>
     </div>
@@ -101,7 +56,7 @@
       <div class="formContainer">
         <div class="content">
           <div class="rightLogoContainer">
-            <img data-tenant-branding-logo="true" src="http://localhost:8080/templates/assets/logo/embark_violet.svg"
+            <img data-tenant-branding-logo="true" src="https://devsecure.embarkcorp.ca/templates/assets/logo/embark_violet.svg"
               alt="Embark">
           </div>
           <div class="mobileLoadingSpinner" role="progressbar"></div>
@@ -114,41 +69,45 @@
               <img
                 class="actionsContentRowImg"
                 alt="checked"
-                src="http://localhost:8080/templates/assets/images/checked.svg"
+                src="https://devsecure.embarkcorp.ca/templates/assets/images/checked.svg"
               >
               <div class='actionsContentRowText'>
                 <span class="actionsBannerRowTextTitle">
-                  Already have an existing RESP with us?
+                  Have you activated your account yet?
                 </span>
                 <a
                   id="activateAccountLink"
-                  href="http://localhost:8080/digital-access"
+                  href="https://devsecure.embarkcorp.ca/digital-access"
                 >
-                  Register for online access
+                  Activate your account
                 </a>
               </div>
             </div>
           </div>
           <h1 id="headline">
-            Sign up
+            <img src="https://devsecure.embarkcorp.ca/templates/assets/images/timer.svg"
+            alt="timer"
+            class="formHeaderIcon"
+            />
+            Open an RESP in 8 minutes
           </h1>
           <div id="api" data-name="SelfAsserted"></div>
           <div id="phoneBannerHolder" class="phoneBannerHolder">
             <div id="phoneBanner" class="phoneBannerContainer">
-              <img src="http://localhost:8080/templates/assets/images/polygon.svg" />
+              <img src="https://devsecure.embarkcorp.ca/templates/assets/images/polygon.svg" />
               <div class="phoneBannerConent">
                 <div>
-                  <img src="http://localhost:8080/templates/assets/images/phone.svg" />
+                  <img src="https://devsecure.embarkcorp.ca/templates/assets/images/phone.svg" />
                 </div>
                 <div>
                   <span class="phoneBannerText1">Is this the right mobile number?</span>
                   <span class="phoneBannerText2">
-                    We'll send a text message with a code to this number for security and login verification.
+                    We’ll send a text message with a code to this number for security and login verification.
                   </span>
                 </div>
                 <div>
                   <button class="iconCloseButton" id="phoneBannerCloseButton"><img
-                      src="http://localhost:8080/templates/assets/images/close.svg" /></button>
+                      src="https://devsecure.embarkcorp.ca/templates/assets/images/close.svg" /></button>
                 </div>
               </div>
             </div>
@@ -158,30 +117,7 @@
       </div>
     </div>
   </div>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=<%= __GTMALLPRODUATID__ %>" height="0" width="0"
-      style="display:none;visibility:hidden">
-    </iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- Meta Pixel Code -->
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=569865215232570&ev=DigitalPortalStart&noscript=1" />
-  </noscript>
-  <!-- End Meta Pixel Code -->
-  <!-- Pinterest Tag -->
-  <!-- end Pinterest Tag -->
-  <!-- Google Pixel Code-->
-  <script src="http://localhost:8080/templates/assets/scripts/signupStudent.js" id="page-content-script" data-api-url="http://localhost:8080/" data-public-site-url="<%= __PUBLIC__SITE__URL__ %>" data-locale="en"></script>
-  <script src="http://localhost:8080/templates/assets/scripts/authPageHero.js"></script>
-  <noscript>
-    <img
-      src="https://ad.doubleclick.net/ddm/activity/src=13222589;type=portstrt;cat=embar0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?"
-      width="1" height="1" alt="" />
-  </noscript>
-  <!-- End Google Pixel Code -->
+  <script src="http://localhost/Signup.js"></script>
 </body>
-
 </html>
 
